@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+#file to big for upload via github
+STEP_7_WinCC_V16_enUS_en-US.pdf
