@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_typeAnalogScaleValues (UDT)</title>
+</head><body>
+<h1>LBC_typeAnalogScaleValues (UDT)</h1>
+<hr>
+<h2>Description</h2>
+<p>Module related monitoring information</p>
+
+<h2>Parameter description</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>enable</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Enable functionality of FB</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>simulation</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Enable simulation input of<br>input value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>inputValue</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Value to be converted</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>outputValue</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Processed and scaled value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>minValueReached</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>Minimum configured process value reached. Value is limited to the minimum configured value.</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>maxValueReached</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>Maximum configured process value reached. Value is limited to the maximum configured value.</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>error</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: An error occurred while processing the FB</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

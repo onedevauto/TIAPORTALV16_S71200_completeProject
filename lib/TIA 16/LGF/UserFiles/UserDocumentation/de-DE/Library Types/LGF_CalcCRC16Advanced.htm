@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_CalcCRC16Advanced (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_CalcCRC16Advanced (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Industry Support</span>
+<h2>Kurzbeschreibung</h2>
+<p>Die CRC-Berechnung wird für die Fehlererkennung bei der Datenübertragung verwendet. Das Ergebnis einer Berechnung liefert einen CRC-Wert über die gesendeten Daten. Der Empfänger erkennt eine fehlerhafte Übertragung aufgrund des ungleichen CRC-Werts. Die Funktion <code>LGF_CalcCRC16Advanced</code> verwendet als Generatorpolynom (Maske) 16 Bit sowie die Parameter <code>finalXorValue</code>, <code>reflectInput</code> und <code>reflectResult</code>.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_CalcCRC16Advanced (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>initValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>mask</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>finalXorValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reflectInput</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reflectResult</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of Byte</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>array</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of Byte</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>initValue</td><td>Word</td><td>Startwert, mit dem die Berechnung durchgeführt wird.<br>Wenn keinen Startwert notwendig ist - 16#00 zuweisen.</td></tr>
+<tr><td>mask</td><td>Word</td><td>Generatorpolynom, mit dem die Berechnung durchgeführt wird.<br>(Maske / CRC Polynom)</td></tr>
+<tr><td>finalXorValue</td><td>Word</td><td>Wert, mit dem am Ende eine weitere XOR-Operation durchgeführt wird</td></tr>
+<tr><td>reflectInput</td><td>Bool</td><td>TRUE: wird die Reihenfolge der Bits innerhalb des Eingangsbytes gespiegelt. Aus der Reihenfolge 0…7 wird 7…0.</td></tr>
+<tr><td>reflectResult</td><td>Bool</td><td>TRUE: wird die Reihenfolge der Bits innerhalb des Ergebnisses gespiegelt. Aus der Reihenfolge 0…7 wird 7…0.</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Word</td><td>Berechneter CRC-Wert (Rückgabewert der Funktion).</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>array</td><td>Array[*] of Byte</td><td>Datenstrom, für den der CRC-Wert berechnet werden soll.</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<p>Die Funktion berechnet aus einem beliebig großen Datenstrom den CRC-Wert. Der Datenstrom setzt sich aus den einzelnen Elementen des Arrays am Ein- / Ausgangsparameter <code>array</code> zusammen. Der Startwert <code>initValue</code> und das Generatorpolynom <code>mask</code> sind frei wählbar.</p>
+<p>Über die booleschen Eingangsparameter <code>reflectInput</code> und <code>reflectResult</code> können Sie optional die Bits der Eingangsdaten bzw. des CRC-Werts spiegeln. Außerdem wird mit dem CRC-Wert am Ende und dem Wert <code>finalXorValue</code> eine XOR-Operation durchgeführt.</p>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Für die Berechnung der CRC-Werte stehen verschiedene Online-Tools zur Verfügung. Die Funktion des Bausteins wurde mit folgendem Online-Tool getestet, da es die Eingangsparameter <code>mask</code> (Polynom) und <code>initValue</code> (Initial Value) unterstützt:</dd>
+<dd><a href="http://www.sunshine2k.de/coding/javascript/crc/crc_js.html">http://www.sunshine2k.de/coding/javascript/crc/crc_js.html</a></dd>
+</dl>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>16.12.2019</td><td>first release, copied from "LGF_CalcCRC32Advanced"</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>12.11.2020</td><td>Insert documentation<br/>Assign default start values to optional inputs - `initValue`, `mask`, `finalXorValue`, `reflectInput`, `reflectResult`</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

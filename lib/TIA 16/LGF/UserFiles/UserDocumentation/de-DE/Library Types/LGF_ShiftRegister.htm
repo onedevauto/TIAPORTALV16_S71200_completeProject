@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_ShiftRegister (FB / V1.0.3)</title>
+</head><body>
+<h1>LGF_ShiftRegister (FB / V1.0.3)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry Support</span>
+<h2>Kurzbeschreibung</h2>
+<p>Die Funktion repräsentiert ein Schieberegister für alle möglichen Datentypen (durch Nutzung von <code>Variant</code>).<br />
+Es ist möglich die Elemente im Array  <code>bufferRegister</code> nach Links (Index <code>array[n]:=array[n+1]</code>) oder Rechts (Index <code>array[n]:=array[n-1]</code>) zu schieben.<br />
+Sie kann zum Beispiel zur Materialverfolgung durch eine Maschine und den Prozess genutzt werden, zum Beispiel für Rundschalttische.</p>
+<hr class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Da diese Funktion die Array Elemente verschiebt, kann es zu Auswirkungen auf die Zykluszeit kommen, abhängig von der Größe des verschaltenden Arrays am Eingang <code>bufferRegister</code>.</dd>
+<dd>Bitte beachten Sie, dass ein FIFO oder LIFO Speicher, basierend auf Indizierung, für viele Applikation genauso ausreichend ist.</dd>
+</dl>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_ShiftRegister (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>shiftLeft</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>shiftRight</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>UInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>shiftRange</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>clear</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>fill</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>initialItem</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>bufferRegister</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Variant</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>shiftLeft</td><td>Bool</td><td>FALSE</td><td>Positive Flanke: Elemente in `bufferRegister` werden nach links geschoben, von Index `N` nach `N - 1`.<br>Das Element im Index `N = 0` wird überschrieben.</td></tr>
+<tr><td>shiftRight</td><td>Bool</td><td>FALSE</td><td>Positive Flanke: Elemente in `bufferRegister` werden nach rechts geschoben, von Index `N` nach `N + 1`.<br>Das Element im Index `N = letzter Index` wird überschrieben.</td></tr>
+<tr><td>shiftRange</td><td>UInt</td><td>1</td><td>Anzahl der Plätze, um die die Elemente im Eingangs Array an `bufferRegister` verschoben werden.</td></tr>
+<tr><td>clear</td><td>Bool</td><td>FALSE</td><td>Clear / Ablöschen der Elemente in Eingangsarray `bufferRegister` mit `initialItem`</td></tr>
+<tr><td>fill</td><td>Bool</td><td>FALSE</td><td>Überschreiben der Pufferelemente nach der Schiebeoperation.<br>* `shiftLeft` - die links gelegenen Elemente<br>* `shiftRight` - die rechts gelegenen Elemente<br>werden mit `initalItem` überschrieben.</td></tr>
+<tr><td>initialItem</td><td>Variant</td><td>---</td><td>Wert mit dem das Array am Eingang `bufferRegister` initialisiert wird (meistens der Default wert)</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status oder Rückgabewert von aufgerufenen FB's / FC's und Systemfunktionen</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>bufferRegister</td><td>Variant</td><td>Puffer / Register Speicher als Array in welchem die Daten gespeichert sind. Die Daten im Register werden nach Links oder Rechts verschoben, abhängig vom Kommando.</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR<br>Status: Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CURRENT_JOBS<br>Status: Keine aktuelle Bearbeitung, initial State</td></tr>
+<tr><td>16#8200</td><td>ERR_NO_ARRAY<br>Fehler: Am Eingang `bufferREgister` liegt kein Array an.</td></tr>
+<tr><td>16#8201</td><td>ERR_CLEARING_WITHOUT_INITIAL_ITEM<br>Fehler: Ein Ablöschen des Arrays an `bufferRegister` ohne einen Datenpunkt an `initialItem` ist nicht möglich.</td></tr>
+<tr><td>16#8202</td><td>ERR_FILL_WITHOUT_INITIAL_ITEM<br>Fehler: Ein Überschreiben der Arrayelemente an `bufferRegister` mit der Option `fill` ohne einen Datenpunkt an `initialItem` ist nicht möglich.</td></tr>
+<tr><td>16#8203</td><td>ERR_WRONG_TYPE_INITIAL_ITEM<br>Fehler: Der Datentyp des Eingangs `initialItem` entspricht nicht dem Datentyp des Arrays am InOut-Parameter `bufferRegister`.</td></tr>
+<tr><td>16#8401</td><td>ERR_MORE_THAN_ONE_COMMAND<br>Fehler: Mehr als ein Kommando an den Eingängen präsent. Nur ein Kommando an den Eingängen `shiftLeft`, `shiftRight` oder
+`clear` ist zulässig.</td></tr>
+<tr><td>16#8402</td><td>ERR_IN_SHIFT_RANGE<br>Fehler: Der Wert an `shiftRange` darf nicht die maximale Größe des Arrays an `bufferRegister` annehmen oder übersteigen.</td></tr>
+<tr><td>16#8610</td><td>ERR_CLEAR_BUFFER<br>Fehler: Während des Ablöschens des Puffers in Funktion `MOVE_BLK_VARIANT`.
+Weitere Infos in `subFunctionStatus`</td></tr>
+<tr><td>16#8611</td><td>ERR_SHIFT_BUFFER_LEFT<br>Fehler: Schieben der Elemente nach links fehlgeschlagen, Fehler in Funktion `MOVE_BLK_VARIANT` - weitere Infos in `subFunctionStatus</td></tr>
+<tr><td>16#8612</td><td>ERR_SHIFT_BUFFER_LEFT_FILL<br>Fehler: Überschreiben der Elemente nach Schieben / Links
+mit dem Initialwort in Funktion `MOVE_BLK_VARIANT` fehlerhaft - weitere Infos in `subFunctionStatus</td></tr>
+<tr><td>16#8622</td><td>ERR_SHIFT_BUFFER_RIGHT<br>Fehler: Schieben der Elemente nach rechts fehlgeschlagen, Fehler in Funktion `MOVE_BLK_VARIANT` - weitere Infos in `subFunctionStatus</td></tr>
+<tr><td>16#8622</td><td>ERR_SHIFT_BUFFER_RIGHT_FILL<br>Fehler: Überschreiben der Elemente nach Schieben / Rechts
+mit dem Initialwort in Funktion `MOVE_BLK_VARIANT` fehlerhaft - weitere Infos in `subFunctionStatus</td></tr>
+</tbody></table>
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>03.07.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>09.04.2021</td><td>Refactoring and alignment to Datatype Variant<br/>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

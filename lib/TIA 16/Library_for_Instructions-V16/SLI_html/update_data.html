@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!---->
+
+<!-- AWP_In_Variable Name='"SLI_gDB_www".tankLevel' -->
+<!-- AWP_In_Variable Name='"SLI_gDB_www".tankLevelMax' -->
+
+<!-- AWP_Enum_Def Name="AlarmValue" Values='0:"Tank empty!", 1:"Tank level below minimum!", 2:"Tank level between minimum and midth!", 3:"Tank level between midth and maximum!", 4:"Tank level over maximum!", 5:"Tank level overflow!"' -->
+
+<html>
+    <head>
+        <title>update data</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+		<script>
+			
+		/*Function for updating the webpage*/
+		function updateFrame()
+		{
+			setTimeout(function(){location.reload()}, 1000);
+		}
+		
+		</script>
+		<noscript>Sorry, your browser does not support JavaScript!</noscript>
+    </head>
+    <body onload="updateFrame()">
+		<!---->
+		
+		<div class="table" id="SingleVariablesTable">
+			<div class="tr">
+				<div class="td">Tank level: </div>
+				<div class="td2">
+					<span class="hilitetxt">:="SLI_gDB_www".tankLevel:</span> of :="SLI_gDB_www".tankLevelMax:
+				</div>
+			</div>
+			<div class="tr">
+				<div class="td">Alarm state: </div>
+				<div class="td2">
+					<!-- AWP_Enum_Ref Name='"SLI_gDB_www".alarm' Enum="AlarmValue" --><span class="hilitetxt">:="SLI_gDB_www".alarm:</span>
+				</div>
+			</div>
+		</div>			
+					
+    </body>
+</html>

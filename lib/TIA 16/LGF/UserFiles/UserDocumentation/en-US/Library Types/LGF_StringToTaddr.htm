@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_StringToTaddr (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_StringToTaddr (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>The system data type <code>TADDR_Param</code> contains address information consisting of an IPV4 address and the port number.</p>
+<p>The <code>LGF_StringToTaddr</code> function converts a variable od data type <code>String</code> to a <code>TADDR_Param</code> system data type variable.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_StringToTaddr (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>String</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>ipAddressString</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>TADDR_Param</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>ipAddressString</td><td>String</td><td>IPV4 address string in the format of `192.168.1.200:55047`<br>[Port number including colon `:` is optional]</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>TADDR_Param</td><td>IP-Address and Port number as `TADDR_Param` data type</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_FINISHED_NO_ERROR<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#8110</td><td>ERR_OCTET_WRONG_NUMBER_OF_CHAR<br>Error: Wrong number / too many characters in the X'th octet of the IP address</td></tr>
+<tr><td>16#8120</td><td>ERR_OCTET_STRING_IS_EMPTY<br>Error: No number/ character in the X'th octet of the IP address is given - String is empty</td></tr>
+<tr><td>16#8130</td><td>ERR_OCTET_EXCEEDS_MAX_IP_ADDRESS<br>Error: Maximum possible number of IP address octet exceeded (255)</td></tr>
+<tr><td>16#8150</td><td>ERR_PORT_WRONG_NUMBER_OF_CHAR<br>Error: Wrong number / to many characters in string port conversion</td></tr>
+<tr><td>16#8151</td><td>ERR_PORT_STRING_IS_EMPTY<br>Error: No number/ character in the Port string is given - String is empty</td></tr>
+<tr><td>16#8152</td><td>ERR_PORT_EXCEEDS_MAX_PORT<br>Error: Maximum number of Port exceeded (65535)</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The function converts the IPV4 address with or without port number from data type <code>String</code> to <code>TADDR_Param</code>.<br />
+The string must be in the following form:</p>
+<ul>
+<li>without port number: <code>[0..255].[0..255].[0..255].[0..255]</code></li>
+<li>with port number: <code>[0..255].[0..255].[0..255].[0..255]:[0..65535]</code></li>
+</ul>
+<p>####### Example:</p>
+<ul>
+<li>The standard string format for an IPV4 address without port number:<br />
+<code>192.168.11.11</code></li>
+<li>The standard string format for an IPV4 address with port number:<br />
+<code>192.168.11.11:3294</code></li>
+</ul>
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>If you do not specify a port number in the <code>ipAddressString</code> parameter, the <code>Ret_Val.REM_PORT_NR</code> parameter returns <code>0</code>.</dd>
+</dl>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>30.01.2017</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>10.06.2019</td><td>Standard header and block parameters update</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.04</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>10.07.2019</td><td>Code refactoring and performance improvements</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.06</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>14.11.2019</td><td>Add ENO handling</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0<br/>Harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.02.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

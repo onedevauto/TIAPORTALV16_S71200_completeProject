@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_typeThreeWayActuatorConfiguration (UDT)</title>
+</head><body>
+<h1>LBC_typeThreeWayActuatorConfiguration (UDT)</h1>
+<hr>
+<h2>Description</h2>
+<p>Module related configuration parameters</p>
+
+<h2>Parameter description</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>referenceDesignator</td><td class='type'>String[20]</td><td class='default'>'ThreeWayAct.'</td><td>Device name or device ID</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoringLeavingFeedback</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Control time for leaving the "start of movement" position</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoringReachingFeedback</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Control time for reaching the "end of movement" position</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>setOutputNeutralContinuously</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Output neutral is set as long as command neutral is present. FALSE: Output has just an impulse as long as the actuator has not reached the position and is moving</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>setOutputWork1Continuously</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Output work 1 is set as long as command work is present. FALSE: Output has just impulse as long as the actuator has not reached the position and is moving</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>setOutputWork2Continuously</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Output work 2 is set as long as command work is present. FALSE: Output has just impulse as long as the actuator has not reached the position and is moving</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableNeutralCommand</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable command for neutral position. Actuator starts moving to neutral position when `commandWorkPosX` is set to false</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableFeedbackNeutralPos</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the monitoring of the Neutral position feedback. FALSE: Neutral position is reached after `monitoringReachingFeedback` time expires.</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableFeedbackWorkPos1</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the monitoring of the Work position 1 feedback. FALSE: Work position 1 is reached after `monitoringReachingFeedback` time expires.</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableFeedbackWorkPos2</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the monitoring of the Work position 2 feedback. FALSE: Work position 2 is reached after `monitoringReachingFeedback` time expires.</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableAlarms</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the alarms of the block</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>resetOutputsOnError</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: in case of an error the outputs are be reset and the error has to be acknowledged before further processing is possible</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

@@ -1,0 +1,1040 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</title>
+</head><body>
+<h1>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</h1>
+<hr>
+<h1 id="bibliotheksubersicht">Bibliotheksübersicht</h1>
+<h2 id="allgemein">Allgemein</h2>
+<p>TIA Portal hat eine umfangreiche Anzahl an &quot;ready-to-use&quot; Anweisungen (Mathematische Funktionen, Zeiten, Zähler, usw.). Darüber hinaus gibt es noch weitere nützliche Basisfunktionen.</p>
+<p>Diese Funktionen werden in Form einer Bibliothek zur Verfügung gestellt und können frei verwendet werden. Die fertigen Funktionen sind frei anpassbar und können somit universell eingesetzt werden.</p>
+<p>Die hier beschriebene Bibliothek ist versioniert und wird kontinuierlich erweitert. Informationen zur Versionierung finden Sie im Anhang Kapitel &quot;Versionierung&quot;.</p>
+<h2 id="hard-und-softwarevoraussetzungen">Hard- und Softwarevoraussetzungen</h2>
+<h4 id="voraussetzungen-fur-diese-bibliothek">Voraussetzungen für diese Bibliothek</h4>
+<p>Um die Funktionalität der hier beschriebenen Bibliothek nutzen zu können, sind nachfolgend genannte Hard- und Softwarevoraussetzungen einzuhalten.</p>
+<h4 id="hardware">Hardware</h4>
+<p>Alle Bausteine (FB, FC, DB, …) in der Bibliothek sind universal mit folgenden Steuerungen einsetzbar:</p>
+<ul>
+<li>SIMATIC S7-1200 und SIMATIC S7-1200 F Produktfamilie<br />
+(ab Firmware V4.2)</li>
+<li>SIMATIC S7-1500 und SIMATIC S7-1500 F Produktfamilie<br />
+(ab Firmware V2.0)</li>
+<li>Simulation mit SIMATIC S7-PLCSIM<br />
+(ab V14)</li>
+</ul>
+<h4 id="software">Software</h4>
+<ul>
+<li>SIMATIC STEP 7 Basic/Professional (TIA PORTAL)</li>
+</ul>
+<hr class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Es ist generell möglich eine Bibliothek mit STEP 7 Basic zu öffnen, obwohl STEP 7 Professional Elemente (z.B. SIMATIC S7-1500 Steuerung) enthalten sind. In diesem Fall werden Sie mit einer Meldung beim Öffnen der Bibliothek informiert.</dd>
+<dd>Es können alle Elemente (Typen und Kopiervorlagen) verwendet werden, wenn sie von der installierten Hardware im TIA Portal unterstützt werden.</dd>
+<dd>Falls Sie versuchen Elemente mit STEP 7 Basic aus der Bibliothek zu kopieren, die nicht unterstützt werden (z.B. SIMATIC S7-1500 Steuerung), wird eine Fehlermeldung angezeigt.</dd>
+</dl>
+<h1 id="arbeiten-mit-der-bibliothek">Arbeiten mit der Bibliothek</h1>
+<h2 id="allgemein-1">Allgemein</h2>
+<p>Alle Bausteine in der Bibliothek &quot;LGF&quot; sind frei verwendbar in Verbindung mit SIMATIC S7-1200 und SIMATIC S7-1500 Steuerungen.</p>
+<p>Der Großteil der Bausteine ist als Typ in der Bibliothek abgelegt. Somit sind die Bausteine versioniert und können somit alle Vorteile nutzen.</p>
+<ul>
+<li>Zentrale Updatefunktion von Bibliothekselementen</li>
+<li>Versionierung von Bibliothekselementen</li>
+</ul>
+<hr class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Informationen zum generellen Umgang mit Bibliotheken finden Sie im Leitfaden zur Bibliothekshandhabung<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109747503">https://support.industry.siemens.com/cs/ww/de/view/109747503</a></dd>
+<dd>und im Programmierleitfaden für S7-1200/1500 im Kapitel &quot;Bibliotheken&quot;<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/81318674">https://support.industry.siemens.com/cs/ww/de/view/81318674</a></dd>
+</dl>
+<hr class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Alle Bausteine in der LGF wurden nach dem Programmierstyleguide erstellt. <a href="https://support.industry.siemens.com/cs/ww/de/view/81318674">https://support.industry.siemens.com/cs/ww/de/view/81318674</a></dd>
+</dl>
+<hr class='successorDefList' />
+<p>Weitere Informationen zu Bibliotheken im TIA Portal:</p>
+<ul>
+<li><p>Themenseite Bibliotheken<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109738702">https://support.industry.siemens.com/cs/ww/de/view/109738702</a></p>
+</li>
+<li><p>Wie öffnen Sie Bibliotheken in STEP 7 (TIA Portal)?<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/37364723">https://support.industry.siemens.com/cs/ww/de/view/37364723</a></p>
+</li>
+<li><p>Automatisieren in weniger als 10 Minuten TIA Portal: Time Savers – Globale Bibliotheken<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/78529894">https://support.industry.siemens.com/cs/ww/de/view/78529894</a></p>
+</li>
+<li><p>Welche Elemente aus STEP 7 (TIA Portal) können in einer Bibliothek als Typ oder als Kopiervorlage abgelegt werden?<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109476862">https://support.industry.siemens.com/cs/ww/de/view/109476862</a></p>
+</li>
+<li><p>Wie können Sie beim Starten von TIA Portal ab V13 eine globale Bibliothek automatisch öffnen und z.B. als Unternehmensbibliothek verwenden?<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/100451450">https://support.industry.siemens.com/cs/ww/de/view/100451450</a></p>
+</li>
+<li><p>Bibliothek mit PLC-Datentypen für Peripherie- / Technologie-Module und PROFIdrive Antriebe (LPD)<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109482396">https://support.industry.siemens.com/cs/ww/de/view/109482396</a></p>
+</li>
+</ul>
+<hr class='pageBreak' />
+<h2 id="simulierbarkeit-mit-simatic-s7-plcsim-advanced">Simulierbarkeit mit SIMATIC S7-PLCSIM Advanced</h2>
+<p>In den Eigenschaften der LGF Bausteine ist die Simulation mit SIMATIC S7-PLCSIM Advanced bereits aktiviert.</p>
+<p><img src="../../../Code2Docu/images/LIB_Simulation_01.PNG" alt="Block properties" /></p>
+<p>Damit die Bausteine nach dem Übersetzen mit SIMATIC S7-PLCSIM Advanced
+simuliert werden können, gehen Sie folgendermaßen vor:</p>
+<ol>
+<li>Öffnen Sie die Eigenschaften Ihres Projekts und aktivieren Sie im Register &quot;Schutz&quot; die Option &quot;Beim Übersetzen von Bausteinen Simulierbarkeit unterstützen&quot; (&quot;Support simulation during block compilation&quot;).</li>
+</ol>
+<p><img src="../../../Code2Docu/images/LIB_Simulation_00.PNG" alt="Project properties" /></p>
+<hr class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Bausteine mit aktivierter Simulierbarkeit belegen mehr Speicherplatz in der PLC.</dd>
+</dl>
+<hr class='pageBreak' />
+<h2 id="anwenderdefinierte-dokumentation-anwenderhilfe">Anwenderdefinierte Dokumentation (Anwenderhilfe)</h2>
+<p>Um den Anwendern der Bibliothek LGF die Funktionsweise und die Verwendung der Bausteine zu erläutern, wurde für jeden Baustein eine anwenderdefinierte Dokumentation erstellt.<br />
+Die anwenderdefinierte Dokumentation pro Bausteine ist in den Sprachen Deutsch und Englisch als PDF-Datei verfügbar. Die PDF-Dateien sind in folgenden Verzeichnissen der Bibliothek LGF gespeichert.</p>
+<ul>
+<li>Deutsch: <code>&quot;UserFiles\UserDocumentation\de-DE\Library Types&quot;</code></li>
+<li>Englisch: <code>&quot;UserFiles\UserDocumentation\en-US\Library Types&quot;</code></li>
+</ul>
+<p>Die anwenderdefinierte Dokumentation zu einem Baustein können Sie in der Task Card &quot;Bibliothek&quot; und in der Bibliotheksansicht mit der Tastenkombination <code>&lt;Shift+F1&gt;</code> aufrufen.<br />
+Die jeweilige PDF wird immer mit dem in Microsoft Windows festgelegten Standardprogramm geöffnet.</p>
+<p>Damit die anwenderdefinierten Dokumentationen der Bausteine auch in der Projektnavigation aufgerufen werden kann, müssen Sie die Verzeichnisse mit den PDF-Dateien in das Projektverzeichnis &quot;UserFiles&quot; kopieren.</p>
+<hr class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Für die Anwenderdefinierte Dokumentation benötigen Sie SIMATIC STEP 7 Basic/Professional V15.1 Update 1.</dd>
+</dl>
+<h4 id="zentrales-verzeichnis-fur-anwenderdefinierte-dokumentation">Zentrales Verzeichnis für anwenderdefinierte Dokumentation</h4>
+<p>Alternativ können Sie die anwenderdefinierte Dokumentation auch projektüber-greifend in einem zentralen Verzeichnis ablegen. Um einen zentralen Ablageort für Anwenderhilfe festzulegen, gehen Sie folgendermaßen vor:</p>
+<ol>
+<li>Wählen Sie im Menü &quot;Extras&quot; (&quot;Options&quot;) den Befehl &quot;Einstellungen&quot; (&quot;Settings&quot;).</li>
+<li>Öffnen Sie den Bereich &quot;Allgemein &gt; Allgemein&quot; (&quot;General &gt; General&quot;).</li>
+<li>Navigieren Sie zum Abschnitt &quot;Anwenderdokumentation&quot; (&quot;User documentation&quot;).</li>
+<li>Aktivieren Sie das Optionskästchen &quot;Aufrufprotokoll zu anwenderdefinierter Dokumentation anzeigen&quot; (&quot;Display call log for user-defined documentation&quot;), um im Inspektor Fenster ein Protokoll vom Aufruf der anwenderdefinierten Dokumentation anzuzeigen.</li>
+<li>Aktivieren Sie das Optionskästchen &quot;Suche nach anwenderdefinierter Dokumentation in einem zentralen Verzeichnis&quot; (&quot;Search for user-defined documentation in a central directory&quot;), um anwenderdefinierte Dokumentation in einem projektübergreifenden Verzeichnis abzulegen.</li>
+<li>Geben Sie im Feld &quot;Zentrales Verzeichnis für anwenderdefinierte Dokumentation&quot; (&quot;Central directory for user-defined documentation&quot;) den Pfad an, an dem Sie projektübergreifende Dokumentation speichern.</li>
+</ol>
+<hr class='pageBreak' />
+<p><img src="../../../Code2Docu/images/LIB_UserDokumentation.PNG" alt="Central directory for user defined documentation" /></p>
+<hr class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Ändern Sie nicht die Namen der PDF, denn der Dateiname muss exakt dem
+Namen des Objekts im TIA Portal entsprechen.</dd>
+</dl>
+<hr class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Weitere Informationen zur anwenderdefinierten Dokumentation finden Sie im
+Systemhandbuch &quot;SIMATIC STEP 7 Basic/Professional V15.1 und SIMATIC
+WinCC V15.1&quot; unter:<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109755202/114872699275">https://support.industry.siemens.com/cs/ww/de/view/109755202/114872699275</a></dd>
+</dl>
+<h1 id="erlauterung-der-bausteine">Erläuterung der Bausteine</h1>
+<p>Die folgenden Kapitel beschreiben alle Bausteine der Bibliothek &quot;Library of General Functions&quot;.<br />
+Die Kapitel sind nach der gleichen Struktur aufgebaut wie die Bibliothek selbst.</p>
+<p>Alle Bausteine sind in Anwendungsgebiete bzw. Kategorien eingeteilt:</p>
+<ul>
+<li>Bit logic operations (Bitoperationen)</li>
+<li>Date and timer operations (Datum und Zeitoperationen)</li>
+<li>Counter operations (Zähloperationen)</li>
+<li>Comparator operations (Vergleichsoperationen)</li>
+<li>Math operations (mathematische Operationen)</li>
+<li>Data handling (Datenverarbeitung)</li>
+<li>Converter operations (Konvertierungsoperationen)</li>
+<li>Signal generators (Signalgeneratoren)</li>
+<li>Technology operations (Technologieoperationen)</li>
+<li>Measurement operations (Messdatenoperationen)</li>
+</ul>
+<p><img src="../../../Code2Docu/images/LGF_ProjectTree.PNG" alt="Global Library (LGF)" /></p>
+
+<h1>Programm Bausteine</h1>
+<ul><li class="ProgramFolder">Programm Bausteine<ul>
+<li class="folder"><a href="Bit logic operations.htm" title="Bit logic operations" target="_self">Bit logic operations</a><ul>
+<li class="FC"><a href="../Library Types\LGF_BitReset.htm" title="LGF_BitReset (FC / V3.0.1)" target="_self">LGF_BitReset (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_BitSet.htm" title="LGF_BitSet (FC / V3.0.1)" target="_self">LGF_BitSet (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_BitSetTo.htm" title="LGF_BitSetTo (FC / V3.0.1)" target="_self">LGF_BitSetTo (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_BitTest.htm" title="LGF_BitTest (FC / V3.0.1)" target="_self">LGF_BitTest (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_BitToggle.htm" title="LGF_BitToggle (FC / V3.0.1)" target="_self">LGF_BitToggle (FC / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_PulseRelay.htm" title="LGF_PulseRelay (FB / V3.0.1)" target="_self">LGF_PulseRelay (FB / V3.0.1)</a></li>
+</ul></li>
+<li class="folder"><a href="Date and timer operations.htm" title="Date and timer operations" target="_self">Date and timer operations</a><ul>
+<li class="FC"><a href="../Library Types\LGF_GetCalendarDay.htm" title="LGF_GetCalendarDay (FC / V3.0.1)" target="_self">LGF_GetCalendarDay (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_GetCalendarWeek_ISO.htm" title="LGF_GetCalendarWeek_ISO (FC / V3.0.1)" target="_self">LGF_GetCalendarWeek_ISO (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_GetCalendarWeek_US.htm" title="LGF_GetCalendarWeek_US (FC / V3.0.1)" target="_self">LGF_GetCalendarWeek_US (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_IsGermanHoliday.htm" title="LGF_IsGermanHoliday (FC / V3.0.1)" target="_self">LGF_IsGermanHoliday (FC / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_AstroClock.htm" title="LGF_AstroClock (FB / V3.0.1)" target="_self">LGF_AstroClock (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_SetTime.htm" title="LGF_SetTime (FB / V3.0.2)" target="_self">LGF_SetTime (FB / V3.0.2)</a></li>
+<li class="FB"><a href="../Library Types\LGF_TimerSwitch.htm" title="LGF_TimerSwitch (FB / V3.0.1)" target="_self">LGF_TimerSwitch (FB / V3.0.1)</a></li>
+</ul></li>
+<li class="folder"><a href="Counter operations.htm" title="Counter operations" target="_self">Counter operations</a><ul>
+<li class="FC"><a href="../Library Types\LGF_BitCount.htm" title="LGF_BitCount (FC / V3.0.2)" target="_self">LGF_BitCount (FC / V3.0.2)</a></li>
+<li class="FB"><a href="../Library Types\LGF_CountBooleanEdges.htm" title="LGF_CountBooleanEdges (FB / V1.0.0)" target="_self">LGF_CountBooleanEdges (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types\LGF_CountFalInDWord.htm" title="LGF_CountFalInDWord (FB / V3.0.1)" target="_self">LGF_CountFalInDWord (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_CountRisInDWord.htm" title="LGF_CountRisInDWord (FB / V3.0.1)" target="_self">LGF_CountRisInDWord (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_GetBitStates.htm" title="LGF_GetBitStates (FB / V1.0.0)" target="_self">LGF_GetBitStates (FB / V1.0.0)</a></li>
+</ul></li>
+<li class="folder"><a href="Comperator operations.htm" title="Comperator operations" target="_self">Comperator operations</a><ul>
+<li class="FC"><a href="../Library Types\LGF_BinaryMaskCompare.htm" title="LGF_BinaryMaskCompare (FC / V1.0.0)" target="_self">LGF_BinaryMaskCompare (FC / V1.0.0)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CompareLReal.htm" title="LGF_CompareLReal (FC / V3.0.1)" target="_self">LGF_CompareLReal (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CompareLRealByPrecision.htm" title="LGF_CompareLRealByPrecision (FC / V3.0.1)" target="_self">LGF_CompareLRealByPrecision (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CompareVariant.htm" title="LGF_CompareVariant (FC / V3.0.1)" target="_self">LGF_CompareVariant (FC / V3.0.1)</a></li>
+</ul></li>
+<li class="folder"><a href="Math operations.htm" title="Math operations" target="_self">Math operations</a><ul>
+<li class="FC"><a href="../Library Types\LGF_CalcDistance_2D.htm" title="LGF_CalcDistance_2D (FC / V3.0.1)" target="_self">LGF_CalcDistance_2D (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CalcDistance_3D.htm" title="LGF_CalcDistance_3D (FC / V3.0.1)" target="_self">LGF_CalcDistance_3D (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_GetFactorial.htm" title="LGF_GetFactorial (FC / V3.0.1)" target="_self">LGF_GetFactorial (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_IsValueInLimits.htm" title="LGF_IsValueInLimits (FC / V3.0.1)" target="_self">LGF_IsValueInLimits (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_IsValueInRange.htm" title="LGF_IsValueInRange (FC / V3.0.1)" target="_self">LGF_IsValueInRange (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_IsValueInTolerance.htm" title="LGF_IsValueInTolerance (FC / V3.0.2)" target="_self">LGF_IsValueInTolerance (FC / V3.0.2)</a></li>
+<li class="FC"><a href="../Library Types\LGF_NthRoot.htm" title="LGF_NthRoot (FC / V3.0.1)" target="_self">LGF_NthRoot (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_Random_DInt.htm" title="LGF_Random_DInt (FC / V3.0.1)" target="_self">LGF_Random_DInt (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_Random_Real.htm" title="LGF_Random_Real (FC / V3.0.1)" target="_self">LGF_Random_Real (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_Random_UDInt.htm" title="LGF_Random_UDInt (FC / V3.0.1)" target="_self">LGF_Random_UDInt (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_RandomRange_Dint.htm" title="LGF_RandomRange_Dint (FC / V3.0.1)" target="_self">LGF_RandomRange_Dint (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_RandomRange_Real.htm" title="LGF_RandomRange_Real (FC / V3.0.1)" target="_self">LGF_RandomRange_Real (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_RandomRange_UDInt.htm" title="LGF_RandomRange_UDInt (FC / V3.0.1)" target="_self">LGF_RandomRange_UDInt (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_ScaleLinear.htm" title="LGF_ScaleLinear (FC / V3.0.1)" target="_self">LGF_ScaleLinear (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SearchMinMax.htm" title="LGF_SearchMinMax (FC / V3.0.1)" target="_self">LGF_SearchMinMax (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SearchMinMax_DInt.htm" title="LGF_SearchMinMax_DInt (FC / V3.0.1)" target="_self">LGF_SearchMinMax_DInt (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SearchMinMax_LReal.htm" title="LGF_SearchMinMax_LReal (FC / V3.0.1)" target="_self">LGF_SearchMinMax_LReal (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SearchMinMax_UDInt.htm" title="LGF_SearchMinMax_UDInt (FC / V3.0.1)" target="_self">LGF_SearchMinMax_UDInt (FC / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Integration.htm" title="LGF_Integration (FB / V3.0.2)" target="_self">LGF_Integration (FB / V3.0.2)</a></li>
+<li class="FB"><a href="../Library Types\LGF_StoreMinMax.htm" title="LGF_StoreMinMax (FB / V3.0.1)" target="_self">LGF_StoreMinMax (FB / V3.0.1)</a></li>
+<li class="folder"><a href="Matrix.htm" title="Matrix" target="_self">Matrix</a><ul>
+<li class="FC"><a href="../Library Types\LGF_MatrixAddition.htm" title="LGF_MatrixAddition (FC / V3.0.1)" target="_self">LGF_MatrixAddition (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MatrixCompare.htm" title="LGF_MatrixCompare (FC / V3.0.1)" target="_self">LGF_MatrixCompare (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MatrixInverse.htm" title="LGF_MatrixInverse (FC / V3.0.1)" target="_self">LGF_MatrixInverse (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MatrixMultiplication.htm" title="LGF_MatrixMultiplication (FC / V3.0.1)" target="_self">LGF_MatrixMultiplication (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MatrixScalarMultiplication.htm" title="LGF_MatrixScalarMultiplication (FC / V3.0.1)" target="_self">LGF_MatrixScalarMultiplication (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MatrixSubtraction.htm" title="LGF_MatrixSubtraction (FC / V3.0.1)" target="_self">LGF_MatrixSubtraction (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MatrixTranspose.htm" title="LGF_MatrixTranspose (FC / V3.0.1)" target="_self">LGF_MatrixTranspose (FC / V3.0.1)</a></li>
+</ul></li>
+</ul></li>
+<li class="folder"><a href="Data handling.htm" title="Data handling" target="_self">Data handling</a><ul>
+<li class="FC"><a href="../Library Types\LGF_CalcCRC16.htm" title="LGF_CalcCRC16 (FC / V3.0.1)" target="_self">LGF_CalcCRC16 (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CalcCRC16Advanced.htm" title="LGF_CalcCRC16Advanced (FC / V3.0.1)" target="_self">LGF_CalcCRC16Advanced (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CalcCRC32.htm" title="LGF_CalcCRC32 (FC / V3.0.1)" target="_self">LGF_CalcCRC32 (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CalcCRC32Advanced.htm" title="LGF_CalcCRC32Advanced (FC / V3.0.1)" target="_self">LGF_CalcCRC32Advanced (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CalcCRC8.htm" title="LGF_CalcCRC8 (FC / V3.0.1)" target="_self">LGF_CalcCRC8 (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CalcCRC8Advanced.htm" title="LGF_CalcCRC8Advanced (FC / V3.0.1)" target="_self">LGF_CalcCRC8Advanced (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CalcCRC8For1Byte.htm" title="LGF_CalcCRC8For1Byte (FC / V3.0.1)" target="_self">LGF_CalcCRC8For1Byte (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_IsParityEven.htm" title="LGF_IsParityEven (FC / V3.0.1)" target="_self">LGF_IsParityEven (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_IsParityOdd.htm" title="LGF_IsParityOdd (FC / V3.0.1)" target="_self">LGF_IsParityOdd (FC / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_FIFO.htm" title="LGF_FIFO (FB / V3.0.1)" target="_self">LGF_FIFO (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_LIFO.htm" title="LGF_LIFO (FB / V3.0.1)" target="_self">LGF_LIFO (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_ShellSort_DInt.htm" title="LGF_ShellSort_DInt (FB / V3.0.1)" target="_self">LGF_ShellSort_DInt (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_ShellSort_LReal.htm" title="LGF_ShellSort_LReal (FB / V3.0.1)" target="_self">LGF_ShellSort_LReal (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_ShellSort_UDInt.htm" title="LGF_ShellSort_UDInt (FB / V3.0.1)" target="_self">LGF_ShellSort_UDInt (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_ShiftRegister.htm" title="LGF_ShiftRegister (FB / V1.0.3)" target="_self">LGF_ShiftRegister (FB / V1.0.3)</a></li>
+</ul></li>
+<li class="folder"><a href="Converter operations.htm" title="Converter operations" target="_self">Converter operations</a><ul>
+<li class="FC"><a href="../Library Types\LGF_BinaryToGray.htm" title="LGF_BinaryToGray (FC / V3.0.1)" target="_self">LGF_BinaryToGray (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_DTLtoString_DE.htm" title="LGF_DTLtoString_DE (FC / V3.0.1)" target="_self">LGF_DTLtoString_DE (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_DTLtoString_ISO.htm" title="LGF_DTLtoString_ISO (FC / V3.0.1)" target="_self">LGF_DTLtoString_ISO (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_DTLToUnixTime.htm" title="LGF_DTLToUnixTime (FC / V3.0.1)" target="_self">LGF_DTLToUnixTime (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_GpsDDToGps.htm" title="LGF_GpsDDToGps (FC / V3.0.2)" target="_self">LGF_GpsDDToGps (FC / V3.0.2)</a></li>
+<li class="FC"><a href="../Library Types\LGF_GpsToGpsDD.htm" title="LGF_GpsToGpsDD (FC / V3.0.2)" target="_self">LGF_GpsToGpsDD (FC / V3.0.2)</a></li>
+<li class="FC"><a href="../Library Types\LGF_GrayToBinary.htm" title="LGF_GrayToBinary (FC / V3.0.1)" target="_self">LGF_GrayToBinary (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_IntToString.htm" title="LGF_IntToString (FC / V3.0.1)" target="_self">LGF_IntToString (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_StringToDTL_DE.htm" title="LGF_StringToDTL_DE (FC / V3.0.1)" target="_self">LGF_StringToDTL_DE (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_StringToDTL_ISO.htm" title="LGF_StringToDTL_ISO (FC / V3.0.1)" target="_self">LGF_StringToDTL_ISO (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_StringToInt.htm" title="LGF_StringToInt (FC / V3.0.1)" target="_self">LGF_StringToInt (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_StringToTaddr.htm" title="LGF_StringToTaddr (FC / V3.0.1)" target="_self">LGF_StringToTaddr (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_StringToTime.htm" title="LGF_StringToTime (FC / V3.0.1)" target="_self">LGF_StringToTime (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_TaddrToString.htm" title="LGF_TaddrToString (FC / V3.0.1)" target="_self">LGF_TaddrToString (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_TimeToString.htm" title="LGF_TimeToString (FC / V3.0.1)" target="_self">LGF_TimeToString (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_UnixTimeToDTL.htm" title="LGF_UnixTimeToDTL (FC / V3.0.1)" target="_self">LGF_UnixTimeToDTL (FC / V3.0.1)</a></li>
+<li class="folder"><a href="Binary types - Split and Merge.htm" title="Binary types - Split and Merge" target="_self">Binary types - Split and Merge</a><ul>
+<li class="FC"><a href="../Library Types\LGF_MergeBitsToByte.htm" title="LGF_MergeBitsToByte (FC / V3.0.1)" target="_self">LGF_MergeBitsToByte (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MergeBitsToDWord.htm" title="LGF_MergeBitsToDWord (FC / V3.0.1)" target="_self">LGF_MergeBitsToDWord (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MergeBitsToWord.htm" title="LGF_MergeBitsToWord (FC / V3.0.1)" target="_self">LGF_MergeBitsToWord (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MergeBytesToDWord.htm" title="LGF_MergeBytesToDWord (FC / V3.0.1)" target="_self">LGF_MergeBytesToDWord (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MergeBytesToWord.htm" title="LGF_MergeBytesToWord (FC / V3.0.1)" target="_self">LGF_MergeBytesToWord (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_MergeWordsToDWord.htm" title="LGF_MergeWordsToDWord (FC / V3.0.1)" target="_self">LGF_MergeWordsToDWord (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SplitByteToBits.htm" title="LGF_SplitByteToBits (FC / V3.0.1)" target="_self">LGF_SplitByteToBits (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SplitDWordToBits.htm" title="LGF_SplitDWordToBits (FC / V3.0.1)" target="_self">LGF_SplitDWordToBits (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SplitDWordToBytes.htm" title="LGF_SplitDWordToBytes (FC / V3.0.1)" target="_self">LGF_SplitDWordToBytes (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SplitDWordToWords.htm" title="LGF_SplitDWordToWords (FC / V3.0.1)" target="_self">LGF_SplitDWordToWords (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SplitWordToBits.htm" title="LGF_SplitWordToBits (FC / V3.0.1)" target="_self">LGF_SplitWordToBits (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SplitWordToBytes.htm" title="LGF_SplitWordToBytes (FC / V3.0.1)" target="_self">LGF_SplitWordToBytes (FC / V3.0.1)</a></li>
+</ul></li>
+<li class="folder"><a href="Temperature.htm" title="Temperature" target="_self">Temperature</a><ul>
+<li class="FC"><a href="../Library Types\LGF_CelsiusToFahrenheit.htm" title="LGF_CelsiusToFahrenheit (FC / V3.0.1)" target="_self">LGF_CelsiusToFahrenheit (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CelsiusToKelvin.htm" title="LGF_CelsiusToKelvin (FC / V3.0.1)" target="_self">LGF_CelsiusToKelvin (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_ConvertTemperature.htm" title="LGF_ConvertTemperature (FC / V3.0.1)" target="_self">LGF_ConvertTemperature (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_FahrenheitToCelsius.htm" title="LGF_FahrenheitToCelsius (FC / V3.0.1)" target="_self">LGF_FahrenheitToCelsius (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_FahrenheitToKelvin.htm" title="LGF_FahrenheitToKelvin (FC / V3.0.1)" target="_self">LGF_FahrenheitToKelvin (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_KelvinToCelsius.htm" title="LGF_KelvinToCelsius (FC / V3.0.1)" target="_self">LGF_KelvinToCelsius (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_KelvinToFahrenheit.htm" title="LGF_KelvinToFahrenheit (FC / V3.0.1)" target="_self">LGF_KelvinToFahrenheit (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_KelvinToRankine.htm" title="LGF_KelvinToRankine (FC / V3.0.1)" target="_self">LGF_KelvinToRankine (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_RankineToKelvin.htm" title="LGF_RankineToKelvin (FC / V3.0.1)" target="_self">LGF_RankineToKelvin (FC / V3.0.1)</a></li>
+</ul></li>
+</ul></li>
+<li class="folder"><a href="Signal generators.htm" title="Signal generators" target="_self">Signal generators</a><ul>
+<li class="FB"><a href="../Library Types\LGF_CosinusCI.htm" title="LGF_CosinusCI (FB / V3.0.1)" target="_self">LGF_CosinusCI (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Frequency.htm" title="LGF_Frequency (FB / V3.0.1)" target="_self">LGF_Frequency (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Impulse.htm" title="LGF_Impulse (FB / V3.0.1)" target="_self">LGF_Impulse (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_RectangleCI.htm" title="LGF_RectangleCI (FB / V3.0.1)" target="_self">LGF_RectangleCI (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_SawToothCI.htm" title="LGF_SawToothCI (FB / V3.0.1)" target="_self">LGF_SawToothCI (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_SinusCI.htm" title="LGF_SinusCI (FB / V3.0.1)" target="_self">LGF_SinusCI (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_TriangleCI.htm" title="LGF_TriangleCI (FB / V3.0.1)" target="_self">LGF_TriangleCI (FB / V3.0.1)</a></li>
+</ul></li>
+<li class="folder"><a href="Technology operations.htm" title="Technology operations" target="_self">Technology operations</a><ul>
+<li class="FB"><a href="../Library Types\LGF_LimRateOfChangeAdvancedCI.htm" title="LGF_LimRateOfChangeAdvancedCI (FB / V3.0.1)" target="_self">LGF_LimRateOfChangeAdvancedCI (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_LimRateOfChangeCI.htm" title="LGF_LimRateOfChangeCI (FB / V3.0.1)" target="_self">LGF_LimRateOfChangeCI (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_NonLinearInterpolation.htm" title="LGF_NonLinearInterpolation (FB / V3.0.1)" target="_self">LGF_NonLinearInterpolation (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_RampCI.htm" title="LGF_RampCI (FB / V3.0.1)" target="_self">LGF_RampCI (FB / V3.0.1)</a></li>
+</ul></li>
+<li class="folder"><a href="Measurement operations.htm" title="Measurement operations" target="_self">Measurement operations</a><ul>
+<li class="FC"><a href="../Library Types\LGF_AverageAndDeviation.htm" title="LGF_AverageAndDeviation (FC / V3.0.1)" target="_self">LGF_AverageAndDeviation (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_DifferenceQuotientFC.htm" title="LGF_DifferenceQuotientFC (FC / V3.0.1)" target="_self">LGF_DifferenceQuotientFC (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_RegressionLine.htm" title="LGF_RegressionLine (FC / V3.0.1)" target="_self">LGF_RegressionLine (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SimpleSmoothingFC.htm" title="LGF_SimpleSmoothingFC (FC / V3.0.1)" target="_self">LGF_SimpleSmoothingFC (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_SmoothByPolynomFC.htm" title="LGF_SmoothByPolynomFC (FC / V3.0.1)" target="_self">LGF_SmoothByPolynomFC (FC / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Boxplot_DInt.htm" title="LGF_Boxplot_DInt (FB / V3.0.1)" target="_self">LGF_Boxplot_DInt (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Boxplot_LReal.htm" title="LGF_Boxplot_LReal (FB / V3.0.1)" target="_self">LGF_Boxplot_LReal (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Boxplot_UDInt.htm" title="LGF_Boxplot_UDInt (FB / V3.0.1)" target="_self">LGF_Boxplot_UDInt (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_DifferenceQuotientFB.htm" title="LGF_DifferenceQuotientFB (FB / V3.0.1)" target="_self">LGF_DifferenceQuotientFB (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_FloatingAverage.htm" title="LGF_FloatingAverage (FB / V3.0.2)" target="_self">LGF_FloatingAverage (FB / V3.0.2)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Histogram_DInt.htm" title="LGF_Histogram_DInt (FB / V3.0.1)" target="_self">LGF_Histogram_DInt (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Histogram_LReal.htm" title="LGF_Histogram_LReal (FB / V3.0.1)" target="_self">LGF_Histogram_LReal (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_Histogram_UDInt.htm" title="LGF_Histogram_UDInt (FB / V3.0.1)" target="_self">LGF_Histogram_UDInt (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_SimpleSmoothingFB.htm" title="LGF_SimpleSmoothingFB (FB / V3.0.1)" target="_self">LGF_SimpleSmoothingFB (FB / V3.0.1)</a></li>
+<li class="FB"><a href="../Library Types\LGF_SmoothByPolynomFB.htm" title="LGF_SmoothByPolynomFB (FB / V3.0.1)" target="_self">LGF_SmoothByPolynomFB (FB / V3.0.1)</a></li>
+</ul></li>
+<li class="folder"><a href="Legacy.htm" title="Legacy" target="_self">Legacy</a><ul>
+<li class="folder"><a href="Counter operations.htm" title="Counter operations" target="_self">Counter operations</a><ul>
+<li class="FC"><a href="../Library Types\LGF_CountFalInDWord.htm" title="LGF_CountFalInDWord (FC / V3.0.1)" target="_self">LGF_CountFalInDWord (FC / V3.0.1)</a></li>
+<li class="FC"><a href="../Library Types\LGF_CountRisInDWord.htm" title="LGF_CountRisInDWord (FC / V3.0.1)" target="_self">LGF_CountRisInDWord (FC / V3.0.1)</a></li>
+</ul></li>
+<li class="folder"><a href="Signal generators.htm" title="Signal generators" target="_self">Signal generators</a><ul>
+<li class="FB"><a href="../Library Types\LGF_SawTooth.htm" title="LGF_SawTooth (FB / V3.0.1)" target="_self">LGF_SawTooth (FB / V3.0.1)</a></li>
+</ul></li>
+</ul></li>
+</ul></li></ul>
+<h1>PLC Datentypen</h1>
+<ul><li class="UDTs">PLC Datentypen<ul>
+<li class="folder"><a href="Date and timer operations.htm" title="Date and timer operations" target="_self">Date and timer operations</a><ul>
+<li class="UDT"><a href="../Library Types\LGF_typeGPS.htm" title="LGF_typeGPS (UDT / )" target="_self">LGF_typeGPS (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types\LGF_typeGPS_DD.htm" title="LGF_typeGPS_DD (UDT / )" target="_self">LGF_typeGPS_DD (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types\LGF_typeGPS_DMS.htm" title="LGF_typeGPS_DMS (UDT / )" target="_self">LGF_typeGPS_DMS (UDT / )</a></li>
+</ul></li>
+<li class="folder"><a href="Technology operations.htm" title="Technology operations" target="_self">Technology operations</a><ul>
+<li class="UDT"><a href="../Library Types\LGF_typeNonLinSetpoints.htm" title="LGF_typeNonLinSetpoints (UDT / )" target="_self">LGF_typeNonLinSetpoints (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types\LGF_typeRampTimeTable.htm" title="LGF_typeRampTimeTable (UDT / )" target="_self">LGF_typeRampTimeTable (UDT / )</a></li>
+</ul></li>
+<li class="folder"><a href="Measurement operations.htm" title="Measurement operations" target="_self">Measurement operations</a><ul>
+<li class="UDT"><a href="../Library Types\LGF_typeRegressionLine.htm" title="LGF_typeRegressionLine (UDT / )" target="_self">LGF_typeRegressionLine (UDT / )</a></li>
+</ul></li>
+</ul></li></ul>
+<h1>PLC Variablen und Konstanten</h1>
+<ul><li class="TagTables">PLC Variablen und Konstanten<ul>
+<li class="TagTable"><a href="../PLC tag tables\LGF_CONSTANTS.htm" title="LGF_CONSTANTS (Variablen Tabelle / Globale Konstanten)" target="_self">LGF_CONSTANTS (Variablen Tabelle / Globale Konstanten)</a></li>
+<li class="TagTable"><a href="../PLC tag tables\LGF_CONSTANTS_UNITS.htm" title="LGF_CONSTANTS_UNITS (Variablen Tabelle / Globale Konstanten)" target="_self">LGF_CONSTANTS_UNITS (Variablen Tabelle / Globale Konstanten)</a></li>
+<li class="TagTable"><a href="../PLC tag tables\LMATH_CONSTANTS.htm" title="LMATH_CONSTANTS (Variablen Tabelle / Globale Konstanten)" target="_self">LMATH_CONSTANTS (Variablen Tabelle / Globale Konstanten)</a></li>
+<li class="TagTable"><a href="../PLC tag tables\LMATH_CONSTANTS_EXTENTED.htm" title="LMATH_CONSTANTS_EXTENTED (Variablen Tabelle / Globale Konstanten)" target="_self">LMATH_CONSTANTS_EXTENTED (Variablen Tabelle / Globale Konstanten)</a></li>
+<li class="TagTable"><a href="../PLC tag tables\LPHYSICS_CONSTANTS.htm" title="LPHYSICS_CONSTANTS (Variablen Tabelle / Globale Konstanten)" target="_self">LPHYSICS_CONSTANTS (Variablen Tabelle / Globale Konstanten)</a></li>
+</ul></li></ul>
+<h1 id="anhang">Anhang</h1>
+<h2 id="service-und-support">Service und Support</h2>
+<h4 id="industry-online-support">Industry Online Support</h4>
+<p>Sie haben Fragen oder brauchen Unterstützung?<br />
+Über den Industry Online Support greifen Sie rund um die Uhr auf das gesamte Service und Support Know-how sowie auf unsere Dienstleistungen zu.<br />
+Der Industry Online Support ist die zentrale Adresse für Informationen zu unseren Produkten, Lösungen und Services.<br />
+Produktinformationen, Handbücher, Downloads, FAQs und Anwendungsbeispiele, alle Informationen sind mit wenigen Mausklicks erreichbar:<br />
+<a href="https://support.industry.siemens.com">https://support.industry.siemens.com</a></p>
+<h4 id="technical-support">Technical Support</h4>
+<p>Der Technical Support von Siemens Industry unterstützt Sie schnell und kompetent bei allen technischen Anfragen mit einer Vielzahl maßgeschneiderter Angebote, von der Basisunterstützung bis hin zu individuellen Supportverträgen.<br />
+Anfragen an den Technical Support stellen Sie per Web-Formular:<br />
+<a href="https://www.siemens.com/supportrequest">https://www.siemens.com/supportrequest</a></p>
+<h4 id="sitrain-digital-industry-academy">SITRAIN – Digital Industry Academy</h4>
+<p>Mit unseren weltweit verfügbaren Trainings für unsere Produkte und Lösungen unterstützen wir Sie praxisnah, mit innovativen Lernmethoden und mit einem kundenspezifisch abgestimmten Konzept.<br />
+Mehr zu den angebotenen Trainings und Kursen sowie deren Standorte und Termine erfahren Sie unter:<br />
+<a href="https://www.siemens.de/sitrain">https://www.siemens.de/sitrain</a></p>
+<h4 id="serviceangebot">Serviceangebot</h4>
+<p>Unser Serviceangebot umfasst folgendes:</p>
+<ul>
+<li>Plant Data Services</li>
+<li>Ersatzteilservices</li>
+<li>Reparaturservices</li>
+<li>Vor-Ort und Instandhaltungsservices</li>
+<li>Retrofit- und Modernisierungsservices</li>
+<li>Serviceprogramme und Verträge</li>
+</ul>
+<p>Ausführliche Informationen zu unserem Serviceangebot finden Sie im Servicekatalog:<br />
+<a href="https://support.industry.siemens.com/cs/sc">https://support.industry.siemens.com/cs/sc</a></p>
+<h4 id="industry-online-support-app">Industry Online Support App</h4>
+<p>Mit der App &quot;Siemens Industry Online Support&quot; erhalten Sie auch unterwegs die optimale Unterstützung. Die App ist für iOS und Android verfügbar:<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/sc/2067">https://support.industry.siemens.com/cs/ww/de/sc/2067</a></p>
+<h2 id="industry-mall">Industry Mall</h2>
+<p><img src="../../../Code2Docu/images/SiemensIndustryMall.png" alt="Siemens Industry Mall" /></p>
+<p>Die Siemens Industry Mall ist die Plattform, auf der das gesamte Produktportfolio von Siemens Industry zugänglich ist. Von der Auswahl der Produkte über die Bestellung und die Lieferverfolgung ermöglicht die Industry Mall die komplette Einkaufsabwicklung – direkt und unabhängig von Zeit und Ort:<br />
+<a href="https://mall.industry.siemens.com">https://mall.industry.siemens.com</a></p>
+<h2 id="links-und-literatur">Links und Literatur</h2>
+<table>
+<col style="width:50%" />
+<col style="width:50%" />
+<thead>
+<tr>
+<th>No.</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\1\</td>
+<td>Siemens Industry Online Support
+<a href="https://support.industry.siemens.com">https://support.industry.siemens.com</a></td>
+</tr>
+<tr>
+<td>\2\</td>
+<td>Link auf die Beitragsseite des Anwendungsbeispiels
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109479728">https://support.industry.siemens.com/cs/ww/de/view/109479728</a></td>
+</tr>
+<tr>
+<td>\3\</td>
+<td>Programmierleitfaden und Programmierstyleguide für SIMATIC S7-1200 and S7-1500
+<a href="https://support.industry.siemens.com/cs/ww/de/view/81318674">https://support.industry.siemens.com/cs/ww/de/view/81318674</a></td>
+</tr>
+<tr>
+<td>\4\</td>
+<td>Bibliothek mit PLC-Datentypen (LPD) für STEP 7 (TIA Portal) und SIMATIC S7-1200 / S7-1500
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109482396">https://support.industry.siemens.com/cs/ww/de/view/109482396</a></td>
+</tr>
+<tr>
+<td>\5\</td>
+<td>Leitfaden zur Bibliothekshandhabung
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109747503">https://support.industry.siemens.com/cs/ww/de/view/109747503</a></td>
+</tr>
+<tr>
+<td>\6\</td>
+<td>Themenseite Bibliotheken
+<a href="https://support.industry.siemens.com/cs/ww/de/view/109738702">https://support.industry.siemens.com/cs/ww/de/view/109738702</a></td>
+</tr>
+</tbody>
+</table>
+<hr class='pageBreak' />
+<h2 id="anderungsdokumentation">Änderungsdokumentation</h2>
+<h4 id="versionierung-der-bibliothek">Versionierung der Bibliothek</h4>
+<p>Die Bibliothek und Bibliothekselemente werden gemäß folgender Tabelle gepflegt:</p>
+<table>
+<col style="width:3.54%" />
+<col style="width:41.59%" />
+<col style="width:39.82%" />
+<col style="width:15.04%" />
+<thead>
+<tr>
+<th>P</th>
+<th>
+<ol>
+<li></li>
+</ol>
+</th>
+<th>
+<ol start="2">
+<li></li>
+</ol>
+</th>
+<th>
+<ol start="3">
+<li></li>
+</ol>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Nichtkompatible Änderung</td>
+<td>Kompatible Änderung</td>
+<td>Fehlerkorrektur</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<ul>
+<li>Reduzierung der Schnittstellen</li>
+<li>Ändern der Schnittstellen</li>
+<li>Inkompatible Erweiterung der Funktionalität</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Erweiterung der Schnittstellen</li>
+<li>Kompatible Erweiterung der Funktionalität</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Bugfix</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h4 id="versionierungs-beispiel">Versionierungs Beispiel</h4>
+<p>Beispiel für das ändern und hochzählen der Versionsnummer:</p>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>FB1</th>
+<th>FB2</th>
+<th>FC1</th>
+<th>FC2</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>1.0.0</td>
+<td>1.0.0</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>freigegeben</td>
+</tr>
+<tr>
+<td>1.0.1</td>
+<td>1.0.1</td>
+<td>1.0.0</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Fehlerbehebung von FB1</td>
+</tr>
+<tr>
+<td>1.0.2</td>
+<td>1.0.1</td>
+<td>1.0.1</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Optimierung von FB2</td>
+</tr>
+<tr>
+<td>1.1.0</td>
+<td>1.1.0</td>
+<td>1.0.1</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Erweiterung an FB1</td>
+</tr>
+<tr>
+<td>1.2.0</td>
+<td>1.2.0</td>
+<td>1.0.1</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Erweiterung an FB1</td>
+</tr>
+<tr>
+<td>2.0.0</td>
+<td>2.0.0</td>
+<td>1.0.1</td>
+<td>2.0.0</td>
+<td>-</td>
+<td>neue Funktionalität an FB1 und FC1</td>
+</tr>
+<tr>
+<td>2.0.1</td>
+<td>2.0.0</td>
+<td>1.0.2</td>
+<td>2.0.0</td>
+<td>-</td>
+<td>Fehlerbehebung FB2</td>
+</tr>
+<tr>
+<td>3.0.0</td>
+<td>2.0.0</td>
+<td>1.0.2</td>
+<td>2.0.0</td>
+<td>1.0.0</td>
+<td>Neue Funktion FC2</td>
+</tr>
+<tr>
+<td>3.0.1</td>
+<td>2.0.1</td>
+<td>1.0.3</td>
+<td>2.0.1</td>
+<td>1.0.1</td>
+<td>Upgrade auf neue TIA Portal Version</td>
+</tr>
+<tr>
+<td>3.0.2</td>
+<td>2.0.2</td>
+<td>1.0.4</td>
+<td>2.0.2</td>
+<td>1.0.1</td>
+<td>Neue Funktionen, Fehlerbehebungen</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Änderungshistorie</h2>
+<table class='GlobalChangeLog'><thead><tr><th>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr><td><b>V5.1.0</b><br/>09/2021</td><td>
+<p><b>NEW:</b></p>
+
+LGF_BinaryMaskCompare / V01.00.00<br/>
+LGF_CountBooleanEdges / V01.00.00<br/>
+LGF_GetBitStates / V01.00.00<br/>
+LGF_ShiftRegister / V03.00.00<br/>
+
+
+
+
+<p><b>UPDATED:</b></p>
+
+LGF_BitReset / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_BitSet / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_BitSetTo / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_BitTest / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_BitToggle / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_PulseRelay / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_AstroClock / 03.00.01<br/><ul><li>Bug fix - not enabled - block still running</li>
+<li>
+Insert documentation</li></ul>
+
+LGF_GetCalendarDay / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_GetCalendarWeek_ISO / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_GetCalendarWeek_US / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_IsGermanHoliday / 03.00.01<br/><ul><li>fix bug in Constant "DAYS_AFTER_EASTER_60" from 6 to 60</li>
+<li>
+Insert documentation</li></ul>
+
+LGF_SetTime / 03.00.02<br/><ul><li>Bug fix - bias correction for time offsets (200 / 330)</li>
+<li>
+Insert documentation</li></ul>
+
+LGF_TimerSwitch / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_BitCount / 03.00.02<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CountFalInDWord / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CountRisInDWord / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CompareLReal / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CompareLRealByPrecision / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CompareVariant / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CalcDistance_2D / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CalcDistance_3D / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_GetFactorial / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Integration / 03.00.02<br/><ul><li>Insert documentation</li><li>Fix bug - incompatibility with S7-1200 and LTIME</li></ul>
+
+LGF_IsValueInLimits / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_IsValueInRange / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_IsValueInTolerance / 03.00.02<br/><ul><li>Bug fix - negative setpoint verification</li>
+<li>
+Insert documentation</li></ul>
+
+LGF_NthRoot / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Random_DInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Random_Real / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Random_UDInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_RandomRange_Dint / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_RandomRange_Real / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_RandomRange_UDInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_ScaleLinear / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Move to folder "Math operations"</li></ul>
+
+LGF_SearchMinMax / 03.00.01<br/><ul><li>Rework constants and comments</li>
+<li>
+Insert documentation</li></ul>
+
+LGF_SearchMinMax_DInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SearchMinMax_LReal / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SearchMinMax_UDInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_StoreMinMax / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MatrixAddition / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MatrixCompare / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MatrixInverse / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MatrixMultiplication / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MatrixScalarMultiplication / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MatrixSubtraction / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MatrixTranspose / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CalcCRC16 / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Assign default start values to optional inputs - `initValue`, `mask`</li></ul>
+
+LGF_CalcCRC16Advanced / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Assign default start values to optional inputs - `initValue`, `mask`, `finalXorValue`, `reflectInput`, `reflectResult`</li></ul>
+
+LGF_CalcCRC32 / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Assign default start values to optional inputs - `initValue`, `mask`</li></ul>
+
+LGF_CalcCRC32Advanced / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Assign default start values to optional inputs - `initValue`, `mask`, `finalXorValue`, `reflectInput`, `reflectResult`</li></ul>
+
+LGF_CalcCRC8 / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Assign default start values to optional inputs - `initValue`, `mask`</li></ul>
+
+LGF_CalcCRC8Advanced / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Assign default start values to optional inputs - `initValue`, `mask`, `finalXorValue`, `reflectInput`, `reflectResult`</li></ul>
+
+LGF_CalcCRC8For1Byte / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Assign default start values to optional inputs - `initValue`, `mask`</li></ul>
+
+LGF_FIFO / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_IsParityEven / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_IsParityOdd / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_LIFO / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_ShellSort_DInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_ShellSort_LReal / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_ShellSort_UDInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_BinaryToGray / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_DTLtoString_DE / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_DTLtoString_ISO / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_DTLToUnixTime / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_GpsDDToGps / 03.00.02<br/><ul><li>Fix `tempStatus` initialization</li>
+<li>
+Insert documentation</li></ul>
+
+LGF_GpsToGpsDD / 03.00.02<br/><ul><li>Fix `tempStatus` initialization</li>
+<li>
+Insert documentation</li></ul>
+
+LGF_GrayToBinary / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_IntToString / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_StringToDTL_DE / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_StringToDTL_ISO / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_StringToInt / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+ENO handling done by STRG_VAL system function</li></ul>
+
+LGF_StringToTaddr / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_StringToTime / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_TaddrToString / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_TimeToString / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_UnixTimeToDTL / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MergeBitsToDWord / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MergeBitsToWord / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MergeBytesToDWord / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MergeBytesToWord / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_MergeWordsToDWord / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SplitByteToBits / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SplitDWordToBits / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SplitDWordToBytes / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SplitDWordToWords / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SplitWordToBits / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SplitWordToBytes / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CelsiusToFahrenheit / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CelsiusToKelvin / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_ConvertTemperature / 03.00.01<br/><ul><li>Rename from "LGF_TemperatureConvert" to "LGF_ConvertTemperature"</li>
+<li>
+to start with the verb</li>
+<li>
+include the Rankine conversion</li>
+<li>
+Code refactoring, regions, commends and constants</li><li>Set version to V3.0.0</li>
+<li>
+harmonize the version of the whole library</li><li>Insert documentation</li></ul>
+
+LGF_FahrenheitToCelsius / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_FahrenheitToKelvin / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_KelvinToCelsius / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_KelvinToFahrenheit / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_KelvinToRankine / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_RankineToKelvin / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_CosinusCI / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Frequency / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Impulse / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_RectangleCI / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SawToothCI / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SinusCI / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_TriangleCI / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_LimRateOfChangeAdvancedCI / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_LimRateOfChangeCI / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_NonLinearInterpolation / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_RampCI / 03.00.01<br/><ul><li>Insert documentation</li>
+<li>
+Change UDT member name from `outValue` to `outputValue`</li></ul>
+
+LGF_AverageAndDeviation / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Boxplot_DInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Boxplot_LReal / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Boxplot_UDInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_DifferenceQuotientFB / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_DifferenceQuotientFC / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_FloatingAverage / 03.00.02<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Histogram_DInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Histogram_LReal / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_Histogram_UDInt / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_RegressionLine / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SimpleSmoothingFB / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SimpleSmoothingFC / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SmoothByPolynomFB / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SmoothByPolynomFC / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+LGF_SawTooth / 03.00.01<br/><ul><li>Insert documentation</li></ul>
+
+
+</td></tr>
+<tr><td><b>V5.0.0</b><br/>04/2020</td><td>
+<p><b>NEW:</b></p>
+
+LGF_BitReset / V03.00.00<br/>
+LGF_BitSet / V03.00.00<br/>
+LGF_BitSetTo / V03.00.00<br/>
+LGF_BitTest / V03.00.00<br/>
+LGF_BitToggle / V03.00.00<br/>
+LGF_PulseRelay / V03.00.00<br/>
+LGF_AstroClock / V03.00.00<br/>
+LGF_GetCalendarDay / V03.00.00<br/>
+LGF_GetCalendarWeek_ISO / V03.00.00<br/>
+LGF_GetCalendarWeek_US / V03.00.00<br/>
+LGF_IsGermanHoliday / V03.00.00<br/>
+LGF_SetTime / V03.00.00<br/>
+LGF_TimerSwitch / V03.00.00<br/>
+LGF_CountFalInDWord / V03.00.00<br/>
+LGF_CountRisInDWord / V03.00.00<br/>
+LGF_CompareLReal / V03.00.00<br/>
+LGF_CompareLRealByPrecision / V03.00.00<br/>
+LGF_CompareVariant / V03.00.00<br/>
+LGF_CalcDistance_2D / V03.00.00<br/>
+LGF_CalcDistance_3D / V03.00.00<br/>
+LGF_GetFactorial / V03.00.00<br/>
+LGF_Integration / V03.00.00<br/>
+LGF_IsValueInLimits / V03.00.00<br/>
+LGF_IsValueInRange / V03.00.00<br/>
+LGF_IsValueInTolerance / V03.00.00<br/>
+LGF_NthRoot / V03.00.00<br/>
+LGF_Random_DInt / V03.00.00<br/>
+LGF_Random_Real / V03.00.00<br/>
+LGF_Random_UDInt / V03.00.00<br/>
+LGF_RandomRange_Dint / V03.00.00<br/>
+LGF_RandomRange_Real / V03.00.00<br/>
+LGF_RandomRange_UDInt / V03.00.00<br/>
+LGF_SearchMinMax / V03.00.00<br/>
+LGF_SearchMinMax_DInt / V03.00.00<br/>
+LGF_SearchMinMax_LReal / V03.00.00<br/>
+LGF_SearchMinMax_UDInt / V03.00.00<br/>
+LGF_StoreMinMax / V03.00.00<br/>
+LGF_MatrixInverse / V03.00.00<br/>
+LGF_MatrixTranspose / V03.00.00<br/>
+LGF_MatrixAddition / V03.00.00<br/>
+LGF_MatrixCompare / V03.00.00<br/>
+LGF_MatrixMultiplication / V03.00.00<br/>
+LGF_MatrixScalarMultiplication / V03.00.00<br/>
+LGF_MatrixSubtraction / V03.00.00<br/>
+LGF_CalcCRC16 / V03.00.00<br/>
+LGF_CalcCRC16Advanced / V03.00.00<br/>
+LGF_CalcCRC32 / V03.00.00<br/>
+LGF_CalcCRC32Advanced / V03.00.00<br/>
+LGF_CalcCRC8 / V03.00.00<br/>
+LGF_CalcCRC8Advanced / V03.00.00<br/>
+LGF_CalcCRC8For1Byte / V03.00.00<br/>
+LGF_FIFO / V03.00.00<br/>
+LGF_IsParityEven / V03.00.00<br/>
+LGF_IsParityOdd / V03.00.00<br/>
+LGF_LIFO / V03.00.00<br/>
+LGF_ShellSort_DInt / V03.00.00<br/>
+LGF_ShellSort_LReal / V03.00.00<br/>
+LGF_ShellSort_UDInt / V03.00.00<br/>
+LGF_BinaryToGray / V03.00.00<br/>
+LGF_DTLtoString_DE / V03.00.00<br/>
+LGF_DTLtoString_ISO / V03.00.00<br/>
+LGF_DTLToUnixTime / V03.00.00<br/>
+LGF_GpsDDToGps / V03.00.00<br/>
+LGF_GpsToGpsDD / V03.00.00<br/>
+LGF_GrayToBinary / V03.00.00<br/>
+LGF_IntToString / V03.00.00<br/>
+LGF_ScaleLinear / V03.00.00<br/>
+LGF_StringToDTL_DE / V03.00.00<br/>
+LGF_StringToDTL_ISO / V03.00.00<br/>
+LGF_StringToInt / V03.00.00<br/>
+LGF_StringToTaddr / V03.00.00<br/>
+LGF_StringToTime / V03.00.00<br/>
+LGF_TaddrToString / V03.00.00<br/>
+LGF_TimeToString / V03.00.00<br/>
+LGF_UnixTimeToDTL / V03.00.00<br/>
+LGF_CelsiusToFahrenheit / V03.00.00<br/>
+LGF_CelsiusToKelvin / V03.00.00<br/>
+LGF_ConvertTemperature / V16.12.2018<br/>
+LGF_FahrenheitToCelsius / V03.00.00<br/>
+LGF_FahrenheitToKelvin / V03.00.00<br/>
+LGF_KelvinToCelsius / V03.00.00<br/>
+LGF_KelvinToFahrenheit / V03.00.00<br/>
+LGF_KelvinToRankine / V03.00.00<br/>
+LGF_RankineToKelvin / V03.00.00<br/>
+LGF_CosinusCI / V03.00.00<br/>
+LGF_Frequency / V03.00.00<br/>
+LGF_Impulse / V03.00.00<br/>
+LGF_RectangleCI / V03.00.00<br/>
+LGF_SawToothCI / V03.00.00<br/>
+LGF_SinusCI / V03.00.00<br/>
+LGF_TriangleCI / V03.00.00<br/>
+LGF_LimRateOfChangeAdvancedCI / V03.00.00<br/>
+LGF_LimRateOfChangeCI / V03.00.00<br/>
+LGF_NonLinearInterpolation / V03.00.00<br/>
+LGF_RampCI / V03.00.00<br/>
+LGF_AverageAndDeviation / V03.00.00<br/>
+LGF_Boxplot_DInt / V03.00.00<br/>
+LGF_Boxplot_LReal / V03.00.00<br/>
+LGF_Boxplot_UDInt / V03.00.00<br/>
+LGF_DifferenceQuotientFB / V03.00.00<br/>
+LGF_DifferenceQuotientFC / V03.00.00<br/>
+LGF_FloatingAverage / V03.00.01<br/>
+LGF_Histogram_DInt / V03.00.00<br/>
+LGF_Histogram_LReal / V03.00.00<br/>
+LGF_Histogram_UDInt / V03.00.00<br/>
+LGF_RegressionLine / V03.00.00<br/>
+LGF_SimpleSmoothingFB / V03.00.00<br/>
+LGF_SimpleSmoothingFC / V03.00.00<br/>
+LGF_SmoothByPolynomFB / V03.00.00<br/>
+LGF_SmoothByPolynomFC / V03.00.00<br/>
+LGF_SawTooth / V01.00.10<br/>
+LGF_BitCount / V03.00.00<br/>
+LGF_MergeBitsToByte / V03.00.01<br/>
+LGF_MergeBitsToDWord / V03.00.00<br/>
+LGF_MergeBitsToWord / V03.00.00<br/>
+LGF_MergeBytesToDWord / V03.00.00<br/>
+LGF_MergeBytesToWord / V03.00.00<br/>
+LGF_MergeWordsToDWord / V03.00.00<br/>
+LGF_SplitByteToBits / V03.00.00<br/>
+LGF_SplitDWordToBits / V03.00.00<br/>
+LGF_SplitDWordToBytes / V03.00.00<br/>
+LGF_SplitDWordToWords / V03.00.00<br/>
+LGF_SplitWordToBits / V03.00.00<br/>
+LGF_SplitWordToBytes / V03.00.00<br/>
+
+
+</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

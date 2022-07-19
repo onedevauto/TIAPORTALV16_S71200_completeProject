@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_AnalogOutput (FB / V1.0.0)</title>
+</head><body>
+<h1>LBC_AnalogOutput (FB / V1.0.0)</h1>
+<hr>
+<span class='author'>Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>The function is used for processing (scaling) a value from meaningful units (temperature, height, pressure...) and converts it into an analog output value fitting for hardware analog output that is within a user defined range.<br />
+The periphery I/O card is working with current or voltage - depending on the card and its configuration.</p>
+
+<h2>Interface description</h2>
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LBC_AnalogOutput (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>enable</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>error</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>processValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>status</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>quality</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Int</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>analogValue</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>simulation</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>limitHigh2</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>simulatedProcessValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>limitHigh1</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>limitLow1</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>limitLow2</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>maxValueReached</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>minValueReached</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>configuration</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeAnalogOutputConfiguration</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>configuration</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>moduleInterface</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeAnalogOutputInterface</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>moduleInterface</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data Type</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable functionality of FB</td></tr>
+<tr><td>processValue</td><td>LReal</td><td>0.0</td><td>Input value for scaling from a process</td></tr>
+<tr><td>quality</td><td>Bool</td><td>TRUE</td><td>Quality bit from sensor<br>FALSE = error, TRUE = healthy [default]</td></tr>
+<tr><td>simulation</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable simulation input (process value)</td></tr>
+<tr><td>simulatedProcessValue</td><td>LReal</td><td>0.0</td><td>Input process value for scaling from simulated process</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>analogValue</td><td>Int</td><td>Processed and scaled sensor value (analog signal)</td></tr>
+<tr><td>limitHigh2</td><td>Bool</td><td>Limit high 2 exceeded (Lim 2 > Lim1, resets Lim 1)</td></tr>
+<tr><td>limitHigh1</td><td>Bool</td><td>Limit high 1 exceeded</td></tr>
+<tr><td>limitLow1</td><td>Bool</td><td>Limit low 1 exceeded</td></tr>
+<tr><td>limitLow2</td><td>Bool</td><td>Limit low 2 exceeded (Lim 2 < Lim1, resets Lim 1)</td></tr>
+<tr><td>maxValueReached</td><td>Bool</td><td>Maximum configured process value reached.<br>Value is limited to the maximum configured value.</td></tr>
+<tr><td>minValueReached</td><td>Bool</td><td>Minimum configured process value reached.<br>Value is limited to the minimum configured value.</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>configuration</td><td>LBC_typeAnalogOutputConfiguration</td><td>Module related configuration parameters</td></tr>
+<tr><td>moduleInterface</td><td>LBC_typeAnalogOutputInterface</td><td>Module interface for external systems</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR_OCCURRED<br>Status: No error occurred during execution</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: Function block is not enabled</td></tr>
+<tr><td>16#7002</td><td>STATUS_ENABLED<br>Status: Function block is enabled</td></tr>
+<tr><td>16#8201</td><td>ERR_CONFIGURATION_RANGE_PARAMETRIZATION<br>Error: Configuration range of parameters. min &gt;= max</td></tr>
+<tr><td>16#8202</td><td>ERR_CONFIGURATION_SCALE_ANALOG_POINTS<br>Error: Configuration of analog input points. Process Lower &gt;= Upper</td></tr>
+<tr><td>16#8211</td><td>ERR_CONFIGURATION_LIMIT_LOW1_LOW2<br>Error: Configuration, incorrect values of limit low
+Limit low 2 is greater than limit 1</td></tr>
+<tr><td>16#8212</td><td>ERR_CONFIGURATION_LIMIT_LOW1_HIGH1<br>Error: Configuration, incorrect values of limit low 1 and limit high 1
+Limit low 1 is greater than limit high 1</td></tr>
+<tr><td>16#8213</td><td>ERR_CONFIGURATION_LIMIT_HIGH1_HIGH2<br>Error: Configuration, incorrect values of limit high
+Limit high 1 is greater than limit high 2</td></tr>
+<tr><td>16#8401</td><td>ERR_QUALITY_BAD<br>Error: Bad quality of the analog output signal (hardware periphery)</td></tr>
+<tr><td>16#8402</td><td>ERR_HIGH_LIMIT_OVERFLOW<br>Error: Scaled value is over 32511(Dec)</td></tr>
+<tr><td>16#8403</td><td>ERR_HIGH_LIMIT_OVER_RANGE<br>Error: Scaled value is over 27649(Dec)</td></tr>
+<tr><td>16#8404</td><td>ERR_LOW_LIMIT_UNDER_RANGE_UNIPOLAR<br>Error: Scaled value is below 0 (Dec), unipolar analog output configured</td></tr>
+<tr><td>16#8405</td><td>ERR_LOW_LIMIT_UNDERFLOW_UNIPOLAR<br>Error: Scaled value is below
+- 4864(Dec), unipolar analog output configured</td></tr>
+<tr><td>16#8406</td><td>ERR_LOW_LIMIT_UNDER_RANGE_BIPOLAR<br>Error: Scaled value is below
+-27649 (Dec), bipolar analog output configured</td></tr>
+<tr><td>16#8407</td><td>ERR_LOW_LIMIT_UNDERFLOW_BIPOLAR<br>Error: Scaled value is below
+- 32512(Dec), bipolar analog output configured</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LBC_typeAnalogOutputConfiguration (UDT)</h3>
+<p>Module related configuration parameters</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>referenceDesignator</td><td class='type'>String[20]</td><td class='default'>'AnalogOutput'</td><td>Device name or device ID</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>physicalUnit</td><td class='type'>String[10]</td><td class='default'>'unit'</td><td>Each value should have a physical unit (like [°C], [kWh], etc.)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>isUnipolarSignal</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Sensor is a unipolar type (just positive values),<br>FALSE: Sensor is a bipolar type (positive and negative values)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>default</td><td class='type'>Int</td><td class='default'>0</td><td>Default OUTPUT analog value to be returned if function block is not enabled or quality is bad</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>limitHigh2</td><td class='type'>LReal</td><td class='default'>90.0</td><td>Process value limit high 2</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>limitHigh1</td><td class='type'>LReal</td><td class='default'>80.0</td><td>Process value limit high 1</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>limitLow1</td><td class='type'>LReal</td><td class='default'>-80.0</td><td>Process value limit low 1</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>limitLow2</td><td class='type'>LReal</td><td class='default'>-90.0</td><td>Process value limit low 2</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>processValueMax</td><td class='type'>LReal</td><td class='default'>100.0</td><td>Maximum limit of the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>processValueMin</td><td class='type'>LReal</td><td class='default'>-100.0</td><td>Minimum limit of the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleProcessUppPoint</td><td class='type'>LReal</td><td class='default'>100.0</td><td>Upper point for the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleProcessLowPoint</td><td class='type'>LReal</td><td class='default'>-100.0</td><td>Lower point for the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleAnalogUppPoint</td><td class='type'>LReal</td><td class='default'>27648.0</td><td>Upper point for the analog output.<br>Maximum value from the hardware module - i.e. 27648 - scaled value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleAnalogLowPoint</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Lower point for the analog output.<br>Minimum value from the hardware module - i.e. 0 - scaled value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableAlarms</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the alarms of the block</td></tr>
+</tbody></table>
+<h3>LBC_typeAnalogOutputInterface (UDT)</h3>
+<p>Module interface for external systems</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>commands</td><td class='type'>LBC_typeInterfaceCommands</td><td class='default'>default</td><td>Module related commands from external systems</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>configuration</td><td class='type'>LBC_typeAnalogOutputConfiguration</td><td class='default'>default</td><td>Module related configuration parameters</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoring</td><td class='type'>LBC_typeAnalogProcessValues</td><td class='default'>default</td><td>Module related monitoring information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>diagnostics</td><td class='type'>LBC_typeDiagnostics</td><td class='default'>default</td><td>Module related diagnostic information</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The analog output function block converts from a meaningful value, that is within a user defined range (temperature, weight, pressure, etc.), to an electrical signal for the analog periphery (analog value).</p>
+<p>The processing of the function is started by assigning <code>TRUE</code> signal to the <code>enable</code> input, from then on, the quality bit is monitored.<br />
+If the <code>quality</code> bit is “healthy” (logical <code>TRUE</code>) then the output value is scaled according to settings of the block.</p>
+<p>In order to ensure, that scaling works correctly, it is necessary to set the minimum and the maximum values for input and output.<br />
+Other optional settings are defining high and low limits/ levels.<br />
+The block can be configured to monitor the level of the scaled value and generate alarms if a certain level is reached.</p>
+<p>For further information see the explanation in the picture and math formulas below.</p>
+<h4 id="process-chart">Process chart</h4>
+<p><img src="../../../Code2Docu/images/LBC_AnalogOutput_Scale.png" alt="LBC_AnalogOutput Scale" title="LBC_AnalogOutput Scale" /></p>
+<p><span class="math inline">dx = x2 - x1 = scaleProcessUppPoint - scaleProcessLowPoint</span><br />
+<span class="math inline">dy = y2 - y1 = scaleAnalogUppPoint - scaleAnalogLowPoint</span></p>
+<h5 id="math-equation">Math equation</h5>
+<p><span class="math inline">y = \frac{y_2 - y_1}{x_2 - x_1} \cdot (x - x_1) + y_1</span></p>
+<p><span class="math inline">x = processValue</span><br />
+<span class="math inline">y = analogValue</span><br />
+<span class="math inline">x_1 = scaleProcessLowPoint</span><br />
+<span class="math inline">x_2 = scaleProcessUppPoint</span><br />
+<span class="math inline">y_1 = scaleAnalogLowPoint</span><br />
+<span class="math inline">y_2 = scaleAnalogUppPoint</span></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>SIMATIC Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>First released version</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

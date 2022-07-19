@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_StarDeltaStarter (FB / V1.0.0)</title>
+</head><body>
+<h1>LBC_StarDeltaStarter (FB / V1.0.0)</h1>
+<hr>
+<span class='author'>Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>The module is used to startup a motor in star circuit and switch to delta circuit after ramp up time.<br />
+It can be used for two different directions. Ramp up times and ramp down time can be configured.</p>
+
+<h2>Interface description</h2>
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LBC_StarDeltaStarter (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>enable</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>valid</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>commandForward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>busy</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>commandBackward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>error</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackMainForward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>status</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackMainBackward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>mainForward</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackDeltaForward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>mainBackward</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackDeltaBackward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>deltaForward</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackStar</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>deltaBackward</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>acknowledge</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>starSwitch</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>isRunning</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>LBC_typeDiagnostics</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>diagnostics</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>configuration</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeStarDeltaStarterConfiguration</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>configuration</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>moduleInterface</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeStarDeltaStarterInterface</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>moduleInterface</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data Type</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable functionality of FB</td></tr>
+<tr><td>commandForward</td><td>Bool</td><td>FALSE</td><td>Rising edge: Starts the motor forward</td></tr>
+<tr><td>commandBackward</td><td>Bool</td><td>FALSE</td><td>Rising edge: Starts the motor backward</td></tr>
+<tr><td>feedbackMainForward</td><td>Bool</td><td>FALSE</td><td>TRUE: Feedback main switch present for forward direction</td></tr>
+<tr><td>feedbackMainBackward</td><td>Bool</td><td>FALSE</td><td>TRUE: Feedback main switch present for backward direction</td></tr>
+<tr><td>feedbackDeltaForward</td><td>Bool</td><td>FALSE</td><td>TRUE: Feedback delta forward switch present</td></tr>
+<tr><td>feedbackDeltaBackward</td><td>Bool</td><td>FALSE</td><td>TRUE: Feedback delta switch backward present</td></tr>
+<tr><td>feedbackStar</td><td>Bool</td><td>FALSE</td><td>TRUE: Feedback star switch present</td></tr>
+<tr><td>acknowledge</td><td>Bool</td><td>FALSE</td><td>Acknowledgement of the alarms</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>valid</td><td>Bool</td><td>TRUE: Valid set of output values available at the FB</td></tr>
+<tr><td>busy</td><td>Bool</td><td>TRUE: FB is not finished and new output values can be expected</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>mainForward</td><td>Bool</td><td>TRUE: Activating main switch for forward direction</td></tr>
+<tr><td>mainBackward</td><td>Bool</td><td>TRUE: Activating main switch for backward direction</td></tr>
+<tr><td>deltaForward</td><td>Bool</td><td>TRUE: Activating delta switch for forward direction</td></tr>
+<tr><td>deltaBackward</td><td>Bool</td><td>TRUE: Activating delta switch for backward direction</td></tr>
+<tr><td>starSwitch</td><td>Bool</td><td>TRUE: Activating star switch</td></tr>
+<tr><td>isRunning</td><td>Bool</td><td>TRUE: Motor is running at full power / fill speed after ramp up</td></tr>
+<tr><td>diagnostics</td><td>LBC_typeDiagnostics</td><td>Module related diagnostic information</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>configuration</td><td>LBC_typeStarDeltaStarterConfiguration</td><td>Module related configuration parameters</td></tr>
+<tr><td>moduleInterface</td><td>LBC_typeStarDeltaStarterInterface</td><td>Module interface for external systems</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR_OCCURRED<br>Status: No error occurred during execution</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: No job being currently processed</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: First call after incoming new job (rising edge 'enable')</td></tr>
+<tr><td>16#7002</td><td>STATUS_SUBSEQUENT_CALL<br>Status: Subsequent call during active processing without further details</td></tr>
+<tr><td>16#7004</td><td>STATUS_STOPPED<br>Status: Motor is stopped</td></tr>
+<tr><td>16#7011</td><td>STATUS_STARTING_STAR_FORWARD<br>Status: Starting star forward</td></tr>
+<tr><td>16#7012</td><td>STATUS_STARTING_STAR_BACKWARD<br>Status: Starting star forward</td></tr>
+<tr><td>16#7021</td><td>STATUS_STARTING_DELTA_FORWARD<br>Status: Starting delta circuit forward</td></tr>
+<tr><td>16#7022</td><td>STATUS_STARTING_DELTA_BACKWARD<br>Status: Starting delta circuit forward</td></tr>
+<tr><td>16#7030</td><td>STATUS_STOPPING<br>Status: Function block is stopping the motor</td></tr>
+<tr><td>16#7031</td><td>STATUS_RUNNING_DELTA_FORWARD<br>Status: Motor is running forward in delta</td></tr>
+<tr><td>16#7032</td><td>STATUS_RUNNING_DELTA_BACKWARD<br>Status: Motor is running backward in delta</td></tr>
+<tr><td>16#7099</td><td>STATUS_DISABLING<br>Status: Block is disabling</td></tr>
+<tr><td>16#8201</td><td>ERR_CONFIGURATION_STARTUP_STAR_TIME_NEGATIVE<br>Error: Configuration parameter start up control time for Star Switch is negative which is not accepted</td></tr>
+<tr><td>16#8202</td><td>ERR_CONFIGURATION_STARTUP_DELTA_TIME_NEGATIVE<br>Error: Configuration parameter start up control time for Delta Switch is negative which is not accepted</td></tr>
+<tr><td>16#8203</td><td>ERR_CONFIGURATION_FEEDBACK_MONITORING_TIME_NEGATIVE<br>Error: Configuration parameter feedback monitoring control time for switch feedbacks is negative which is not accepted</td></tr>
+<tr><td>16#8204</td><td>ERR_CONFIGURATION_SHUT_DOWN_TIME_NEGATIVE<br>Error: Configuration parameter restart delay control time is negative which is not accepted</td></tr>
+<tr><td>16#8401</td><td>ERR_BOTH_COMMANDS_PRESENT_AT_SAME_TIME<br>Error: Both start commands present at the same time, Motor stopped</td></tr>
+<tr><td>16#8411</td><td>ERR_TIMEOUT_MISSING_FEEDBACK_STARTUP_STAR_FORWARD<br>Error: Missed feedbacks during startup in star forward</td></tr>
+<tr><td>16#8412</td><td>ERR_TIMEOUT_MISSING_FEEDBACK_STARTUP_STAR_BACKWARD<br>Error: Missed feedbacks during startup in star backward</td></tr>
+<tr><td>16#8420 - 16#8427</td><td>ERR_WRONG_FEEDBACK_DURING_STARTUP_STAR_FORWARD<br>Error: Wrong feedbacks present during startup forward in star - could be a delta switch feedback or one of the backward switches, , last 3 bits in lower byte are the feedbacks
+0 - Delta FW, 1 - Main BW 2 - Delta BW</td></tr>
+<tr><td>16#8430 - 16#8437</td><td>ERR_WRONG_FEEDBACK_DURING_STARTUP_STAR_BACKWARD<br>Error: Wrong feedbacks present during startup backward in star - could be a delta switch feedback or one of the forward switches, last 3 bits in lower byte are the feedbacks
+0 - Delta BW, 1 - Main FW, 2 - Delta FW</td></tr>
+<tr><td>16#8441</td><td>ERR_TIMEOUT_MISSING_FEEDBACK_STARTUP_DELTA_FORWARD<br>Error: Missed feedbacks during startup in delta forward</td></tr>
+<tr><td>16#8442</td><td>ERR_TIMEOUT_MISSING_FEEDBACK_STARTUP_DELTA_BACKWARD<br>Error: Missed feedbacks during startup in delta backward</td></tr>
+<tr><td>16#8450 - 16#8457</td><td>ERR_WRONG_FEEDBACK_DURING_STARTUP_DELTA_FORWARD<br>Error: Wrong feedbacks present during startup forward in delta - could be a star switch feedback or one of the backward switches, , last 3 bits in lower byte are the feedbacks
+0 - Star, 1 - Main BW, 2 - Delta BW</td></tr>
+<tr><td>16#8460 - 16#8467</td><td>ERR_WRONG_FEEDBACK_DURING_STARTUP_DELTA_BACKWARD<br>Error: Wrong feedbacks present during startup backward in delta - could be a star switch feedback or one of the backward switches, last 3 bits in lower byte are the feedbacks
+0 - Star, 1 - Main FW, 2 - Delta FW</td></tr>
+<tr><td>16#8471</td><td>ERR_MISSING_FEEDBACK_DURING_RUN_DELTA_FORWARD_MAIN<br>Error: Missed feedbacks during run in delta forward - main switch</td></tr>
+<tr><td>16#8472</td><td>ERR_MISSING_FEEDBACK_DURING_RUN_DELTA_FORWARD_DELTA<br>Error: Missed feedbacks during run in delta forward - delta switch</td></tr>
+<tr><td>16#8473</td><td>ERR_MISSING_FEEDBACK_DURING_RUN_DELTA_FORWARD_MAIN_AND_DELTA_AND<br>Error: Missed feedbacks during run in delta forward - main and delta switch</td></tr>
+<tr><td>16#8481</td><td>ERR_MISSING_FEEDBACK_DURING_RUN_DELTA_BACKWARD_MAIN<br>Error: Missed feedbacks during run in delta forward - main switch</td></tr>
+<tr><td>16#8482</td><td>ERR_MISSING_FEEDBACK_DURING_RUN_DELTA_BACKWARD_DELTA<br>Error: Missed feedbacks during run in delta forward - delta switch</td></tr>
+<tr><td>16#8483</td><td>ERR_MISSING_FEEDBACK_DURING_RUN_DELTA_BACKWARD_MAIN_AND_DELTA<br>Error: Missed feedbacks during run in delta forward - main and delta switch</td></tr>
+<tr><td>16#8490 - 16#8497</td><td>ERR_WRONG_FEEDBACK_DURING_RUN_DELTA_FORWARD<br>Error: Wrong feedbacks present during run forward in delta - could be a star switch feedback or one of the backward switches, last 3 bits in lower byte are the feedbacks
+0 - Star, 1 - Main BW 2 - Delta BW</td></tr>
+<tr><td>16#84A0 - 16#84A7</td><td>ERR_WRONG_FEEDBACK_DURING_RUN_DELTA_BACKWARD<br>Error: Wrong feedbacks present during run backward in delta - could be a star switch feedback or one of the backward switches, last 3 bits in lower byte are the feedbacks
+0 - Star, 1 - Main FW, 2 - Delta FW</td></tr>
+<tr><td>16#8500 - 16#851F</td><td>ERR_FEEDBACKS_NOT_DISAPPEAR_DURING_STOP<br>Error: Feedbacks do not disappear during stop, last 5 bits in lower byte are the feedbacks
+0 - FB Star, 1 - FB Main forward, 2 - Main backward, 4 - Delta forward 5 - Delta backward</td></tr>
+<tr><td>16#8520 - 16#853F</td><td>ERR_FEEDBACKS_NOT_DISAPPEAR_DURING_DISABLING<br>Error: Feedbacks do not disappear during disabling, last 5 bits in lower byte are the feedbacks
+0 - FB Star, 1 - FB Main forward, 2 - Main backward, 4 - Delta forward 5 - Delta backward</td></tr>
+<tr><td>16#8600</td><td>ERR_UNDEFINED_STATE<br>Error: Block in undefined state</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LBC_typeDiagnostics (UDT)</h3>
+<p>Module related diagnostic information</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>status</td><td class='type'>Word</td><td class='default'>16#0000</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>subfunctionStatus</td><td class='type'>Word</td><td class='default'>16#0000</td><td>Status or return value of called FB's, FCs, system blocks or other status information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>stateNumber</td><td class='type'>DInt</td><td class='default'>0</td><td>State in the state machine of the block where the error occurred</td></tr>
+</tbody></table>
+<h3>LBC_typeStarDeltaStarterConfiguration (UDT)</h3>
+<p>Module related configuration parameters</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>referenceDesignator</td><td class='type'>String[20]</td><td class='default'>'StarDeltaStarter'</td><td>Device name or device ID</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>startUpTimeStarSwitch</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Time to run in star circuit to ramp up</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>startUpTimeDeltaSwitch</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Time to run in delta circuit to ramp up</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoringFeedbacks</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Time to monitor and control the appearance of the feedbacks</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>shutDownTime</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Time delay for shut down the motor before restart is possible</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>restartBlocking</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Block restarting delay of the motor</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableAlarms</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the alarms of the block</td></tr>
+</tbody></table>
+<h3>LBC_typeStarDeltaStarterInterface (UDT)</h3>
+<p>Module interface for external systems</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>commands</td><td class='type'>LBC_typeInterfaceCommands</td><td class='default'>default</td><td>Module related commands from external systems</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>configuration</td><td class='type'>LBC_typeStarDeltaStarterConfiguration</td><td class='default'>default</td><td>Module related configuration parameters</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoring</td><td class='type'>LBC_typeStarDeltaStarterProcessValues</td><td class='default'>default</td><td>Module related monitoring information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>diagnostics</td><td class='type'>LBC_typeDiagnostics</td><td class='default'>default</td><td>Module related diagnostic information</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The module is in operating state as soon as the input <code>enable</code> is set to TRUE and as long as the input <code>enable</code> is remaining TRUE. Starting the operation is based on the directional command input (<code>commandForward</code> or <code>commandBackward</code>). The module sets its respective output for forward or backward operation.<br />
+Only one control command can be present at any time (<code>commandForward</code> or <code>commandBackward</code>).</p>
+<p>After a command is present, the module goes into the startup state in Star circuit which means, that the block will expect the <code>feedbackStar</code> to become TRUE. After star feedback is present, the main switch for the direction will switch on and await as well the <code>feedbackMainDIRECTION</code>.<br />
+The feedback inputs are monitored by the time set at <code>monitoringFeedbacks</code>, if the time expires without those two feedbacks, an error is raised and the outputs will go to FALSE.</p>
+<p>If both feedbacks present, the <code>startUpTimeStarSwitch</code> is running. After the time expires, the state switches from Star into Delta circuit, the feedbacks also monitored for this state like before.<br />
+The time to ramp up in Delta is set in <code>startUpTimeDeltaSwitch</code>, after expiring, the module sets the output <code>isRunning</code> to TRUE and returns therefore the valid state of the motor.</p>
+<p>During runtime the feedbacks are monitored and if some wrong feedback appears in between, the module will generate an error message, turn off the output (FALSE) and go into error state.<br />
+This error state has to be acknowledged to rest the module and be able to restart.</p>
+<p>When the control command (<code>commandForward</code> or <code>commandBackward</code>) is switched off (FALSE) the module goes into stopping mode, the motor output <code>forward</code> or <code>backward</code> is set to FALSE.<br />
+The stopping control time is started and the block goes to stopping state, if the control time expires and one of the feedbacks is still present (TRUE) the block generates an error which has to be acknowledged as well.</p>
+<p>The control times for starting and stopping control can be configured in the module <code>configuration</code> structure.</p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>SIMATIC Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>First released version</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

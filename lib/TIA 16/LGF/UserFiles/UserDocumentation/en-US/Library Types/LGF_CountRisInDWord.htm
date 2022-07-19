@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_CountRisInDWord (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_CountRisInDWord (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry Support</span>
+<h2>Short description</h2>
+<p>The function analyzes a variable of the type DWORD and outputs how often a 0-1
+sequence (rising edge) occurs in the variable.</p>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd><mark>LEGACY FUNCTION</mark></dd>
+<dd>Please update and use the FB with the same name <code>LGF_CountRisInDWord</code> in the future!<br />
+This function is no longer maintained!</dd>
+</dl>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_CountRisInDWord (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>DWord</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>dWordActCycle</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Int</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>DWord</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>dWordPrevCycle</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>dWordActCycle</td><td>DWord</td><td>Input Double word in which the rising edges are counted</td></tr>
+<tr><td>dWordPrevCycle</td><td>DWord</td><td>Double word from the previous cycle</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Int</td><td>Number of rising edges in the DWord</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>In a variable of the data type DWORD, the block counts the rising edges (0-1 transitions) from left to right. The output <code>countRisInDWord</code> outputs the number of rising edges.</p>
+<p>So that rising edges at the variable limit are also detected, the input <code>value</code> is copied to the static variable <code>statDWordPrevCycle</code> at the end of the evaluation and evaluated in the next cycle.</p>
+<p>####### Example</p>
+<p>The following example illustrates the block’s functionality. In this case, it is assumed that a signal of unknown length is continuously sampled in the form of double words (DWORD) per cycle.</p>
+<p>Within this signal, the 0-1 sequences (rising edges) must be counted and output continuously. To detect the rising edge on variable limits, as in this example, the input “statDWordPrevCycle” must be interconnected with the double word of the previous sampling.</p>
+<p>Table: Example</p>
+<table class="pageWidth">
+<col style="width:50%" />
+<col style="width:50%" />
+<thead>
+<tr>
+<th style="text-align: center;">DWord previous cycle
+<code>statDWordPrevCycle</code></th>
+<th style="text-align: center;">DWord actual cycle
+<code>value</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1001_0000_0001_1010_1001_0000_0001_1010</td>
+<td style="text-align: center;">1010_1010_0001_1111_0100_0011_1000_0101</td>
+</tr>
+</tbody>
+</table>
+<p>Number of 0-1 sequences (rising edges): <code>Ret_Val</code> = 9</p>
+<hr class='pageBreak' />
+<p>####### Application example:</p>
+<p>Excerpt from the manual of the technology module TM Timer DIDQ 16x24V:</p>
+<p>With the oversampling function, the technology module records the state of the respective digital input per application cycle (e.g. OB61) at 32 points in time with a uniform time interval. The 32 states are jointly returned as 32-bit values in the checkback interface.</p>
+<p>Figure: Example of an oversampling of DI0 on TM Timer DIDQ 16x24V</p>
+<p><img src="../../../Code2Docu/images/LGF_CountFalRiseInDWord.PNG" alt="LGF_CountFalRiseInDWord - Example of an oversampling of DI0 on TM Timer DIDQ 16x24V" title="LGF_CountFalRiseInDWord - Example of an oversampling of DI0 on TM Timer DIDQ 16x24V" /></p>
+<p>The block LGF_CountRisInDWordFB is used in this case to count how often a rising edge occurs.</p>
+<p>SIMATIC ET 200MP/S7-1500 Technology Module TM Timer DIDQ 16x24V<br />
+(6ES7552-1AA00-0AB0)<br />
+<a href="https://support.industry.siemens.com/cs/ww/en/view/95153313">https://support.industry.siemens.com/cs/ww/en/view/95153313</a></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>19.08.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>12.11.2020</td><td>Insert documentation and LEGACY Hint<br/>Please use the FB with the same name `LGF_CountRisInDWord` in the future</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

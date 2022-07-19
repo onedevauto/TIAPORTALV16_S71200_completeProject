@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_typeGPS_DMS (UDT)</title>
+</head><body>
+<h1>LGF_typeGPS_DMS (UDT)</h1>
+<hr>
+<h2>Description</h2>
+<p>Datatype for GPS Coordinates in Degree, Minutes, Seconds and the Direction.<br />
+Can be used for latitude and as well for longitude.<br />
+The Datatype is allready used e.g. in <code>LGF_typeGPS</code>.</p>
+
+<h2>Parameter description</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data type</th><th class='default'>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>dir</td><td class='type'>Char</td><td class='default'>''</td><td>Direction [N, S, E, W, n, s, e, w]</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>deg</td><td class='type'>UInt</td><td class='default'>0</td><td>Degrees, Latitude [-89..+ 89]; Longitude [-179..+179]</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>min</td><td class='type'>UInt</td><td class='default'>0</td><td>Minutes [0..+59]</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>sec</td><td class='type'>UInt</td><td class='default'>0</td><td>Seconds [0..+59]</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_MatrixScalarMultiplication (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_MatrixScalarMultiplication (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industries</span>
+<h2>Kurzbeschreibung</h2>
+<p>Dieser Baustein multipliziert eine Matrix vom Datentyp <code>ARRAY[*,*] of LREAL</code> mit einem Skalar.</p>
+<p>Beispiel für 2x2-Matrix:</p>
+<span class="math display"> B =  b * A =  
+
+\begin{bmatrix}
+   b*a_{11} &amp; b*a_{12} \\
+   b*a_{21} &amp; b*a_{22}
+\end{bmatrix}
+</span>
+<p>Eine Matrix wird mit einem Skalar multipliziert, indem man jedes Matrixelement mit dem Skalar multipliziert. Das Ergebnis wird in der <code>matrixResult</code> Matrix ausgegeben.</p>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Beachten Sie, dass die Ein- und Ausgangsmatrix die gleiche Anzahl an Spalten und Zeilen haben muss.</dd>
+</dl>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_MatrixScalarMultiplication (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>scalar</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Void</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*, *] of LReal</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>matrixInput</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*, *] of LReal</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*, *] of LReal</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>matrixResult</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*, *] of LReal</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>scalar</td><td>LReal</td><td>Skalar Wert mit dem die Elemente der Matrix multipliziert werden</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Void</td><td>Void - Funktion hat keinen Rückgabewert</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>matrixInput</td><td>Array[*, *] of LReal</td><td>Zu multiplizierende Matrix</td></tr>
+<tr><td>matrixResult</td><td>Array[*, *] of LReal</td><td>Die resultierende ergebniss Matrix</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR<br>Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#8201</td><td>ERR_MATRICES_LOWER_BOUND_ROWS_DONT_MATCH<br>Error: Matrix Untergrenzen der Zeilen(Dim1) stimmen nicht überein.</td></tr>
+<tr><td>16#8202</td><td>ERR_MATRICES_UPPER_BOUND_ROWS_DONT_MATCH<br>Error: Matrix Obergrenzen der Zeilen(Dim1) stimmen nicht überein.</td></tr>
+<tr><td>16#8203</td><td>ERR_MATRICES_LOWER_BOUND_COLUMNS_DONT_MATCH<br>Error: Matrix Untergrenzen der Spalten(Dim2) stimmen nicht überein.</td></tr>
+<tr><td>16#8204</td><td>ERR_MATRICES_UPPER_BOUND_COLUMNS_DONT_MATCH<br>Error: Matrix Obergrenzen der Spalten(Dim2) stimmen nicht überein.</td></tr>
+</tbody></table>
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>11.12.2019</td><td>First released version<br/>based on "LGF_MatrixMultiplication"</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>02.02.2020</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

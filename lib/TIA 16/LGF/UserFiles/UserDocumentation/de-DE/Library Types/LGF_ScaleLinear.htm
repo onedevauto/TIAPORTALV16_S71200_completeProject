@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_ScaleLinear (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_ScaleLinear (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry Support</span>
+<h2>Kurzbeschreibung</h2>
+<p>Diese Funktion skaliert eine Eingangsgröße (<code>LReal</code>) über eine lineare Geradengleichung.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_ScaleLinear (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>x</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>x1</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>y1</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>x2</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>y2</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>yMin</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>yMax</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>x</td><td>LReal</td><td>Eingangswert `x` der skaliert werden soll.</td></tr>
+<tr><td>x1</td><td>LReal</td><td>Punkt 1 (P1) - `x` Koordinate der linearen Funktion.</td></tr>
+<tr><td>y1</td><td>LReal</td><td>Punkt 1 (P1) - `y` Koordinate der linearen Funktion.</td></tr>
+<tr><td>x2</td><td>LReal</td><td>Punkt 2 (P2) - `x` Koordinate der linearen Funktion.</td></tr>
+<tr><td>y2</td><td>LReal</td><td>Punkt 2 (P2) - `y` Koordinate der linearen Funktion.</td></tr>
+<tr><td>yMin</td><td>LReal</td><td>Unterer Grenzwert des Ausgangs.</td></tr>
+<tr><td>yMax</td><td>LReal</td><td>Oberer Grenzwert des Ausgangs.</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>LReal</td><td>Skalierter Ausgangswert `y`</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_FINISHED_NO_ERROR<br>Status: Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#6001</td><td>WARN_Y_LIMITED_TO_YMIN<br>Warnung: Ausgabewert auf `yMin` begrenzt</td></tr>
+<tr><td>16#6002</td><td>WARN_Y_LIMITED_TO_YMAX<br>Warnung: Ausgabewert auf `yMax` begrenzt</td></tr>
+<tr><td>16#8200</td><td>ERR_LOW_LIM_OVER_UP_LIM<br>Fehler: Unterer Grenzwert `yMin` ist größer als oberer Grenzwert `yMax`.</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<p>Die Funktion skaliert eine Eingangsgröße (z. B. ein Analogeingangswert) linear auf eine bestimmte Ausgangsgröße (z. B. Füllstand).</p>
+<p>Zur Bestimmung der Ausgangsgröße wird in der Funktion folgende lineare Geradengleichung angewendet:</p>
+<span class="math display"> x = \frac{y_2 - y_1}{x_2 - x_1} * (x - x_1) + y_1
+</span>
+<p>Die Gerade wird durch die zwei Punkte, P1 und P2, beschrieben. Die Punkte geben Sie im Sinne eines kartesischen Koordinatensystems durch x- und y-Koordinaten vor.</p>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Falls die Werte der Parameter <code>x1</code> und <code>x2</code> gleich sind, wird am Ausgang <code>y</code> der Wert von <code>y1</code> ausgegeben.</dd>
+</dl>
+<hr class='predecessorDefList' class='successorDefList' />
+<p>Mit der Angabe von <code>yMin</code> und <code>yMax</code> können Sie den berechneten Wert von <code>y</code> auf einen unten und oben begrenzten Bereich einschränken. Somit vermeiden Sie Über- und Untersteuerungsbereiche.</p>
+<p>Abbildung: Graphische Darstellung</p>
+<p><img src="../../../Code2Docu/images/LGF_ScaleLinear.PNG" alt="LGF_ScaleLinear - Funktionsweise" title="LGF_ScaleLinear - Funktionsweise" /></p>
+<h6 id="beispiel">Beispiel</h6>
+<p>An einer Analogeingangsbaugruppe liegt ein Signal von 4 bis 20mA an. Dieses Signal wird zu dem CPU-internen Wert von 0 bis 27648 gewandelt, um einen Füllstand zu messen. Dabei entsprechen 0 dem Füllstand 0,0m und 27648 dem Füllstand 1,7m.</p>
+<p>Den Baustein müssen Sie dann wie folgt parametrieren:</p>
+<ul>
+<li>P2: <span class="math inline">x1 = 0</span>; <span class="math inline">y1 = 0,0</span></li>
+<li>P2: <span class="math inline">x2 = +27648</span>; <span class="math inline">y2 = 1,7</span></li>
+<li><span class="math inline">yMin = 0,0</span>; <span class="math inline">yMax = 1,7</span>;</li>
+</ul>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>27.01.2017</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>25.01.2019</td><td>Data type changed from Variant to LReal</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>25.06.2019</td><td>Standard header and block parameters update, status parameter added<br/>LReal value comparison added<br/>Result parameter changed to return value of FC for use in SCL<br/>Warning number changed to range of 16#6xxx<br/>refactor variable handling and extract returns in between the code<br/>add ENO handling</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0<br/>harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>12.11.2020</td><td>Insert documentation<br/>Move to folder "Math operations"</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

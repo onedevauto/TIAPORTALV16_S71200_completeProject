@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_TimerSwitch (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_TimerSwitch (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry</span>
+<h2>Kurzbeschreibung</h2>
+<p>Dieser Baustein ist eine Zeitschaltuhr. Es ist möglich tägliche, wöchentliche, monatliche, jährliche Zeitschaltpunkte und Zeitschaltpunkte für Werktage oder Wochenendtage festzulegen.<br />
+Mode: Täglich: 1, Wöchentlich: 2, Monatlich: 3, Jährlich: 4, Arbeitstage: 5, Wochenende: 6</p>
+<p>Der Zeitwert wird immer mit der Lokalzeit der SPS verglichen, daher muss der Zeitwert, der bei den On- und Off-Parametern angegeben wird, als lokale Zeit angegeben werden.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_TimerSwitch (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>onMonth</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>signal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>onDay</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>actLocalTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DTL</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>onWeekday</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>onHour</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>onMinute</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offMonth</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offDay</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offWeekday</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offHour</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offMinute</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>USInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>mode</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>onMonth</td><td>USInt</td><td>0</td><td>Monat, in der der Ausgang gesetzt wird</td></tr>
+<tr><td>onDay</td><td>USInt</td><td>0</td><td>Tag, an dem der Ausgang gesetzt wird</td></tr>
+<tr><td>onWeekday</td><td>USInt</td><td>0</td><td>Wochentag, an dem der Ausgang gesetzt wird;<br>Sonntag: 1, Montag: 2, Dienstag: 3, ...</td></tr>
+<tr><td>onHour</td><td>USInt</td><td>0</td><td>Stunde, in der der Ausgang gesetzt wird</td></tr>
+<tr><td>onMinute</td><td>USInt</td><td>0</td><td>Minute, in der der Ausgang gesetzt wird</td></tr>
+<tr><td>offMonth</td><td>USInt</td><td>0</td><td>Monat, in der der Ausgang zurückgesetzt wird</td></tr>
+<tr><td>offDay</td><td>USInt</td><td>0</td><td>Tag, an dem der Ausgang zurückgesetzt wird</td></tr>
+<tr><td>offWeekday</td><td>USInt</td><td>0</td><td>Wochentag, an dem der Ausgang zurückgesetzt wird;<br>Sonntag: 1, Montag: 2, Dienstag: 3, ...</td></tr>
+<tr><td>offHour</td><td>USInt</td><td>0</td><td>Stunde, in der der Ausgang zurückgesetzt wird</td></tr>
+<tr><td>offMinute</td><td>USInt</td><td>0</td><td>Minute, in der der Ausgang zurückgesetzt wird</td></tr>
+<tr><td>mode</td><td>USInt</td><td>0</td><td>Angabe des Modus (siehe Funktionsweise);<br>Täglich: 1, Wöchentlich: 2, Monatlich: 3, Jährlich: 4, Arbeitstage: 5, Wochenende: 6</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>signal</td><td>Bool</td><td>Ausagngssignal</td></tr>
+<tr><td>actLocalTime</td><td>DTL</td><td>Aktuelle Lokalzeit</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler / TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB / 16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status Word einer aufgerufenen Unterfunktion</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR<br>Status: kein Fehler aufgetreten</td></tr>
+<tr><td>16#8200</td><td>ERR_NO_MODE_SELECTED<br>Error: Kein vorhandener Mode ausgewählt, bitte Eingang `mode` prüfen</td></tr>
+<tr><td>16#8600</td><td>ERR_RD_LOC_T<br>Error in Funktion RD_LOC_T - weitere infos in `subFunctionStatus`</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>In <code>subFunctionStatus</code> wird der Status von aufgerufenen Anweisungen ausge-geben. Der Ausgangswert in <code>status</code> gibt in diesem Fall an, welche Anweisung den Fehler verursacht hat. Holen Sie sich in diesem Fall die Informationen aus der TIA Portal Online Hilfe zu den jeweiligen Anweisungen.</dd>
+</dl>
+<hr class='successorDefList' />
+<p>Der Baustein bietet verschiedene Arten einer Zeitschaltuhr, die im Parameter <code>mode</code> bestimmt werden</p>
+<ul>
+<li>Tägliche Zeitschaltuhr (mode = 1)</li>
+<li>Wöchentliche Zeitschaltuhr (mode = 2)</li>
+<li>Monatliche Zeitschaltuhr (mode = 3)</li>
+<li>Jährliche Zeitschaltuhr (mode = 4)</li>
+<li>Werktags, Montag bis Freitag (mode = 5)</li>
+<li>Wochenende, Samstag und Sonntag (mode = 6)</li>
+</ul>
+<p>Der Zeitwert wird immer mit der Lokalzeit der SPS verglichen, daher muss der Zeitwert, der bei den On- und Off-Parametern angegeben wird, als lokale Zeit angegeben werden.</p>
+<p>Abhängig vom Modus müssen folgende Formalparameter beschaltet werden:</p>
+<table>
+<col style="width:6.98%" />
+<col style="width:45.35%" />
+<col style="width:47.67%" />
+<thead>
+<tr>
+<th>Mode</th>
+<th>Mode</th>
+<th>Required formal parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 .</td>
+<td>Tägliche Zeitschaltuhr</td>
+<td>
+<ul>
+<li>onHour / offHour</li>
+<li>onMinute / offMinute</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>2 .</td>
+<td>Wöchentlich Zeitschaltuhr</td>
+<td>
+<ul>
+<li>onWeekday / offWeekday</li>
+<li>onHour / offHour</li>
+<li>onMinute / offMinute</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>3 .</td>
+<td>Monatliche Zeitschaltuhr</td>
+<td>
+<ul>
+<li>onDay / offDay</li>
+<li>onHour / offHour</li>
+<li>onMinute / offMinute</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>4 .</td>
+<td>Jährliche Zeitschaltuhr</td>
+<td>
+<ul>
+<li>onMonth / offMonth</li>
+<li>onDay / offDay</li>
+<li>onHour / offHour</li>
+<li>onMinute / offMinute</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>5 .</td>
+<td>Werktags</td>
+<td>
+<ul>
+<li>onHour / offHour</li>
+<li>onMinute / offMinute</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>6 .</td>
+<td>Wochenende</td>
+<td>
+<ul>
+<li>onHour / offHour</li>
+<li>onMinute / offMinute</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Entspricht die eingestellte Startzeit der aktuellen Lokalzeit der Steuerung, wird der Ausgang <code>signal</code> auf <code>TRUE</code> gesetzt. Entspricht die eingestellte Abschaltzeit der aktuellen Lokalzeit der Steuerung, wird der Ausgang <code>signal</code> wieder zurückgesetzt.</p>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Beachten Sie, dass der Baustein in den Modi „Monatliche Zeitschaltuhr“ (mode = 3) oder „Jährliche Zeitschaltuhr“ (mode = 4) nur dann schaltet, wenn die Tage, die Sie an den Eingangsparametern „onDay“ und „offDay“ angeben, tatsächlich in diesem Monat vorkommen.</dd>
+</dl>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>19.08.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>16.11.2015</td><td>Fix in mode 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.05.2016</td><td>New mode 5 + 6<br/>New output: actLocalTime</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>14.09.2018</td><td>Fix in modes 1, 3, 5, 6</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.09.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.04</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>10.10.2018</td><td>Connection to type restored</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.05</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.10</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>13.11.2019</td><td>Magic numbers removed, tag naming added, code reworked</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>19.01.2020</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

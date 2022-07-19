@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LAxisCtrl_typePosSuperimposed (UDT)</title>
+</head><body>
+<h1>LAxisCtrl_typePosSuperimposed (UDT)</h1>
+<hr>
+<h2>Description</h2>
+<p>Support: tech.team.motioncontrol@siemens.com</p>
+
+<h2>Parameter description</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>distance</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Distance for superimposed positioning</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>velocityDiff</td><td class='type'>LReal</td><td class='default'>-1.0</td><td>Maximum velocity deviation compared to the active motion (Value > 0.0: The specified value is used; Value = 0.0: Not permitted; Value < 0.0: Use of the default value configured in the technology object)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>acceleration</td><td class='type'>LReal</td><td class='default'>-1.0</td><td>Acceleration for positioning (Value > 0.0: The specified value is used; Value = 0.0: Not permitted; Value < 0.0: Use of the default value configured in the technology object)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>deceleration</td><td class='type'>LReal</td><td class='default'>-1.0</td><td>Deceleration for positioning (Value > 0.0: The specified value is used; Value = 0.0: Not permitted; Value < 0.0: Use of the default value configured in the technology object)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>jerk</td><td class='type'>LReal</td><td class='default'>-1.0</td><td>Jerk for positioning (Value > 0.0: Smooth velocity profile, the specified value is used; Value = 0.0: Trapezoid velocity profile; Value < 0.0: Use of the default value configured in the technology object)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>direction</td><td class='type'>DInt</td><td class='default'>0</td><td>Motion direction of the axis (0: The sign of the distance parameter defines the direction; 1: Positive negative; 2: Negative direction)</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

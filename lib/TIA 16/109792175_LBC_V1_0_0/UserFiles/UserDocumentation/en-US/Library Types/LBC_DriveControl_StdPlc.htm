@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_DriveControl_StdPlc (FB / V1.0.0)</title>
+</head><body>
+<h1>LBC_DriveControl_StdPlc (FB / V1.0.0)</h1>
+<hr>
+<span class='author'>Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>This function block offers functionalities for axis control in Standard PLCs.<br />
+It can be used for any type of motion control applications.<br />
+The library contains two blocks - one for Standard PLC, the other one for Technology PLCs<br />
+<code>LBC_DriveControl_StdPlc</code> / <code>LBC_DriveControl_TecPlc</code></p>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>This block is using the library LAxisCtrl that is used to operate motion control technology (MC).<br />
+For more information about the block operation, please refer to the LAxisCtrl manual at the Siemens Industry Online Support:</dd>
+<dd><a href="https://support.industry.siemens.com/cs/ww/en/view/109749348">https://support.industry.siemens.com/cs/ww/en/view/109749348</a></dd>
+</dl>
+
+<h2>Interface description</h2>
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LBC_DriveControl_StdPlc (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>enable</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>valid</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>enableAxis</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>busy</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>resetAxis</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>error</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>openBrake</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>status</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>jogForward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>subfunctionStatus</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>jogBackward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>axisEnabled</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>moveVelocity</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>resetActive</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>stop</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>commandBusy</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>fastStop</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>commandDone</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>torqueLimiting</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>commandAborted</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>homing</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>inVelocity</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>posRelative</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>inLimitation</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>posAbsolute</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>homingCommandBusy</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>posSuperimposed</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>homingCommandDone</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>gearInRelative</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>homingCommandAborted</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>gearInAbsolute</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>superimposedBusy</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>camIn</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>superimposedDone</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>phasing</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>superimposedAborted</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>axis</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DB_ANY</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>inClamping</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>master</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DB_ANY</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>startSync</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>cam</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DB_ANY</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>inSync</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>inSimulation</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>jogSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>moveVelocitySelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>stopSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>fastStopSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>torqueLimitingSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>homingSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>posRelativeSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>posAbsoluteSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>posSuperimposedSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>gearInRelativeSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>gearInAbsoluteSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>camInSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>phasingSelected</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>LAxisCtrl_typeDiagnostics</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>diagnostics</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>configuration</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeDriveControlConfiguration</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>configuration</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>moduleInterface</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeDriveControlInterface</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>moduleInterface</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data Type</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable functionality of FB</td></tr>
+<tr><td>enableAxis</td><td>Bool</td><td>FALSE</td><td>TRUE: Set axis enable; FALSE: Remove axis enable</td></tr>
+<tr><td>resetAxis</td><td>Bool</td><td>FALSE</td><td>Rising edge: Acknowledgement of technology alarms or restart of the axis (depending on configuration)</td></tr>
+<tr><td>openBrake</td><td>Bool</td><td>FALSE</td><td>TRUE: Unconditionally open brake</td></tr>
+<tr><td>jogForward</td><td>Bool</td><td>FALSE</td><td>Rising edge: Move an axis in jog mode (forward); Falling edge: Stop jogging</td></tr>
+<tr><td>jogBackward</td><td>Bool</td><td>FALSE</td><td>Rising edge: Move an axis in jog mode (backward); Falling edge: Stop jogging</td></tr>
+<tr><td>moveVelocity</td><td>Bool</td><td>FALSE</td><td>Rising edge: Move an axis at constant velocity/speed</td></tr>
+<tr><td>stop</td><td>Bool</td><td>FALSE</td><td>Rising edge: Brake an axis until it comes to a standstill. Note: MC_Halt is triggered internally</td></tr>
+<tr><td>fastStop</td><td>Bool</td><td>FALSE</td><td>Rising edge: Brake an axis until it comes to a standstill (with fastStop dynamics). Note: MC_Halt is triggered internally</td></tr>
+<tr><td>torqueLimiting</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable force/torque limiting</td></tr>
+<tr><td>homing</td><td>Bool</td><td>FALSE</td><td>Rising edge: Home axis</td></tr>
+<tr><td>posRelative</td><td>Bool</td><td>FALSE</td><td>Rising edge: Move an axis relative to its position when execution of the job began</td></tr>
+<tr><td>posAbsolute</td><td>Bool</td><td>FALSE</td><td>Rising edge: Move an axis to an absolute position</td></tr>
+<tr><td>posSuperimposed</td><td>Bool</td><td>FALSE</td><td>Rising edge: Start a superimposed positioning</td></tr>
+<tr><td>gearInRelative</td><td>Bool</td><td>FALSE</td><td>Rising edge: Start a gearing operation (relative)</td></tr>
+<tr><td>gearInAbsolute</td><td>Bool</td><td>FALSE</td><td>Rising edge: Start a gearing operation (absolute)</td></tr>
+<tr><td>camIn</td><td>Bool</td><td>FALSE</td><td>Rising edge: Start a camming operation</td></tr>
+<tr><td>phasing</td><td>Bool</td><td>FALSE</td><td>Rising edge: Start a phasing operation</td></tr>
+<tr><td>axis</td><td>DB_ANY</td><td>default</td><td>Reference to axis technology object to be controlled</td></tr>
+<tr><td>master</td><td>DB_ANY</td><td>default</td><td>Reference to leading axis technology object for synchronous motion</td></tr>
+<tr><td>cam</td><td>DB_ANY</td><td>default</td><td>Cam technology object</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>valid</td><td>Bool</td><td>TRUE: Valid set of output values available at the FB</td></tr>
+<tr><td>busy</td><td>Bool</td><td>TRUE: FB is working and new output values can be expected</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subfunctionStatus</td><td>Word</td><td>Status of internally called subfunctions (ErrorID of Motion Control instructions)</td></tr>
+<tr><td>axisEnabled</td><td>Bool</td><td>TRUE: The technology object is enabled. Motion commands can be executed</td></tr>
+<tr><td>resetActive</td><td>Bool</td><td>TRUE: Reset/Restart of the axis is active</td></tr>
+<tr><td>commandBusy</td><td>Bool</td><td>TRUE: The selected basic motion command is being executed</td></tr>
+<tr><td>commandDone</td><td>Bool</td><td>TRUE: The selected basic motion command has completed without error</td></tr>
+<tr><td>commandAborted</td><td>Bool</td><td>TRUE: The selected basic motion command has been aborted</td></tr>
+<tr><td>inVelocity</td><td>Bool</td><td>TRUE: The setpoint velocity/speed was reached and will be maintained</td></tr>
+<tr><td>inLimitation</td><td>Bool</td><td>TRUE: The drive is operating at the force/torque limit</td></tr>
+<tr><td>homingCommandBusy</td><td>Bool</td><td>TRUE: Homing command is being executed</td></tr>
+<tr><td>homingCommandDone</td><td>Bool</td><td>TRUE: Homing command has completed without error</td></tr>
+<tr><td>homingCommandAborted</td><td>Bool</td><td>TRUE: Homing command has been aborted</td></tr>
+<tr><td>superimposedBusy</td><td>Bool</td><td>TRUE: The selected superimposed motion command is being executed</td></tr>
+<tr><td>superimposedDone</td><td>Bool</td><td>TRUE: The selected superimposed motion command<br>has completed without error</td></tr>
+<tr><td>superimposedAborted</td><td>Bool</td><td>TRUE: The selected superimposed motion command has been aborted</td></tr>
+<tr><td>inClamping</td><td>Bool</td><td>TRUE: The drive is kept at the fixed stop (clamping), the axis position is within the positioning tolerance</td></tr>
+<tr><td>startSync</td><td>Bool</td><td>TRUE: The axis is synchronizing to the leading axis</td></tr>
+<tr><td>inSync</td><td>Bool</td><td>TRUE: The axis is synchronized to the leading axis</td></tr>
+<tr><td>inSimulation</td><td>Bool</td><td>TRUE: Synchronous operation is being simulated</td></tr>
+<tr><td>jogSelected</td><td>Bool</td><td>TRUE: Jogging is active</td></tr>
+<tr><td>moveVelocitySelected</td><td>Bool</td><td>TRUE: Moving with constant velocity/speed is active</td></tr>
+<tr><td>stopSelected</td><td>Bool</td><td>TRUE: Stopping is active</td></tr>
+<tr><td>fastStopSelected</td><td>Bool</td><td>TRUE: Stopping is active (with fastStop dynamics)</td></tr>
+<tr><td>torqueLimitingSelected</td><td>Bool</td><td>TRUE: Force/Torque limiting is active</td></tr>
+<tr><td>homingSelected</td><td>Bool</td><td>TRUE: Homing is active</td></tr>
+<tr><td>posRelativeSelected</td><td>Bool</td><td>TRUE: Relative positioning is active</td></tr>
+<tr><td>posAbsoluteSelected</td><td>Bool</td><td>TRUE: Absolute positioning is active</td></tr>
+<tr><td>posSuperimposedSelected</td><td>Bool</td><td>TRUE: Superimposed positioning is active</td></tr>
+<tr><td>gearInRelativeSelected</td><td>Bool</td><td>TRUE: Relative gearing is active</td></tr>
+<tr><td>gearInAbsoluteSelected</td><td>Bool</td><td>TRUE: Absolute gearing is active</td></tr>
+<tr><td>camInSelected</td><td>Bool</td><td>TRUE: Camming is active</td></tr>
+<tr><td>phasingSelected</td><td>Bool</td><td>TRUE: Phasing is active</td></tr>
+<tr><td>diagnostics</td><td>LAxisCtrl_typeDiagnostics</td><td>Diagnostics structure</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>configuration</td><td>LBC_typeDriveControlConfiguration</td><td>Module related configuration parameters</td></tr>
+<tr><td>moduleInterface</td><td>LBC_typeDriveControlInterface</td><td>Module interface for external systems</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>No call of FB</td></tr>
+<tr><td>16#7001</td><td>STATUS_FB_FIRST_CALL<br>First cycle of FB after enabling</td></tr>
+<tr><td>16#7002</td><td>STATUS_SUBSEQUENT_CALL<br>FB enabled</td></tr>
+<tr><td>16#8001</td><td>ERR_INVALID_BASIC_MOTION_CMD<br>Invalid basic command selected (rising edge at 2 or more basic motion command inputs)</td></tr>
+<tr><td>16#8002</td><td>ERR_INVALID_EXTENDED_CMD<br>Invalid extended command selected (rising edge at torque limiting and homing on fixed stop)</td></tr>
+<tr><td>16#8003</td><td>ERR_INVALID_SUPERIMPOSED_MOTION_CMD<br>Invalid superimposed command selected (rising edge at 2 or more superimposed motion command inputs)</td></tr>
+<tr><td>16#8200</td><td>ERR_INVALID_CAM<br>Error occurred during camIn command (invalid cam connected at cam input)</td></tr>
+<tr><td>16#8201</td><td>ERR_INVALID_JOG_MODE<br>Invalid jog mode selected</td></tr>
+<tr><td>16#8202</td><td>ERR_INVALID_HOMING_EXTENDED_MODE<br>Command Error: Invalid extended homing mode selected</td></tr>
+<tr><td>16#8203</td><td>ERR_TORQUE_LIMITING_NOT_ALLOWED<br>Error during extended homing command - torque limiting not allowed during homing on fixed stop is active or axis in clamping</td></tr>
+<tr><td>16#8204</td><td>ERR_INVALID_JOG_DIR<br>Invalid direction selected (jog forward and jog backward)</td></tr>
+<tr><td>16#8205</td><td>ERR_INVALID_POS_RELATIVE_DIR<br>Invalid direction is set for relative positioning command</td></tr>
+<tr><td>16#8206</td><td>ERR_INVALID_POS_SUPERIMPOSED_DIR<br>Invalid direction is set for superimposed positioning command</td></tr>
+<tr><td>16#8207</td><td>ERR_HOMING_MODE_NOT_ALLOWED<br>Passive/Direct homing is not allowed during extended homing mode (homing on fixed stop process) is active</td></tr>
+<tr><td>16#8208</td><td>ERR_MODULO_NOT_ALLOWED<br>Extended homing mode (homing on fixed stop process) is not allowed with modulo axis</td></tr>
+<tr><td>16#8209</td><td>ERR_INVALID_TORQUE_LIMIT<br>Configured torque limit value for extended homing mode (homing on fixed stop process) = 0</td></tr>
+<tr><td>16#820A</td><td>ERR_INVALID_VELOCITY<br>Configured velocity (in technology object) for active homing = 0</td></tr>
+<tr><td>16#820B</td><td>ERR_INVALID_AXIS<br>No axis interconnected</td></tr>
+<tr><td>16#8600</td><td>ERR_MC_POWER<br>Error occurred during MC_POWER command</td></tr>
+<tr><td>16#8601</td><td>ERR_MC_RESET<br>Error occurred during MC_RESET command</td></tr>
+<tr><td>16#8602</td><td>ERR_MC_HOME<br>Error occurred during MC_HOME command</td></tr>
+<tr><td>16#8603</td><td>ERR_MC_TORQUELIMITING<br>Error occurred during MC_TORQUELIMITING command</td></tr>
+<tr><td>16#8604</td><td>ERR_MC_HALT<br>Error occurred during MC_HALT command</td></tr>
+<tr><td>16#8605</td><td>ERR_MC_MOVEJOG<br>Error occurred during MC_MOVEJOG command (continuous jogging)</td></tr>
+<tr><td>16#8606</td><td>ERR_MC_MOVEVELOCITY<br>Error occurred during MC_MOVEVELOCITY command</td></tr>
+<tr><td>16#8607</td><td>ERR_MC_MOVERELATIVE<br>Error occurred during MC_MOVERELATIVE command</td></tr>
+<tr><td>16#8608</td><td>ERR_MC_MOVEABSOLUTE<br>Error occurred during MC_MOVEABSOLUTE command</td></tr>
+<tr><td>16#8609</td><td>ERR_MC_MOVESUPERIMPOSED<br>Error occurred during MC_MOVESUPERIMPOSED command</td></tr>
+<tr><td>16#860A</td><td>ERR_MC_GEARIN<br>Error occurred during MC_GEARIN command</td></tr>
+<tr><td>16#860B</td><td>ERR_MC_PHASINGABSOLUTE<br>Error occurred during MC_PHASINGABSOLUTE command</td></tr>
+<tr><td>16#860C</td><td>ERR_MC_PHASINGRELATIVE<br>Error occurred during MC_PHASINGRELATIVE command</td></tr>
+<tr><td>16#860D</td><td>ERR_MC_CAMIN<br>Error occurred during MC_CAMIN command</td></tr>
+<tr><td>16#860E</td><td>ERR_MC_GEARINPOS<br>Error occurred during MC_GEARINPOS command</td></tr>
+<tr><td>16#860F</td><td>ERR_MC_SYNCHRONIZEDMOTIONSIMULATION<br>Error occurred during MC_SYNCHRONIZEDMOTIONSIMULATION command</td></tr>
+<tr><td>16#8700</td><td>ERR_UNDEFINED_FB_STATE<br>Error due to an undefined FB state</td></tr>
+<tr><td>16#8701</td><td>ERR_UNDEFINED_RESET_STATE<br>Error due to an undefined reset state</td></tr>
+<tr><td>16#8702</td><td>ERR_UNDEFINED_BASIC_MOTION_STATE<br>Error due to an undefined basic motion state</td></tr>
+<tr><td>16#8703</td><td>ERR_UNDEFINED_TORQUE_LIMITING_STATE<br>Error due to an undefined torque limiting state</td></tr>
+<tr><td>16#8704</td><td>ERR_UNDEFINED_INCREMENTAL_JOG_STATE<br>Error due to an undefined incremental jog state</td></tr>
+<tr><td>16#8705</td><td>ERR_UNDEFINED_INCREMENTAL_JOG_SUBSTATE<br>Error due to an undefined incremental jog substate</td></tr>
+<tr><td>16#8706</td><td>ERR_UNDEFINED_EXTENDED_HOMING_STATE<br>Error due to an undefined homing state</td></tr>
+<tr><td>16#8707</td><td>ERR_UNDEFINED_EXTENDED_HOMING_SUBSTATE<br>Error due to an undefined homing substate</td></tr>
+<tr><td>16#8708</td><td>ERR_UNDEFINED_SUPERIMPOSED_MOTION_STATE<br>Error due to an undefined superimposed motion state</td></tr>
+<tr><td>16#8709</td><td>ERR_UNDEFINED_MOTION_SIMULATION_STATE<br>Error due to an undefined synchronized motion simulation state</td></tr>
+<tr><td>16#870A</td><td>ERR_UNDEFINED_MAIN_SELECTION_STATE<br>Error due to an undefined main selection state</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LAxisCtrl_typeDiagnostics (UDT)</h3>
+<p>Support: tech.team.motioncontrol@siemens.com</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>status</td><td class='type'>Word</td><td class='default'>16#0000</td><td>Status of FB when error occurred</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>subfunctionStatus</td><td class='type'>Word</td><td class='default'>16#0000</td><td>ErrorID of called subfunction</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>basicMotionState</td><td class='type'>DInt</td><td class='default'>0</td><td>Current basic motion state when error occurred</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>superimposedMotionState</td><td class='type'>DInt</td><td class='default'>0</td><td>Current superimposed motion state when error occurred</td></tr>
+</tbody></table>
+<h3>LBC_typeDriveControlConfiguration (UDT)</h3>
+<p>Module related configuration parameters</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>referenceDesignator</td><td class='type'>String[20]</td><td class='default'>'DriveControl'</td><td>Device name or device ID</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableAlarms</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the alarms of the block</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>driveConfiguration</td><td class='type'>LAxisCtrl_typeAxisConfig</td><td class='default'>default</td><td>Drive parameter configuration from - Support: tech.team.motioncontrol@siemens.com</td></tr>
+</tbody></table>
+<h3>LBC_typeDriveControlInterface (UDT)</h3>
+<p>Module interface for external systems</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>commands</td><td class='type'>LBC_typeInterfaceCommands</td><td class='default'>default</td><td>Module related commands from external systems</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>configuration</td><td class='type'>LBC_typeDriveControlConfiguration</td><td class='default'>default</td><td>Module related configuration parameters</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoring</td><td class='type'>LBC_typeDriveControlProcessValues</td><td class='default'>default</td><td>Module related monitoring information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>diagnostics</td><td class='type'>LAxisCtrl_typeDiagnostics</td><td class='default'>default</td><td>Support: tech.team.motioncontrol@siemens.com</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>This block is used to control motion axis in Standard PLCs.</p>
+<p>The block is used as a wrapper to adopt the standardized interface from LBC to the standard motion control library (LAxisCtrl).<br />
+With the LBC customization, the same type of faceplates can be provided for the LAxisCtrl block, as they are included for all other blocks.</p>
+<p>The interfaces and the controlling of the LAxisCtrl function blocks is based on the PLCopen standard V2.0 with taking into account behavior of execute and enable inputs.</p>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>This block is using the library LAxisCtrl that is used to operate motion control technology (MC).<br />
+For more information about the block operation, please refer to the LAxisCtrl manual at the Siemens Industry Online Support:</dd>
+<dd><a href="https://support.industry.siemens.com/cs/ww/en/view/109749348">https://support.industry.siemens.com/cs/ww/en/view/109749348</a></dd>
+</dl>
+<hr />
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>SIMATIC Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>First released version</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

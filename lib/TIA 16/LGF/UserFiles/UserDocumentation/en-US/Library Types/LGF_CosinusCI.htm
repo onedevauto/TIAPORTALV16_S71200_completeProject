@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_CosinusCI (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_CosinusCI (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Industry Support</span>
+<h2>Short description</h2>
+<p>This function generates a cosinusoidal signal profile. For this it uses the time interval of the calling Cyclic Interrupt OB.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_CosinusCI (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Real</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>amplitude</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>value</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Real</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Real</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>UDInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>periode</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Real</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>phaseShift</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>OB_CYCLIC</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>callOB</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>amplitude</td><td>Real</td><td>1.0</td><td>Amplitude of the signal profile.</td></tr>
+<tr><td>offset</td><td>Real</td><td>0.0</td><td>Offset of the signal profile in the Y-direction.</td></tr>
+<tr><td>periode</td><td>UDInt</td><td>1000</td><td>Period duration of the signal profile in [ms]</td></tr>
+<tr><td>phaseShift</td><td>Real</td><td>0.0</td><td>Phase offset in [ms]</td></tr>
+<tr><td>callOB</td><td>OB_CYCLIC</td><td>---</td><td>Calling cyclic interrupt OB</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>Reset of the signal profile.</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>value</td><td>Real</td><td>Current value of the cosinusoidal signal.</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_FINISHED_NO_ERROR<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#8600</td><td>ERR_OB_UNAVAILABLE<br>Error: OB on input `callOB` is not configured / present.
+Interconnect the constant name of a configured cyclic interrupt OB at the input `callOB`.</td></tr>
+<tr><td>16#8601</td><td>ERR_QRY_CINT<br>Error in `QRY_CINT` command - check `subFunctionStatus` code</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>The status of called commands is output in <code>subFunctionStatus</code>. In this case, the output value in <code>status</code> indicates which command caused the error. In this case, refer to the TIA Portal Online Help section for information on the respective commands.</dd>
+</dl>
+<hr class='successorDefList' class='predecessorDefList' />
+<p>The block calculates the values for a cosinusoidal signal profile, which is output to the output parameter <code>value</code>.</p>
+<p>The <code>amplitude</code>, the <code>offset</code> in the Y-direction, the <code>period</code>, and the <code>phase shift</code> can be set at the input parameters.</p>
+<p>The input parameter <code>reset</code> resets the signal profile. At the <code>value</code> output parameter, the value <code>0</code> is output as long as <code>reset</code> is set to <code>TRUE</code>.</p>
+<p>The block must be called in a cyclic interrupt OB. The time interval of the calling cyclic interrupt OB is determined in the FB with the command <code>QRY_CINT</code>. For this, the constant name of the calling cyclic interrupt OB must be interconnected at the input parameter <code>callOB</code>.</p>
+<p><img src="../../../Code2Docu/images/LGF_InterruptObAsParameter.png" alt="Interconnecting the cyclic interrupt OB" title="Interconnecting the cyclic interrupt OB" /></p>
+<p>The number of calculated values of the signal profile per period duration is calculated as follows:</p>
+<span class="math display">  Quantity Values = \frac{Period duration}{Time intervak Cyclic interrupt OB}
+</span><hr class='predecessorDefList' class='predecessorDefList' />
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>To obtain a continuous signal profile of the curve, the time interval of the cyclic interrupt OB should not be selected too large depending on the period duration.</dd>
+</dl>
+<hr class='predecessorDefList' class='successorDefList' />
+<hr class='pageBreak' />
+<p>The Figure below shows the signal profile of the calculated values.</p>
+<p><img src="../../../Code2Docu/images/LGF_CosinusCI.png" alt="LGF_CosinusCI" title="LGF_CosinusCI" /></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>03.07.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>26.09.2019</td><td>Code refactoring, regions and more comments added<br/>phase shift availability added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_Histogram_UDInt (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_Histogram_UDInt (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>The histogram shows the frequency distribution of a sample by class. A class describes a value interval in which the individual frequencies are added together. After specifying the number of classes, the class width and the respective class center are calculated. The number of classes is limited to 15.</p>
+<p>The distribution is represented as a rectangle around the class mean with the class width and the cumulated frequency as height.</p>
+<p>Figure: Distribution</p>
+<p><img src="../../../Code2Docu/images/LGF_Histogram.png" alt="LGF_Histogram" title="LGF_Histogram" /></p>
+<h6 id="wincc-control">WinCC-Control</h6>
+<p>To visualize the Boxplot, the Siemens Industry Online Support offers you a Net-Control, which you can use in conjunction with WinCC Runtime Professional. You can find the controls in the <code>UserFiles</code> folder of this library.</p>
+<p>Figure: .Net Control &quot;Histogram&quot;</p>
+<p><img src="../../../Code2Docu/images/LGF_Histogram_Control.png" alt="LGF_Histogram - WinCC .NET Control" title="LGF_Histogram - WinCC .NET Control" /></p>
+<hr class='pageBreak' />
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_Histogram_UDInt (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>execute</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>UInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>numberOfClasses</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subfunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>histValues</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[0..1, 0..#CLASSES_COUNTER_UP_LIMIT] of LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>axis</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[0..3] of LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>classWidth</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of UDInt</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>values</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of UDInt</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>execute</td><td>Bool</td><td>FALSE</td><td>Activation of the calculation with each positive edge.</td></tr>
+<tr><td>numberOfClasses</td><td>UInt</td><td>0</td><td>Number of desired classes.</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subfunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+<tr><td>histValues</td><td>Array[0..1, 0..#CLASSES_COUNTER_UP_LIMIT] of LReal</td><td>Outputs the calculated values in a two-dimensional array.<br>• `histValues[0,0..14]` displays the relative frequency of the individual classes.<br>• `histValues[1,0..14]` displays the class centers.<br>• If fewer than 15 classes are desired, the array elements that are not required are output with 0.</td></tr>
+<tr><td>axis</td><td>Array[0..3] of LReal</td><td>Specifies the axis values:<br>• Lower X axis value<br>• Upper X axis value<br>• Lower Y axis value<br>• Upper Y axis value</td></tr>
+<tr><td>classWidth</td><td>LReal</td><td>Returns the calculated class width.</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>values</td><td>Array[*] of UDInt</td><td>The array containing the data series that is to be used for the calculation</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_EXECUTION_FINISHED<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: No call of FB.
+The block waits for activation through the parameter `enable`.</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: First call of FB after enabling</td></tr>
+<tr><td>16#8600</td><td>ERR_SHELL_SORT<br>Error: Error in command `LGF_ShellSort_UDInt`.
+Check `subFunctionStatus` code</td></tr>
+<tr><td>16#9101</td><td>ERR_WRONG_NO_CLASSES<br>Error: Incorrect number of classes.
+Give the parameter `numberOfClasses` a valid value (1 to 15).</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The block sorts the transferred data and calculates the general class width using the transferred class count and data range. The block then counts the values that lie within a class. In order to draw a histogram, the block also calculates the necessary X and Y coordinates.</p>
+<p>The elements of the passed array <code>values</code> are sorted in ascending order by the block. The <code>LGF_Shellsort_UDInt</code> block is used for sorting.</p>
+<p>The number of classes can be specified using the following rule of thumb:</p>
+<span class="math display"> Number~of~classes = \sqrt{number~of~elements}
+</span>
+<p>e.g. 100 values --&gt; <span class="math inline">Number~of~classes = \sqrt{100} = 10</span></p>
+<h6 id="formulas">Formulas</h6>
+<p>The block uses the following formula to calculate the class width:</p>
+<span class="math display">  classWidth = \frac{max - min}{Number~of~classes}
+</span>
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.11.2019</td><td>Code refactoring, comments added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.04.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

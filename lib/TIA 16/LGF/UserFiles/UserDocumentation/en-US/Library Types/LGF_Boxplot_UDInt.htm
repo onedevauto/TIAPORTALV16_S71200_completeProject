@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_Boxplot_UDInt (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_Boxplot_UDInt (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>If you want to get an overview of existing data, you can use a Boxplot diagram. A Boxplot shows you in which area the data is located and how it is distributed over this area. A Boxplot consists of the following parameters:</p>
+<ul>
+<li>Minimum (smallest occurring value of the sample)</li>
+<li>Lower or first quartile (below this value are 25% of the sample values)</li>
+<li>Median or second quartile (below this value are 50% of the sample values)</li>
+<li>Upper or third quartile (below this value are 75% of the sample values)</li>
+<li>Maximum (largest occurring value of the sample)</li>
+</ul>
+<p>Figure: Boxplot</p>
+<p><img src="../../../Code2Docu/images/LGF_Boxplot.png" alt="LGF_Boxplot" title="LGF_Boxplot" /></p>
+<h6 id="wincc-control">WinCC-Control</h6>
+<p>To visualize the Boxplot, the Siemens Industry Online Support offers you a Net-Control, which you can use in conjunction with WinCC Runtime Professional. You can find the controls in the <code>UserFiles</code> folder of this library.</p>
+<p>Figure: .Net Control &quot;Boxplot&quot;</p>
+<p><img src="../../../Code2Docu/images/LGF_Boxplot_Control.png" alt="LGF_Boxplot - WinCC .NET Control" title="LGF_Boxplot - WinCC .NET Control" /></p>
+<hr class='pageBreak' />
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_Boxplot_UDInt (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>execute</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>rangeOutlier</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subfunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outlierMax</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>max</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>UDInt</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>q75</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>median</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>q25</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>min</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>UDInt</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outlierMin</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>skewness</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of UDInt</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>values</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of UDInt</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>execute</td><td>Bool</td><td>FALSE</td><td>Activation of the calculation with each positive edge.</td></tr>
+<tr><td>rangeOutlier</td><td>LReal</td><td>1.5</td><td>Outlier detection:<br>* 0: Outlier detection is deactivated<br>* 0-1: Invalid value<br>* >1: Outlier detection is activated.</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subfunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+<tr><td>outlierMax</td><td>LReal</td><td>Upper outliers in %.</td></tr>
+<tr><td>max</td><td>UDInt</td><td>Maximum Value, not an outlier.</td></tr>
+<tr><td>q75</td><td>LReal</td><td>3rd quartile or Q75 of the data series.</td></tr>
+<tr><td>median</td><td>LReal</td><td>2nd quartile or Median of the data series.</td></tr>
+<tr><td>q25</td><td>LReal</td><td>1st quartile or Q25 of the data series.</td></tr>
+<tr><td>min</td><td>UDInt</td><td>Minimum Value, not an outlier.</td></tr>
+<tr><td>outlierMin</td><td>LReal</td><td>Lower outliers in %.</td></tr>
+<tr><td>skewness</td><td>LReal</td><td>Skewness of the data series.</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>values</td><td>Array[*] of UDInt</td><td>The array containing the data series that is to be used for the calculation</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_EXECUTION_FINISHED<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: No call of FB.
+The block waits for activation through the parameter `enable`.</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: First call of FB after enabling</td></tr>
+<tr><td>16#8200</td><td>ERR_NEG_ARR_BOUND<br>Error: Negative array boundary not allowed.
+Check the array at the input `values`.</td></tr>
+<tr><td>16#8600</td><td>ERR_SHELL_SORT<br>Error: Error in command `LGF_ShellSort_UDInt`.
+Check `subFunctionStatus` code</td></tr>
+<tr><td>16#9101</td><td>ERR_RANGE_NOT_OK<br>Error: The parameter `rangeOutlier` type is invalid.
+Enter a valid `rangeOutlier` value for the parameter:
+* 0: Outlier detection is deactivated
+* &gt;1 Valid value.</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The block sorts the data series and then calculates the so-called “five-point summary”:</p>
+<p>Table: Five-point summary</p>
+<table>
+<thead>
+<tr>
+<th>Characteristic value of the five-point summary</th>
+<th>Output parameter of the block</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minimum (smallest occurring value of the sample)</td>
+<td><code>min</code></td>
+</tr>
+<tr>
+<td>Lower or first quartile (below this value are 25% of the sample values)</td>
+<td><code>q25</code></td>
+</tr>
+<tr>
+<td>Median or second quartile (below this value are 50% of the sample values)</td>
+<td><code>median</code></td>
+</tr>
+<tr>
+<td>Upper or third quartile (below this value are 75% of the sample values)</td>
+<td><code>q75</code></td>
+</tr>
+<tr>
+<td>Maximum (largest occurring value of the sample)</td>
+<td><code>max</code></td>
+</tr>
+</tbody>
+</table>
+<p>If outlier detection is activated, the block first calculates the limits. From these limit values, the values are recognized as outliers:</p>
+<p><span class="math inline">Bound^{upper} = q_{75} + rangeOutlier \cdot (q_{75} - q_{25})</span></p>
+<p><span class="math inline">Bound_{lower} = q_{25} - rangeOutlier \cdot (q_{75} - q_{25})</span></p>
+<p>The block then calculates new values for the parameters <code>max</code> and <code>min</code>, which lie within the outlier limits. The outliers are counted and output as a percentage.</p>
+<hr class='pageBreak' />
+<p>To make it easier to judge how the data is distributed, the block also calculates the skew. The skewness lies between the values <code>-1</code> and <code>1</code> with the following meaning:</p>
+<ul>
+<li><code>-1</code>: extremely left skewed distribution</li>
+<li><code>0</code>: symmetrical distribution</li>
+<li><code>1</code>: extreme right-skew distribution</li>
+</ul>
+<p>The elements of the passed array are sorted in ascending order by the block. The <code>LGF_Shellsort_UDInt</code> block is used for sorting.</p>
+<p>The parameters are calculated as follows:</p>
+<p>Table: Boxplot formulas Parameters Formula</p>
+<table>
+<col style="width:21.98%" />
+<col style="width:78.02%" />
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q25 (1st quartile)</td>
+<td><span class="math inline">q_{25} = x_{(k)} \qquad with \qquad k = \frac{\left[ \frac{1}{2} (n+1) \right] + 1}{2} = \frac{n + 3}{4}</span></td>
+</tr>
+<tr>
+<td>q50 (2nd quartile)
+median</td>
+<td><span class="math inline">q_{50} = x_{(\frac{n+1}{2})}</span></td>
+</tr>
+<tr>
+<td>q75 (3rd quartile)</td>
+<td><p><span class="math inline">q_{75} = x_{(n+1-k)} \qquad with \qquad (n + 1 - k) = \frac{3n+1}{4}</span></p>
+<p><span class="math inline">n</span> := number of samples (size of array)</p>
+<p>If the result of the element to be determined (from which the quartiles can be derived) is not an integer, the quartile is calculated from the linear fraction between the two adjacent samples.</p>
+</td>
+</tr>
+<tr>
+<td>skewness</td>
+<td><p><span class="math inline">skewness= \frac{(q_{75} + q_{25}) - 2 \cdot q_{50}}{q_{75} - q_{25}}</span></p>
+<p>Note: This is just an approximation.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>05.11.2019</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.04.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_Boxplot_UDInt (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_Boxplot_UDInt (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry</span>
+<h2>Kurzbeschreibung</h2>
+<p>Wenn Sie sich einen Überblick über bestehende Daten verschaffen wollen, dann können Sie ein Boxplot-Diagramm verwenden. Ein Boxplot zeigt Ihnen, in welchem Bereich die Daten liegen und wie sie sich über diesen Bereich verteilen. Ein Boxplot besteht aus den folgenden Kenngrößen:</p>
+<ul>
+<li>Minimum (kleinster auftretender Wert der Stichprobe)</li>
+<li>Unteres oder erstes Quartil (unterhalb dieses Wertes liegen 25% der Stichproben-Werte)</li>
+<li>Median oder zweites Quartil (unterhalb diesem Wert liegen 50% der Stichproben-Werte)</li>
+<li>Oberes oder drittes Quartil (unterhalb diesem Wert liegen 75% der Stichproben-Werte)</li>
+<li>Maximum (größter auftretender Wert der Stichprobe)</li>
+</ul>
+<p>Abbildung: Boxplot</p>
+<p><img src="../../../Code2Docu/images/LGF_Boxplot.png" alt="LGF_Boxplot" title="LGF_Boxplot" /></p>
+<h6 id="wincc-control">WinCC-Control</h6>
+<p>Zur Visualisierung des Boxplots bietet Ihnen der Siemens Industry Online Support ein .Net-Control, dass Sie in Verbindung mit WinCC Runtime Professional nutzen können. Di WinCC Controls finden Sie im <code>UserFiles</code> Ordner dieser Bibliothek.</p>
+<p>Abbildung: .Net Control &quot;Boxplot&quot;</p>
+<p><img src="../../../Code2Docu/images/LGF_Boxplot_Control.png" alt="LGF_Boxplot - WinCC .NET Control" title="LGF_Boxplot - WinCC .NET Control" /></p>
+<hr class='pageBreak' />
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_Boxplot_UDInt (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>execute</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>rangeOutlier</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subfunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outlierMax</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>max</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>UDInt</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>q75</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>median</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>q25</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>min</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>UDInt</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outlierMin</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>skewness</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of UDInt</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>values</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of UDInt</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>execute</td><td>Bool</td><td>FALSE</td><td>Aktivierung der Berechnung mit jeder positiven Flanke.</td></tr>
+<tr><td>rangeOutlier</td><td>LReal</td><td>1.5</td><td>Ausreißer Erkennung:<br>* 0: Ausreißer Erkennung ist deaktiviert<br>* 0-1: Wert ist ungültig<br>* >1: Ausreißer Erkennung ist aktiviert.</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+<tr><td>subfunctionStatus</td><td>Word</td><td>Status oder Rückgabewert von aufgerufenen FB's / FC's und Systemfunktionen</td></tr>
+<tr><td>outlierMax</td><td>LReal</td><td>Obere Ausreißer in %.</td></tr>
+<tr><td>max</td><td>UDInt</td><td>Maximaler Wert, der kein Ausreißer ist.</td></tr>
+<tr><td>q75</td><td>LReal</td><td>3.Quartil oder Q75 der Datenreihe.</td></tr>
+<tr><td>median</td><td>LReal</td><td>2.Quartil oder Median der Datenreihe.</td></tr>
+<tr><td>q25</td><td>LReal</td><td>1.Quartil oder Q25 der Datenreihe.</td></tr>
+<tr><td>min</td><td>UDInt</td><td>Minimaler Wert, der kein Ausreißer ist.</td></tr>
+<tr><td>outlierMin</td><td>LReal</td><td>Untere Ausreißer in %.</td></tr>
+<tr><td>skewness</td><td>LReal</td><td>Schiefe der Datenreihe.</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>values</td><td>Array[*] of UDInt</td><td>Das Array der Datenreihe, mit der gerechnet werden soll.</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_EXECUTION_FINISHED<br>Status: Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: Kein Aufruf.
+Der Baustein wartet auf die Aktivierung durch den Parameter `enable`.</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: Erstaufruf des FB nach einschalten</td></tr>
+<tr><td>16#8200</td><td>ERR_NEG_ARR_BOUND<br>Fehler: Negative Array-Grenze nicht zulässig.
+Prüfen Sie das Array am Eingang `values`.</td></tr>
+<tr><td>16#8600</td><td>ERR_SHELL_SORT<br>Fehler: Fehler in Anweisung `LGF_ShellSort_UDInt`.
+Weitere Infos in `subFunctionStatus`</td></tr>
+<tr><td>16#9101</td><td>ERR_RANGE_NOT_OK<br>Fehler: Der Parameter `rangeOutlier` ist ungültig.
+Geben Sie dem Parameter `rangeOutlier` einen gültigen Wert:
+* 0: Ausreißer Erkennung deaktiviert
+* &gt;1 gültiger Wert.</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<p>Der Baustein sortiert die Datenreihe und berechnet anschließend die sogenannte &quot;Fünf-Punkte-Zusammenfassung&quot;:</p>
+<p>Tabelle: Fünf-Punkte-Zusammenfassung</p>
+<table>
+<thead>
+<tr>
+<th>Kennwert der Fünf-Punkte-Zusammenfassung</th>
+<th>Ausgangsparameter des Bausteins</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minimum (kleinster auftretender Wert der Stichprobe)</td>
+<td><code>min</code></td>
+</tr>
+<tr>
+<td>Unteres oder erstes Quartil (unterhalb dieses Wertes liegen 25% der Stichproben-Werte)</td>
+<td><code>q25</code></td>
+</tr>
+<tr>
+<td>Median oder zweites Quartil (unterhalb diesem Wert liegen 50% der Stichproben-Werte)</td>
+<td><code>median</code></td>
+</tr>
+<tr>
+<td>Oberes oder drittes Quartil (unterhalb diesem Wert liegen 75% der Stichproben-Werte)</td>
+<td><code>q75</code></td>
+</tr>
+<tr>
+<td>Maximum (größter auftretender Wert der Stichprobe)</td>
+<td><code>max</code></td>
+</tr>
+</tbody>
+</table>
+<p>Der Baustein berechnet, falls die Ausreißer Erkennung aktiviert ist, zuerst die Grenzen. Ab diesen Grenzwerten werden die Werte als Ausreißer erkannt:</p>
+<p><span class="math inline">Bound^{upper} = q_{75} + rangeOutlier \cdot (q_{75} - q_{25})</span></p>
+<p><span class="math inline">Bound_{lower} = q_{25} - rangeOutlier \cdot (q_{75} - q_{25})</span></p>
+<p>Anschließend berechnet der Baustein neue Werte für die Parameter <code>max</code> und <code>min</code>, die innerhalb der Ausreißer Grenzen liegen. Die Ausreißer werden gezählt und in Prozent ausgegeben.</p>
+<hr class='pageBreak' />
+<p>Um leichter beurteilen zu können, wie die Daten verteilt sind, berechnet der Baustein ebenfalls die Schiefe. Die Schiefe liegt zwischen den Werten <code>-1</code> und <code>1</code> mit folgender Bedeutung:</p>
+<ul>
+<li><code>-1</code>: extrem linksschiefe Verteilung</li>
+<li><code>0</code>: symmetrische Verteilung</li>
+<li><code>1</code>: extrem rechtsschiefe Verteilung</li>
+</ul>
+<p>Die Elemente des übergebenen Arrays werden vom Baustein aufsteigend sortiert. Zur Sortierung wird der <code>LGF_Shellsort_UDInt</code> Baustein verwendet.</p>
+<p>Die Kenngrößen werden folgendermaßen berechnet:</p>
+<p>Tabelle: Formeln Boxplot Parameter Formel</p>
+<table>
+<col style="width:21.98%" />
+<col style="width:78.02%" />
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q25 (1.Quartil)</td>
+<td><span class="math inline">q_{25} = x_{(k)} \qquad with \qquad k = \frac{\left[ \frac{1}{2} (n+1) \right] + 1}{2} = \frac{n + 3}{4}</span></td>
+</tr>
+<tr>
+<td>q50 (2.Quartil)
+median</td>
+<td><span class="math inline">q_{50} = x_{(\frac{n+1}{2})}</span></td>
+</tr>
+<tr>
+<td>q75 (3.Quartil)</td>
+<td><p><span class="math inline">q_{75} = x_{(n+1-k)} \qquad with \qquad (n + 1 - k) = \frac{3n+1}{4}</span></p>
+<p><span class="math inline">n</span> := Anzahl der Stichproben (Größe des Arrays)</p>
+<p>Ist das Ergebnis des zu ermittelnden Elements (aus dem sich das Quartil ableiten lässt) nicht ganzzahlig, errechnet sich das Quartil aus dem linearen Anteil zwischen den beiden benachbarten Stichproben.</p>
+</td>
+</tr>
+<tr>
+<td>skewness</td>
+<td><p><span class="math inline">skewness= \frac{(q_{75} + q_{25}) - 2 \cdot q_{50}}{q_{75} - q_{25}}</span></p>
+<p>Hinweis: Dies ist lediglich eine Näherungsformel.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>05.11.2019</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.04.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_FloatingAverage (FB / V3.0.2)</title>
+</head><body>
+<h1>LGF_FloatingAverage (FB / V3.0.2)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>This function calculates a moving arithmetic mean value from REAL values. This method can be used to smooth data series. The values can be read in cyclically or triggered.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_FloatingAverage (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>cyclicExecution</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>average</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>trigger</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>windowSizeReached</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>value</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Int</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>windowSize</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>cyclicExecution</td><td>Bool</td><td>false</td><td>TRUE: cyclic operation, trigger not in use</td></tr>
+<tr><td>trigger</td><td>Bool</td><td>FALSE</td><td>Read in `value` with every pulse at input `trigger`</td></tr>
+<tr><td>value</td><td>LReal</td><td>0.0</td><td>Value/s from which the moving average is to be determined.</td></tr>
+<tr><td>windowSize</td><td>Int</td><td>100</td><td>Window length for sliding averaging in the range from 1..100.<br>The standard value is 100.</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>TRUE: The block is reset and the calculation starts again.</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>average</td><td>LReal</td><td>Moving / Floating average</td></tr>
+<tr><td>windowSizeReached</td><td>Bool</td><td>FALSE: Maximum window width not yet reached,<br>TRUE: Maximum window width reached</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_FINISHED_NO_ERROR<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#8200</td><td>ERR_WRONG_WINDOW_SIZE<br>Error: Incorrect window size/width set.
+Set a value between 1 and 100.</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>The block <code>LGF_FloatingAverage</code> does not query the data type for the input parameter <code>value</code>. For data types other than REAL, either an implicit conversion is performed automatically or an error is generated during compilation.</dd>
+<dd>You can find further information in the Chapter “Overview of Data Type Conversion” in the Online Help section of the TIA Portal or under:</dd>
+<dd><a href="https://support.industry.siemens.com/cs/ww/en/view/109773506/100611494667">https://support.industry.siemens.com/cs/ww/en/view/109773506/100611494667</a></dd>
+</dl>
+<hr class='successorDefList' />
+<p>The block calculates the (moving) mean value based on the set window width. The window width indicates the maximum number of values read in last. After the maximum number of values has been read, the output <code>windowSizeReached</code> is set and each newly read value replaces the oldest value (FIFO principle).</p>
+<p>Two options are available for reading the values. With the input <code>cyclicExecution</code>, the values are read and calculated cyclically. With the <code>trigger</code> input, the values are read in and calculated with each pulse.</p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>16.06.2016</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA Portal V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>21.02.2017</td><td>Adding variable window size for calculation<br/>Optimizing calculation algorithm</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.03</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>07.11.2019</td><td>Code refactoring, comments added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>16.06.2020</td><td>refactor and simplify code</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.02</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.04.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

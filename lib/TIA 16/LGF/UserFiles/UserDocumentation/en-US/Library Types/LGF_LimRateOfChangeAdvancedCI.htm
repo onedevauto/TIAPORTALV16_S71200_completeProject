@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_LimRateOfChangeAdvancedCI (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_LimRateOfChangeAdvancedCI (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industries</span>
+<h2>Short description</h2>
+<p>The function <code>LGF_LimRateOfChangeAdvanced</code> limits the rate of change of an input variable. Jump functions become ramp functions. In addition, the block has various operating modes.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_LimRateOfChangeAdvancedCI (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>autoValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outputValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>manualValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>posUpRateLim</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>setPosUpRateLim</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>posDownRateLim</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>setPosDownRateLim</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>negUpRateLim</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>setNegUpRateLim</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>negDownRateLim</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>setNegDownRateLim</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>highLim</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>setHighLim</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>lowLim</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>setLowLim</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>defaultOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enDefaultOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subfunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>track</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>manOp</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>OB_CYCLIC</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>callOB</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>autoValue</td><td>LReal</td><td>0.0</td><td>Signal to be processed and limited in its rate of change</td></tr>
+<tr><td>manualValue</td><td>LReal</td><td>0.0</td><td>Manually controlled output value<br>(`outputValue` = `manualValue`)</td></tr>
+<tr><td>setPosUpRateLim</td><td>LReal</td><td>0.0</td><td>Rate of change per second for the rising ramp in the positive value range (1/second)</td></tr>
+<tr><td>setPosDownRateLim</td><td>LReal</td><td>0.0</td><td>Rate of change per second for the falling ramp in the positive value range (1/second)</td></tr>
+<tr><td>setNegUpRateLim</td><td>LReal</td><td>0.0</td><td>Rate of change per second for the rising ramp in the negative value range (1/second)</td></tr>
+<tr><td>setNegDownRateLim</td><td>LReal</td><td>0.0</td><td>Rate of change per second for the falling ramp in the negative value range (1/second)</td></tr>
+<tr><td>setHighLim</td><td>LReal</td><td>0.0</td><td>High limit value</td></tr>
+<tr><td>setLowLim</td><td>LReal</td><td>0.0</td><td>Low limit value</td></tr>
+<tr><td>defaultOutValue</td><td>LReal</td><td>0.0</td><td>Value for pre-assignment of the output variable<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>enDefaultOutValue</td><td>Bool</td><td>FALSE</td><td>Assign default output value<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>track</td><td>Bool</td><td>FALSE</td><td>Follow / tracking of Input variable<br>(`outputValue` = `autoValue`)</td></tr>
+<tr><td>manOp</td><td>Bool</td><td>FALSE</td><td>Manual mode on<br>(`outputValue` = `manualValue`)</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>Complete restart of function</td></tr>
+<tr><td>callOB</td><td>OB_CYCLIC</td><td>---</td><td>Calling wake-alarm interrupt OB (cyclic interrupt OB)</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>outputValue</td><td>LReal</td><td>Output variable</td></tr>
+<tr><td>posUpRateLim</td><td>Bool</td><td>Rise limitation in positive range tripped</td></tr>
+<tr><td>posDownRateLim</td><td>Bool</td><td>Down rate limit in positive range reached</td></tr>
+<tr><td>negUpRateLim</td><td>Bool</td><td>Up rate limit in negative range reached</td></tr>
+<tr><td>negDownRateLim</td><td>Bool</td><td>Down rate limit in negative range reached</td></tr>
+<tr><td>highLim</td><td>Bool</td><td>High limit reached</td></tr>
+<tr><td>lowLim</td><td>Bool</td><td>Low limit reached</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subfunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_FINISHED_NO_ERROR<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#8200</td><td>ERR_NEG_RATE_LIM<br>Error: High limit lower than low limit.
+The high limit `setHighLim` must be greater than the low limit `setLowLim`.</td></tr>
+<tr><td>16#8202</td><td>ERR_NEG_RATE_OF_CHANGE<br>Error: Negative rate of change.
+The parameter for the change rate must not be negative.</td></tr>
+<tr><td>16#8600</td><td>ERR_QRY_CINT<br>Error in `QRY_CINT` command - check `subFunctionStatus` code</td></tr>
+<tr><td>16#8601</td><td>ERR_OB_UNAVAILABLE<br>Error: OB on input `callOB` is not configured / present.
+Interconnect the constant name of a configured cyclic interrupt OB at the input `callOB`.</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>The status of called commands is output in <code>subFunctionStatus</code>. In this case, the output value in <code>status</code> indicates which command caused the error. In this case, refer to the TIA Portal Online Help section for information on the respective commands.</dd>
+</dl>
+<hr class='successorDefList' />
+<p>For the positive/negative value range, two rates of change in each case for the ramp (rising and falling values) can be parameterized. The following operating modes can be selected via control inputs:</p>
+<ul>
+<li>Restart</li>
+<li>Pre-assigning an output</li>
+<li>Normal operation (automatic)</li>
+<li>Switch through controlled variable (manual)</li>
+<li>Tracking</li>
+</ul>
+<p>The output variable can be limited through two parametrize able limits. An active limitation of the rate of change of a ramp, as well as an active limitation of the output variable are reported via outputs.</p>
+<p>The time interval of the calling cyclic interrupt OB is determined by interconnecting the calling cyclic interrupt OB at the input parameter <code>callOB</code>.</p>
+<p><img src="../../../Code2Docu/images/LGF_InterruptObAsParameter.png" alt="Interconnecting the cyclic interrupt OB" title="Interconnecting the cyclic interrupt OB" /></p>
+<h6 id="restart">Restart</h6>
+<p>At restart <code>reset = TRUE</code>, the output <code>outputValue</code> is reset to <code>0.0</code>.<br />
+If <code>enDefaultOutValue = TRUE</code> is set, <code>defaultOutValue</code> is output. All signal outputs are set to <code>FALSE</code>.</p>
+<h6 id="pre-assigning-an-output">Pre-assigning an output</h6>
+<p>If <code>enDefaultOutValue = TRUE</code> is set, the value at <code>defaultOutValue</code> is output. When changing from <code>TRUE</code> to <code>FALSE</code>, <code>outputValue</code> is ramped from <code>defaultOutValue</code> to <code>autoValue</code>. When changing from <code>FALSE</code> to <code>TRUE</code>, the output <code>outputValue</code> immediately jumps to <code>defaultOutValue</code>.</p>
+<h6 id="normal-operation">Normal operation</h6>
+<p>The ramps are straight lines of limitation and are based on a rate of change per second; if, for example, the parameter <code>setPosUpRateLim = 10.0</code> is assigned, then at a sampling time of 1s/100ms/10ms, 10.0/1.0/0.1 will be added to <code>outputValue</code> at each block call, if <code>autoValue &gt; outputValue</code>, until <code>autoValue</code> is reached.</p>
+<p>The limitation of the rate of change can be parameterized in both positive and negative ranges for the increase and decrease.</p>
+<hr class='pageBreak' />
+<p>Table: Marking of the ramps</p>
+<table>
+<col style="width:21.11%" />
+<col style="width:78.89%" />
+<tbody>
+<tr>
+<td>Parameters</td>
+<td>Ramp</td>
+</tr>
+<tr>
+<td>setPosUpRateLim</td>
+<td><code>outputValue &gt; 0.0</code> and <code>|outputValue|</code> rising</td>
+</tr>
+<tr>
+<td>setPosDownRateLim</td>
+<td><code>outputValue &gt; 0.0</code> and <code>|outputValue|</code> falling</td>
+</tr>
+<tr>
+<td>setNegUpRateLim</td>
+<td><code>outputValue &lt; 0.0</code> and <code>|outputValue|</code> rising</td>
+</tr>
+<tr>
+<td>setNegDownRateLim</td>
+<td><code>outputValue &lt; 0.0</code> and <code>|outputValue|</code> falling</td>
+</tr>
+</tbody>
+</table>
+<p>If the ramps are not parameterized (<code>setPosUpRateLim</code>, <code>setPosDownRateLim</code>, <code>setNegUpRateLim</code>, and <code>setNegDownRateLim</code> equal <code>0.0</code>), the output remains at <code>0.0</code> and normal operation is disabled.</p>
+<h6 id="tracking">Tracking</h6>
+<p>If the input <code>track = TRUE</code> is set, the input variable <code>autoValue</code> is interconnected directly to the output variable <code>outputValue</code>. Thus, jumps of the input variable will also be output.</p>
+<h6 id="switch-through-controlled-variable">Switch through controlled variable</h6>
+<p>If <code>manOp = TRUE</code> is set, the controlled variable <code>manualValue</code> is interconnected directly to the output variable <code>outputValue</code>.</p>
+<p>In this operating mode, the parameterization of the ramps or the high/low limitation of the output variable, and the pre-assignment of the output, are ineffective.</p>
+<p>When changing from <code>TRUE</code> to <code>FALSE</code>, the output <code>outputValue</code> is ramped again after <code>autoValue</code>.</p>
+<p>As soon as the value range between the low and high limits is reached, the high and low limits are reactivated.</p>
+<p>Figure: Ramp function sequence, operating modes</p>
+<p><img src="../../../Code2Docu/images/LGF_LimRateOfChangeAdvancedCI.png" alt="LGF_LimRateOfChangeAdvancedCI" title="LGF_LimRateOfChangeAdvancedCI" /></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>21.06.2016</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA Portal V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.07</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>15.11.2019</td><td>Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>22.03.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

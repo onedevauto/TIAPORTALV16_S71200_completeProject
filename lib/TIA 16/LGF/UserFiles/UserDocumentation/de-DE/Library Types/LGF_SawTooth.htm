@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_SawTooth (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_SawTooth (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industries</span>
+<h2>Kurzbeschreibung</h2>
+<p>Diese Funktion generiert einen sägezahnförmigen Signalverlauf. Jeder Sägezahn besteht aus einer definierten Anzahl an Schritten (Inkrementen).</p>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd><mark>VERALTETE FUNKTION</mark></dd>
+<dd>Bitte updaten und nutzen sie zukünftig den FB mit dem Namen <code>LGF_CountRisInDWord</code>!<br />
+Diese Funktion wird nicht weiter gepflegt!</dd>
+</dl>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_SawTooth (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Int</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>startValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>value</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Int</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Time</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>timeRange</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Int</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>incrementRange</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Int</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>numberSteps</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>endlessSteps</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>startValue</td><td>Int</td><td>0</td><td>Startwert bei dem das Signal beginnt.</td></tr>
+<tr><td>timeRange</td><td>Time</td><td>T#0s</td><td>Zeit nach der der Ausgangsparameter `value` inkrementiert wird</td></tr>
+<tr><td>incrementRange</td><td>Int</td><td>0</td><td>Größe des Sprunges von einem Inkrement auf den nächsten.</td></tr>
+<tr><td>numberSteps</td><td>Int</td><td>0</td><td>Anzahl der Inkremente pro Sägezahn. (Im Falle eines endlosen Sägezahnsignales ist die Angabe nicht nötig).</td></tr>
+<tr><td>endlessSteps</td><td>Bool</td><td>FALSE</td><td>Angabe ob ein endloses Sägezahnsignal generiert werden soll.<br>`TRUE` - Aktiviert, `FALSE` - Deaktiviert</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>Sägezahn beginnt wieder beim Startwert `startValue`.</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>value</td><td>Int</td><td>Aktueller Wert des Sägezahnsignales.</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<dl class='HINWEIS'
+>
+<dt>HINWEIS</dt>
+<dd>Beachten Sie, dass Änderungen an den Eingangsparametern erst mit <code>reset</code> wirksam werden.</dd>
+</dl>
+<hr class='successorDefList' />
+<p>Der Baustein berechnet die Werte für einen sägezahnförmigen Signalverlauf, die am Ausgangsparameter <code>value</code> ausgegeben werden. Das Signal beginnt mit dem Startwert <code>startValue</code> und wird nach jedem Ablauf des Zeitintervalls <code>timeRange</code> mit dem Wert <code>increment</code> addiert. Der Wert kann auch negativ sein.</p>
+<p>Ist die Variable <code>endlessSteps</code> auf <code>FALSE</code> gesetzt, wird die Anzahl der Addiervorgänge gezählt. Überschreitet diese den Wert <code>numberSteps</code> wird der Ausgangsparameter <code>value</code> wieder auf den Startwert gesetzt. Ein neuer Sägezahn beginnt.</p>
+<p>Ist die Variable <code>endlessSteps</code> auf <code>TRUE</code> gesetzt, wird - einmalig beginnend bei <code>startValue</code> - ununterbrochen der Wert <code>increment</code> aufaddiert. Wenn der maximale positive INT-Wertebereich (32767) des Ausgangsparameters <code>value</code> überschritten wird, wechselt <code>value</code> in den maximalen negativen INT-Wertebereich (-32768) und wird weiter aufaddiert.</p>
+<hr class='predecessorDefList' />
+<dl class='HINWEIS'
+>
+<dt>HINWEIS</dt>
+<dd>Die Dauer eines Sägezahns bei <code>endlessSteps</code> auf <code>FALSE</code> berechnet sich wie folgt:</dd>
+<dd>Dauer = #timeRange * (#numberSteps + 1)</dd>
+</dl>
+<hr class='successorDefList' />
+<p><img src="../../../Code2Docu/images/LGF_SawTooth.png" alt="LGF_SawTooth - Signalverlauf des Ausgangs value" title="LGF_SawTooth - Signalverlauf des Ausgangs `value`" /></p>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>19.08.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.11.2015</td><td>Bug fix</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA Portal V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.04</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.10</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.09.2019</td><td>Code refactoring, regions and more comments added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>
