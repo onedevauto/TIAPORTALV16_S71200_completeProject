@@ -4,7 +4,8 @@ This repository content is complete project for mixing granulation integrate wit
 ## Resource for manual & guidelines
 | Manual  | Guidelines | Library |
 | ------------- |:-------------:| -----:|
-|  [109747503_Library_Guideline_DOC_v12_en.pdf](https://github.com/onedevauto/SiemenS71200_TiaV16_completeProject/blob/main/doc/manual/109747503_Library_Guideline_DOC_v12_en.pdf)     | right-aligned | lib0 |
+|  [109747503_Library_Guideline_DOC_v12_en.pdf](https://github.com/onedevauto/SiemenS71200_TiaV16_completeProject/blob/main/doc/manual/109747503_Library_Guideline_DOC_v12_en.pdf)     | right-aligned | 
+lib0 |
 | STEP_7_WinCC_V16_enUS_en-US.pdf | centered      |   lib1 |
 
 
