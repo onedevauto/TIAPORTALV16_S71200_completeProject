@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_RegressionLine (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_RegressionLine (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry</span>
+<h2>Kurzbeschreibung</h2>
+<p>Der einfachste Fall einer Regression ist die Regressionsgerade. Das heißt der angenommene Zusammenhang zwischen Ein- und Ausgangssignal ist eine lineare Gerade.</p>
+<p>Abbildung: Regressionsline</p>
+<p><img src="../../../Code2Docu/images/LGF_RegressionLine.png" alt="LGF_RegressionLine" title="LGF_RegressionLine" /></p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_RegressionLine (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='return'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Void</td></tr>
+<tr class='return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>slope</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>intercept</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of LGF_typeRegressionLine</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>values</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of LGF_typeRegressionLine</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Void</td><td>Void - Funktion hat keinen Rückgabewert</td></tr>
+<tr><td>slope</td><td>LReal</td><td>Steigung der Geraden</td></tr>
+<tr><td>intercept</td><td>LReal</td><td>Schnittpunkt mit der Y-Achse</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>values</td><td>Array[*] of LGF_typeRegressionLine</td><td>Die Datenpunkte werden mit Ihren X- und Y-Werten übergeben.<br>Der Datentyp `LGF_typeRegressionLine` hat den folgenden Aufbau:<br>• x (Real)<br>• y (Real)</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_EXECUTION_FINISHED<br>Status: Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#8200</td><td>ERR_NOT_ENOUGH_VALUES<br>Fehler: Zu wenig Werte.
+Der Baustein benötigt mindestens zwei Wertepaare, um eine Regressionsgerade zu berechnen. Vergrößern Sie das Array am Eingangsparameter `values` in der zweiten Dimension.</td></tr>
+</tbody></table>
+<h2>Benutzer definierte Datentypen</h2>
+<h3>LGF_typeRegressionLine (UDT)</h3>
+<p>Der Datentyp ist zum Transfer von Datenpunkten (Schlüssel-Werte Paare / Key- Value pairs) nach <code>LGF_RegressionLine</code> und der Berechnung für die Parameter Steigung und Y-Achsenabschnitt der interpolierten Geradengleichung.</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Bezeichner</th><th class='type'>Datentyp</th><th class='default'>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>x</td><td class='type'>Real</td><td class='default'>0.0</td><td>X-Achsen Wert</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>y</td><td class='type'>Real</td><td class='default'>0.0</td><td>Y-Achsen Wert</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<p>Der Baustein berechnet die Regressionsgerade mit folgender Geradengleichung:<br />
+<span class="math inline">f(x) = m \cdot x + t</span><br />
+<span class="math inline">m</span>: Steigung der Gerade
+<span class="math inline">t</span>: Schnittpunkt mit y-Achse<br />
+<span class="math inline">N</span>: Anzahl der Array Elemente</p>
+<p>Die Steigung <span class="math inline">m</span> wird mit folgender Gleichung berechnet:</p>
+<span class="math display">   m = \frac{n \cdot \sum_{1}^{N}(x(n) \cdot y(n)) - (\sum_{1}^{N}x(n) \cdot \sum_{1}^{N}y(n))}{n \cdot \sum_{1}^{N} x^2(n) - (\sum_{1}^{N}x(n))^2}
+</span>
+<p>Der Schnittpunkt <span class="math inline">t</span> mit der Y-Achse wird mit folgender Gleichung berechnet:</p>
+<span class="math display">   t = \frac{\sum_{1}^{N} y(n)}{N} - b \cdot \frac{\sum_{1}^{N} x(n)}{N}
+</span>
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.04</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>15.11.2019</td><td>Code refactoring, comments added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.04.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

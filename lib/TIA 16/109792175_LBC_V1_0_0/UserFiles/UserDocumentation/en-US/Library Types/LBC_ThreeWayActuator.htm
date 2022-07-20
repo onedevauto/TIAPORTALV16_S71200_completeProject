@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_ThreeWayActuator (FB / V1.0.0)</title>
+</head><body>
+<h1>LBC_ThreeWayActuator (FB / V1.0.0)</h1>
+<hr>
+<span class='author'>Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>Controls an actuator between three states (e.g. positions of a valve) with three or two control commands.
+For three stable state devices.</p>
+
+<h2>Interface description</h2>
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LBC_ThreeWayActuator (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>enable</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>valid</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>commandNeutralPos</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>busy</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>commandWorkPos1</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>error</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>commandWorkPos2</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>status</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackNeutralPos</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>goToNeutralPos</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackWorkPos1</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>goToWorkPos1</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackWorkPos2</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>goToWorkPos2</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>acknowledge</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>inNeutralPos</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>inWorkPos1</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>inWorkPos2</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>LBC_typeDiagnostics</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>diagnostics</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>configuration</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeThreeWayActuatorConfiguration</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>configuration</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>moduleInterface</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeThreeWayActuatorInterface</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>moduleInterface</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data Type</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable functionality of FB</td></tr>
+<tr><td>commandNeutralPos</td><td>Bool</td><td>FALSE</td><td>Rising edge: Move actuator to neutral position</td></tr>
+<tr><td>commandWorkPos1</td><td>Bool</td><td>FALSE</td><td>Rising edge: Move actuator to work position 1</td></tr>
+<tr><td>commandWorkPos2</td><td>Bool</td><td>FALSE</td><td>Rising edge: Move actuator to work position 2</td></tr>
+<tr><td>feedbackNeutralPos</td><td>Bool</td><td>FALSE</td><td>TRUE: Feedback actuator is in neutral position</td></tr>
+<tr><td>feedbackWorkPos1</td><td>Bool</td><td>FALSE</td><td>TRUE: Feedback actuator is in work position 1</td></tr>
+<tr><td>feedbackWorkPos2</td><td>Bool</td><td>FALSE</td><td>TRUE: Feedback actuator is in work position 2</td></tr>
+<tr><td>acknowledge</td><td>Bool</td><td>FALSE</td><td>Acknowledgement of the alarms</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>valid</td><td>Bool</td><td>TRUE: Valid set of output values available at the FB</td></tr>
+<tr><td>busy</td><td>Bool</td><td>TRUE: FB is not finished and new output values can be expected</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>goToNeutralPos</td><td>Bool</td><td>TRUE: Control output to move to actuator to neutral position</td></tr>
+<tr><td>goToWorkPos1</td><td>Bool</td><td>TRUE: Control output to move to actuator to work position 1</td></tr>
+<tr><td>goToWorkPos2</td><td>Bool</td><td>TRUE: Control output to move to actuator to work position 2</td></tr>
+<tr><td>inNeutralPos</td><td>Bool</td><td>TRUE: Actuator is in neutral position</td></tr>
+<tr><td>inWorkPos1</td><td>Bool</td><td>TRUE: Actuator is in work position 1</td></tr>
+<tr><td>inWorkPos2</td><td>Bool</td><td>TRUE: Actuator is in work position 2</td></tr>
+<tr><td>diagnostics</td><td>LBC_typeDiagnostics</td><td>Module related diagnostic information</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>configuration</td><td>LBC_typeThreeWayActuatorConfiguration</td><td>Module related configuration parameters</td></tr>
+<tr><td>moduleInterface</td><td>LBC_typeThreeWayActuatorInterface</td><td>Module interface for external systems</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR_OCCURRED<br>Status: No error occurred during execution</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: No job being currently processed</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: First call after incoming new job (rising edge 'enable')</td></tr>
+<tr><td>16#7002</td><td>STATUS_SUBSEQUENT_CALL<br>Status: Subsequent call during active processing without further details</td></tr>
+<tr><td>16#7003</td><td>STATUS_POSITION_NOT_DEFINED<br>Status: Position of the actuator is uncertain</td></tr>
+<tr><td>16#7004</td><td>STATUS_IN_NEUTRAL_POSITION<br>Status: Actuator is in NEUTRAL position</td></tr>
+<tr><td>16#7005</td><td>STATUS_IN_WORK_POSITION_1<br>Status: Actuator is in work position 1</td></tr>
+<tr><td>16#7006</td><td>STATUS_IN_WORK_POSITION_2<br>Status: Actuator is in work position 2</td></tr>
+<tr><td>16#7010</td><td>STATUS_MOVE_FROM_NEUTRAL_TO_WORK_1<br>Status: Actuator is moving from neutral to work 1</td></tr>
+<tr><td>16#7011</td><td>STATUS_MOVE_FROM_NEUTRAL_TO_WORK_2<br>Status: Actuator is moving from neutral to work 2</td></tr>
+<tr><td>16#7012</td><td>STATUS_MOVE_FROM_WORK_1_TO_NEUTRAL<br>Status: Actuator is moving from work 1 to neutral position</td></tr>
+<tr><td>16#7013</td><td>STATUS_MOVE_FROM_WORK_1_TO_WORK_2<br>Status: Actuator is moving from work 1 to work position 2</td></tr>
+<tr><td>16#7014</td><td>STATUS_MOVE_FROM_WORK_2_TO_NEUTRAL<br>Status: Actuator is moving from work 2 to neutral position</td></tr>
+<tr><td>16#7015</td><td>STATUS_MOVE_FROM_WORK_2_TO_WORK_1<br>Status: Actuator is moving from work 2 to work 1</td></tr>
+<tr><td>16#7016</td><td>STATUS_MOVE_FROM_UNDEFINED_TO_NEUTRAL<br>Status: Actuator is moving from undefined position to neutral</td></tr>
+<tr><td>16#7017</td><td>STATUS_MOVE_FROM_UNDEFINED_TO_WORK_1<br>Status: Actuator is moving from undefined position to work 1</td></tr>
+<tr><td>16#7018</td><td>STATUS_MOVE_FROM_UNDEFINED_TO_WORK_2<br>Status: Actuator is moving from undefined position to work 2</td></tr>
+<tr><td>16#8201</td><td>ERR_CONFIGURATION_LEAVE_FEEDBACK_TIME_NEGATIVE<br>Error: Negative value for leaving position feedback time</td></tr>
+<tr><td>16#8202</td><td>ERR_CONFIGURATION_REACH_FEEDBACK_TIME_NEGATIVE<br>Error: Negative value for reaching position feedback time</td></tr>
+<tr><td>16#8400</td><td>ERR_MORE_THAN_ONE_CMD_PRESENT_AT_SAME_TIME<br>Error: Commands for neutral and Work positions present at the same time</td></tr>
+<tr><td>16#8401</td><td>ERR_MORE_THAN_ONE_FEEDBACK_PRESENT_AT_SAME_TIME<br>Error: Feedbacks for neutral and Work positions present at the same time</td></tr>
+<tr><td>16#8402</td><td>ERR_TIMEOUT_NEUTRAL_POSITION<br>Error: Monitoring time out, did not reach feedback neutral position</td></tr>
+<tr><td>16#8403</td><td>ERR_TIMEOUT_WORK_POSITION_1<br>Error: Monitoring time out, did not reach feedback work position 1</td></tr>
+<tr><td>16#8404</td><td>ERR_TIMEOUT_WORK_POSITION_2<br>Error: Monitoring time out, did not reach feedback work position 2</td></tr>
+<tr><td>16#8406</td><td>ERR_INCORRECT_FEEDBACK_NEUTRAL_POSITION<br>Error: Incorrect appearance of feedback neutral position</td></tr>
+<tr><td>16#8407</td><td>ERR_INCORRECT_FEEDBACK_WORK_POSITION_1<br>Error: Incorrect appearance of feedback work position 1</td></tr>
+<tr><td>16#8408</td><td>ERR_INCORRECT_FEEDBACK_WORK_POSITION_2<br>Error: Incorrect appearance of feedback work position 2</td></tr>
+<tr><td>16#8410</td><td>ERR_MISSING_FEEDBACK_NEUTRAL_POSITION<br>Error: Missing feedback neutral position</td></tr>
+<tr><td>16#8411</td><td>ERR_MISSING_FEEDBACK_WORK_POSITION_1<br>Error: Missing feedback work position 1</td></tr>
+<tr><td>16#8412</td><td>ERR_MISSING_FEEDBACK_WORK_POSITION_2<br>Error: Missing feedback work position 2</td></tr>
+<tr><td>16#8415</td><td>ERR_NOT_LEAVING_NEUTRAL_POSITION<br>Error: Not leaving neutral position feedback</td></tr>
+<tr><td>16#8416</td><td>ERR_NOT_LEAVING_WORK_POSITION_1<br>Error: Not leaving work position 1 feedback</td></tr>
+<tr><td>16#8417</td><td>ERR_NOT_LEAVING_WORK_POSITION_2<br>Error: Not leaving work position 2 feedback</td></tr>
+<tr><td>16#8600</td><td>ERR_UNDEFINED_STATE<br>Error: block cannot determine the position of the Actuator</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LBC_typeDiagnostics (UDT)</h3>
+<p>Module related diagnostic information</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>status</td><td class='type'>Word</td><td class='default'>16#0000</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>subfunctionStatus</td><td class='type'>Word</td><td class='default'>16#0000</td><td>Status or return value of called FB's, FCs, system blocks or other status information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>stateNumber</td><td class='type'>DInt</td><td class='default'>0</td><td>State in the state machine of the block where the error occurred</td></tr>
+</tbody></table>
+<h3>LBC_typeThreeWayActuatorConfiguration (UDT)</h3>
+<p>Module related configuration parameters</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>referenceDesignator</td><td class='type'>String[20]</td><td class='default'>'ThreeWayAct.'</td><td>Device name or device ID</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoringLeavingFeedback</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Control time for leaving the "start of movement" position</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoringReachingFeedback</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Control time for reaching the "end of movement" position</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>setOutputNeutralContinuously</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Output neutral is set as long as command neutral is present. FALSE: Output has just an impulse as long as the actuator has not reached the position and is moving</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>setOutputWork1Continuously</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Output work 1 is set as long as command work is present. FALSE: Output has just impulse as long as the actuator has not reached the position and is moving</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>setOutputWork2Continuously</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Output work 2 is set as long as command work is present. FALSE: Output has just impulse as long as the actuator has not reached the position and is moving</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableNeutralCommand</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable command for neutral position. Actuator starts moving to neutral position when `commandWorkPosX` is set to false</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableFeedbackNeutralPos</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the monitoring of the Neutral position feedback. FALSE: Neutral position is reached after `monitoringReachingFeedback` time expires.</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableFeedbackWorkPos1</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the monitoring of the Work position 1 feedback. FALSE: Work position 1 is reached after `monitoringReachingFeedback` time expires.</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableFeedbackWorkPos2</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the monitoring of the Work position 2 feedback. FALSE: Work position 2 is reached after `monitoringReachingFeedback` time expires.</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableAlarms</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the alarms of the block</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>resetOutputsOnError</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: in case of an error the outputs are be reset and the error has to be acknowledged before further processing is possible</td></tr>
+</tbody></table>
+<h3>LBC_typeThreeWayActuatorInterface (UDT)</h3>
+<p>Module interface for external systems</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>commands</td><td class='type'>LBC_typeInterfaceCommands</td><td class='default'>default</td><td>Module related commands from external systems</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>configuration</td><td class='type'>LBC_typeThreeWayActuatorConfiguration</td><td class='default'>default</td><td>Module related configuration parameters</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoring</td><td class='type'>LBC_typeThreeWayActuatorProcessValues</td><td class='default'>default</td><td>Module related monitoring information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>diagnostics</td><td class='type'>LBC_typeDiagnostics</td><td class='default'>default</td><td>Module related diagnostic information</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The module is put in operating state if the input <code>enable</code> is TRUE. The actuator is controlled by the inputs <code>commandWorkPosX</code> and <code>commandNeutralPos</code>, only one should be set at any time.<br />
+If <code>commandWorkPosX</code> is TRUE then the block sets the output <code>goToWorkPosX</code>, if the <code>commandNeutralPos</code> is TRUE then the block sets the output <code>goToNeutralPos</code>.</p>
+<p>Once the module starts movement from one position to another, two control times are started – control time for leaving position and for reaching position.<br />
+The usage for those timers is to monitor if the actuator is leaving the actual position, therefore the name <code>leavingFeedback</code>, and to monitor the actuator reaching new the position it is moving towards – <code>reachingFeedback</code>.<br />
+Those timers can be configured via the <code>configuration</code> in the module interface. If the actuator is moving from Neutral to one of the Work positions, the leaving position is “home position” (<code>feedbackNeutralPos</code>) and the reaching position is a work position (<code>feedbackWorkPositionX</code>).<br />
+If the actuator is moving from a Work to Neutral position, the leaving position is a work position (<code>feedbackWorkPositionX</code>) and reaching position is neutral position (<code>feedbackNeutralPos</code>).
+Same time settings (<code>leavingFeedback</code> and <code>reachingFeedback</code>) are used independent if the actuator is moving from Neutral to one of the Work positions or from a Work to Neutral.</p>
+<p>When the actuator finishes moving towards a Work position or Neutral position, the respective output is reset (FALSE). This is intended for control of actuators that don’t require additional force once they reach their end position.<br />
+If it is required that the outputs <code>goToWorkPositionX</code> or <code>goToNeutralPosition</code> remain set (TRUE) when the destination is reached, it can be configured via <code>setOutputNeutralContinuously</code> and <code>setOutputWork X Continuously</code>.</p>
+<p>In the case where one of the feedbacks or both are not available, it is possible to disable their monitoring from the configuration of the block. – <code>disableFeedbackNeutralPos</code> and <code>disableFeedbackWorkPosX</code>.<br />
+In this case the transition and duration for changing one state to another (Neutral to one of the Work positions and a Work to Neutral) is done entirely on the <code>monitoringReachingFeedback</code> parameter.</p>
+<p>In case the time expires and the feedbacks aren't disabled, the module raises an error. Depending on the configuration <code>resetOutputsOnError</code> it will stay in the actual state if configuration is set to FALSE (default) or jump into the error state with resetting the outputs.<br />
+If the module is in the error state, the error has to be acknowledged via the input <code>acknowledge</code>, as soon the error is acknowledged it is possible to restart the operation.</p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>SIMATIC Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>First released version</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_LIFO (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_LIFO (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Industry Support</span>
+<h2>Short description</h2>
+<p>LIFO (Last-In First-Out / Stack buffer memory)<br />
+This function stores incoming data and outputs the latest/most recent not-yet-processed data.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_LIFO (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>push</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>pop</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>peek</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>elementCount</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DInt</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>clear</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>isEmpty</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>initialItem</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>item</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Variant</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>buffer</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Variant</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>push</td><td>Bool</td><td>false</td><td>Push item to the buffer</td></tr>
+<tr><td>pop</td><td>Bool</td><td>false</td><td>Pop item from the buffer</td></tr>
+<tr><td>peek</td><td>Bool</td><td>false</td><td>Peek item from the buffer (buffer not changed/modified)</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>Initializing the buffer (reset the index and the counter)</td></tr>
+<tr><td>clear</td><td>Bool</td><td>FALSE</td><td>Clearing the buffer and initialize with the initial value `initialItem` (Reset index and counter).</td></tr>
+<tr><td>initialItem</td><td>Variant</td><td>---</td><td>Value with which the ARRAY of the buffer is initialized (usually: `0` / default value)</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+<tr><td>elementCount</td><td>DInt</td><td>Number of elements in the buffer</td></tr>
+<tr><td>isEmpty</td><td>Bool</td><td>TRUE: Buffer is empty</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>item</td><td>Variant</td><td>The entry that is either returned from the ring buffer or written into the buffer</td></tr>
+<tr><td>buffer</td><td>Variant</td><td>The ARRAY that is used as the ring buffer. (Array of…)</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CURRENT_JOBS<br>Status: No current jobs, initial state</td></tr>
+<tr><td>16#8001</td><td>ERR_BUFFER_EMPTY<br>Error: The buffer is empty</td></tr>
+<tr><td>16#8002</td><td>ERR_BUFFER_FULL<br>Error: The buffer is full</td></tr>
+<tr><td>16#8200</td><td>ERR_NO_ARRAY<br>Error: No array is present at the input `buffer`</td></tr>
+<tr><td>16#8201</td><td>ERR_WRONG_TYPE_ITEM<br>Error: The data type of the InOut parameter `item` does not correspond to the data type of the array elements of the input `buffer`</td></tr>
+<tr><td>16#8202</td><td>ERR_WRONG_TYPE_INITIAL_ITEM<br>Error: The data type of the input `initialValue` does not correspond to the data type of the InOut parameter `item`</td></tr>
+<tr><td>16#8610</td><td>ERR_CLEAR_BUFFER<br>Error: While clearing buffer in block `MOVE_BLK_VARIANT` - check `subFunctionStatus` code</td></tr>
+<tr><td>16#8611</td><td>ERR_RETURN_LAST_ENTRY<br>Error: While return first entry of buffer in block `MOVE_BLK_VARIANT` - check `subFunctionStatus` code (POP &amp; PEEK)</td></tr>
+<tr><td>16#8612</td><td>ERR_POP_REPLACE_ITEM_BY_INIT_VALUE<br>Error: While replace item by initial value in block `MOVE_BLK_VARIANT` - check `subFunctionStatus` code (POP)</td></tr>
+<tr><td>16#8613</td><td>ERR_WRITE_ENTRY<br>Error: While write entry to buffer in block `MOVE_BLK_VARIANT` - check `subFunctionStatus` code (PUSH)</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>The status of called commands is output in <code>subFunctionStatus</code>. In this case, the output value in <code>status</code> indicates which command caused the error. In this case, refer to the TIA Portal Online Help section for information on the respective commands.</dd>
+</dl>
+<hr class='predecessorDefList' />
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>I computer science the stack is also based on the LIFO principle.</dd>
+</dl>
+<hr class='successorDefList' />
+<p>With the <code>push</code> input, a new item is stored from the InOut parameter <code>item</code> in the next free position in the buffer. The output <code>elementCount</code> is incremented by one.</p>
+<p>With the <code>pop</code> input, the latest / most recent item is output to the InOut parameter <code>item</code>, and this field in the buffer is replaced by the value at the parameter <code>initialItem</code>. The output <code>elementCount</code> is decremented by one.</p>
+<p>The <code>peek</code> input allows the last entry in the buffer to be read out. The buffer is not changed.</p>
+<p>With the <code>reset</code> input, the buffer is initialized and the index and counter are reset. The <code>elementCount</code> output is set to zero and the <code>isEmpty</code> output is set to TRUE.</p>
+<p>With the <code>clear</code> input, the buffer is emptied and initialized with the initial value <code>initialItem</code>. Index and counter are reset. The <code>elementCount</code> output is set to zero and the <code>isEmpty</code> output is set to TRUE.</p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>10.07.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>29.01.2019</td><td>Output "done" removed (not necessary, because block works synchron)</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>22.10.2019</td><td>Code refactoring, comments added<br/>Interface change (push, pop, peek etc.)<br/>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

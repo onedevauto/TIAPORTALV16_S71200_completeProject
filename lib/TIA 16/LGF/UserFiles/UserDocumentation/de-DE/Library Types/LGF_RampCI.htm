@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_RampCI (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_RampCI (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industries</span>
+<h2>Kurzbeschreibung</h2>
+<p>Diese Funktion generiert eine Fahrkurve anhand einer Stützpunkttabelle. Zwischen den Punkten wird innerhalb der vorgegebenen Zeit linear interpoliert.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_RampCI (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>defaultOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outputValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Int</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>contStepNbr</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>actTimeTable</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Time</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>contStepTime</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>stepNumber</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Int</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enDefaulftOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>remainTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Time</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>start</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>totalTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Time</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>hold</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>remainTotalTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Time</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>continue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>cyclicOP</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>updateTime</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subfunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>OB_CYCLIC</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>callOB</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of LGF_typeRampTimeTable</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>setpoints</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of LGF_typeRampTimeTable</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>defaultOutValue</td><td>LReal</td><td>0.0</td><td>Wert für die Default Vorbelegung der Ausgangsgröße<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>contStepNbr</td><td>Int</td><td>0</td><td>Nummer des nächsten Stützpunktes zur Weiterverarbeitung</td></tr>
+<tr><td>contStepTime</td><td>Time</td><td>T#0MS</td><td>Restzeit zum Weitermachen bis zum Stützpunkt `contStepNbr`</td></tr>
+<tr><td>enDefaulftOutValue</td><td>Bool</td><td>FALSE</td><td>Zuweisen des Default Ausgangswert<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>start</td><td>Bool</td><td>FALSE</td><td>Stützpunkttabelle abarbeiten</td></tr>
+<tr><td>hold</td><td>Bool</td><td>FALSE</td><td>Aktuellen Wert am Ausgang halten/ einfrieren</td></tr>
+<tr><td>continue</td><td>Bool</td><td>FALSE</td><td>Weiterverarbeitung</td></tr>
+<tr><td>cyclicOP</td><td>Bool</td><td>FALSE</td><td>Stützpunkttabelle zyklisch wiederholen</td></tr>
+<tr><td>updateTime</td><td>Bool</td><td>FALSE</td><td>Zeitwerte aktualisieren</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>Neustart der Funktion</td></tr>
+<tr><td>callOB</td><td>OB_CYCLIC</td><td>---</td><td>Aufrufender Weckalarm-OB (Cyclic Interrupt OB)</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>outputValue</td><td>LReal</td><td>Ausgangsgröße</td></tr>
+<tr><td>actTimeTable</td><td>Bool</td><td>Stützpunkttabelle wird bearbeitet.</td></tr>
+<tr><td>stepNumber</td><td>Int</td><td>aktuelle Stützpunktnummer<br>(Stützpunkt, der angefahren wird)</td></tr>
+<tr><td>remainTime</td><td>Time</td><td>Restzeit bis Erreichen des nächsten Stützpunktes</td></tr>
+<tr><td>totalTime</td><td>Time</td><td>Gesamtzeit für die Stützpunkt Tabelle</td></tr>
+<tr><td>remainTotalTime</td><td>Time</td><td>Gesamtrestzeit</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+<tr><td>subfunctionStatus</td><td>Word</td><td>Status oder Rückgabewert von aufgerufenen FB's / FC's und Systemfunktionen</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>setpoints</td><td>Array[*] of LGF_typeRampTimeTable</td><td>Stützpunkttabelle.<br>Informationen zum Datentyp `LGF_typeRampTimeTable` finden Sie unter dem Punkt "Globale Daten" .</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_FINISHED_NO_ERROR<br>Status: Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: Keine aktuelle Blockabarbeitung</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: Erstaufruf,
+Steigende Flanke `start`.</td></tr>
+<tr><td>16#7002</td><td>STATUS_FURTHER_CALLS<br>Status: Folgeaufruf,
+Eingang `cyclicOP` gesetzt.</td></tr>
+<tr><td>16#8200</td><td>ERR_OB_UNAVAILABLE<br>Fehler: OB am Eingang `callOB` ist nicht projektiert / vorhanden.
+Verschalten Sie am Eingang `callOB` den Konstanten Namen eines projektierten Weckalarm-OB.</td></tr>
+<tr><td>16#8201</td><td>ERR_ARRAY_LOWER_BOUND<br>Fehler: Array startet nicht bei 0 / Untere Arraygrenze &lt;&gt; 0.
+Das Array mit den Stützpunkten muss mit dem Index 0 beginnen.</td></tr>
+<tr><td>16#8400</td><td>ERR_QRY_CINT<br>Fehler in Anweisung `QRY_CINT` - weitere Infos in `subFunctionStatus`</td></tr>
+</tbody></table>
+<h2>Benutzer definierte Datentypen</h2>
+<h3>LGF_typeRampTimeTable (UDT)</h3>
+<p>Datentype zur Erstellung einer Fahrkurve auf der Basis einer Stützpunkttabelle für die Funktion <code>LGF_RampCI</code></p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Bezeichner</th><th class='type'>Datentyp</th><th class='default'>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>outputValue</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Stützpunktwert für die Interpolation zum Anfahren</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>time</td><td class='type'>Time</td><td class='default'>T#0s</td><td>Zeit innerhalb bis zu der der Stützpunkt angefahren wird</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>In <code>subFunctionStatus</code> wird der Status von aufgerufenen Anweisungen ausgegeben. Der Ausgangswert in <code>status</code> gibt in diesem Fall an, welche Anweisung den Fehler verursacht hat. Holen Sie sich in diesem Fall die Informationen aus der TIA Portal Online Hilfe zu den jeweiligen Anweisungen.</dd>
+</dl>
+<hr class='successorDefList' />
+<h6 id="globale-daten">Globale Daten</h6>
+<p>Zusammen mit dem Baustein erhalten Sie automatisch den PLC-Datentyp <code>LGF_typeRampTimeTable</code>, der sich aus den Parametern <code>outVal</code> für den Wert eines Stützpunktes und <code>time</code> für die Zeit bis zum Erreichen des nächsten Stützpunktes zusammensetzt. Die Deklaration erfolgt in einem eindimensionalen Array vom Datentyp <code>LGF_typeRampTimeTable</code> beginnend mit dem Index <code>0</code>. Das Array wird in einem globalen Datenbaustein angelegt und dann an den Baustein <code>LGF_RampCI</code> übergeben.</p>
+<p>Abbildung: Beispiel für die Deklaration der Stützpunkte</p>
+<p><img src="../../../Code2Docu/images/LGF_RampCI_table.png" alt="LGF_RampCI Stützpunkt Tabelle" title="LGF_RampCI Stützpunkt Tabelle" /></p>
+<p>Der Parameter <code>time</code> des letzten Stützpunktes muss mit <code>0s</code> parametriert werden, da kein Nachfolgestützpunkt mehr vorhanden ist.</p>
+<h6 id="funktionsweise">Funktionsweise</h6>
+<p>Mit dem Baustein lassen sich anhand parametrierter Stützpunkte Fahrkurven ausführen; in jedem Aufrufzyklus werden Werte nach einem Zeitplan ausgegeben, wobei zwischen den Stützpunkten interpoliert wird.</p>
+<p>In jedem Zyklus werden die aktuell angefahrene Stützpunktnummer <code>stepNumber</code>, die aktuelle Restzeit <code>remainTime</code> bis zum Erreichen des Stützpunktes, die Gesamtzeit <code>totalTime</code> und die Gesamtrestzeit bis zum Erreichen des Fahrkurvenendes <code>remainTotalTime</code> ausgegeben. Desweitern wird der Ausgang <code>actTimeTable</code> gesetzt, wenn gerade die projektierte Fahrkurve ausgegeben wird.</p>
+<p>Der Zeittakt des aufrufen Weckalarm-OBs wird ermittelt, indem am Eingangsparameter <code>callOB</code> der aufrufende Weckalarm-OB verschaltet wird.</p>
+<p>Abbildung: Weckalarm-OB verschalten</p>
+<p><img src="../../../Code2Docu/images/LGF_InterruptObAsParameter.png" alt="Weckalarm-OB verschalten" title="Weckalarm-OB verschalten" /></p>
+<p>Über Steuereingänge können folgende Betriebsarten ausgewählt werden:</p>
+<ul>
+<li>Neustart</li>
+<li>Ausgang vorbelegen</li>
+<li>Fahrkurve ausgeben</li>
+<li>Bearbeitung anhalten</li>
+<li>Bearbeitungsschritt und –zeit vorgeben</li>
+<li>Zyklischen Betrieb einschalten</li>
+<li>Gesamtzeit und Restzeit aktualisieren</li>
+</ul>
+<h6 id="uberblick-uber-die-betriebsarten">Überblick über die Betriebsarten</h6>
+<p>Tabelle: Überblick über die Betriebsarten</p>
+<p><img src="../../../Code2Docu/images/LGF_RampCI_OperationTable_DE.png" alt="LGF_RampCI Tabelle: Überblick über die Betriebsarten" title="LGF_RampCI Tabelle: Überblick über die Betriebsarten" /></p>
+<hr class='pageBreak' />
+<h6 id="neustart">Neustart</h6>
+<p>Mit einer steigenden Flanke am Eingang <code>reset</code> wird der Ausgang <code>outValue</code> auf <code>0.0</code> zurückgesetzt. Bei <code>enDefaultOutValue = TRUE</code> wird am Ausgang <code>defaultOutValue</code> ausgegeben. Die Gesamtzeit und Gesamtrestzeit werden aktualisiert und am Ausgang ausgegeben.</p>
+<h6 id="ausgang-vorbelegen">Ausgang vorbelegen</h6>
+<p>Soll die Fahrkurve mit einem bestimmten Ausgangswert beginnen, dann muss <code>enDefaultOutValue = TRUE</code> sein. In diesem Fall steht am Ausgang des Zeitplangebers der Wert <code>defaultOutValue</code> an. Die interne Abarbeitung der Fahrkurve läuft in dieser Zeit weiter. Wechselt <code>enDefaultOutValue</code> wieder auf <code>FALSE</code>, so wird zum aktuell aktiven Stützpunkt interpoliert.</p>
+<h6 id="fahrkurve-ausgeben">Fahrkurve ausgeben</h6>
+<p>Mit einer steigenden Flanke am Eingangs <code>start</code> wird die Fahrkurve ausgegeben, solange <code>start = TRUE</code> ist oder bis die Fahrkurve durch das Erreichen des letzten Stützpunktes beendet wurde. Durch eine erneute steigende Flanke wird die Fahrkurve nochmals ausgegeben. Zusätzlich wird bei jedem Einschalten die Gesamtzeit aktualisiert.</p>
+<h6 id="zyklischen-betrieb-einschalten">Zyklischen Betrieb einschalten</h6>
+<p>Wird zusätzlich zum Eingang <code>start</code> auch der Eingang <code>cyclicOP</code> auf <code>TRUE</code> gesetzt, kehrt die Fahrkurve nach Ausgabe des letzten Stützpunktwertes automatisch zum Startpunkt zurück und beginnt einen neuen Durchlauf.</p>
+<p>Zwischen dem letzten Stützpunktwert und dem Startpunkt wird nicht interpoliert. Für einen stoßfreien Übergang muss gelten: letzter Stützpunktwert = Startpunkt.</p>
+<h6 id="fahrkurve-anhalten">Fahrkurve anhalten</h6>
+<p>Mit <code>hold = TRUE</code> wird der Wert der Ausgangsgröße (inkl. der Zeitbearbeitung) eingefroren. Bei Rücksetzen <code>hold = FALSE</code> wird an der Unterbrechungsstelle bzw. an einer parametrierten Stelle (Siehe &quot;Bearbeitungsschritt und –zeit vorgeben&quot;) fortgefahren. Die Bearbeitungszeit der Fahrkurve verlängert sich um die Haltezeit <code>T1*</code> (siehe Abbildung unten).</p>
+<h6 id="bearbeitungsschritt-und-zeit-vorgeben">Bearbeitungsschritt und –zeit vorgeben</h6>
+<p>Wird während dem Anhalten der Fahrkurve (<code>hold = TRUE</code>) der Eingangsparameter <code>continue</code> für das Fortsetzen auf <code>TRUE</code> gesetzt, dann wird nach dem Zurücksetzen des Eingangs <code>hold</code> die Stützpunktnummer <code>contStepNbr</code> (Zielstützpunkt) innerhalb der Zeit <code>contStepTime</code> angefahren (Interpolation). Die Gesamtrestzeit wird neu berechnet.</p>
+<h6 id="gesamtzeit-und-gesamtrestzeit-aktualisieren">Gesamtzeit und Gesamtrestzeit aktualisieren</h6>
+<p>Bei Änderungen von Werten der Stützpunkte können sich die Gesamtzeit und die Gesamtrestzeit der Fahrkurve ändern. Da die Berechnung von <code>totalTime</code> und <code>remainTotalTime</code> bei vielen Stützpunkten die Bearbeitungszeit des Funktionsbausteins stark vergrößern kann, wird sie nur einmal bei einer steigenden Flanke am Eingang <code>updateTime</code> durchgeführt.</p>
+<hr class='pageBreak' />
+<h6 id="funktionsverlaufe">Funktionsverläufe</h6>
+<p>Abbildung: Funktionsverläufe</p>
+<p><img src="../../../Code2Docu/images/LGF_RampCI.png" alt="LGF_RampCI Funktionsverläufe" title="LGF_RampCI Funktionsverläufe" /></p>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>03.02.2017</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>16.05.2017</td><td>Comment correction (REGION)</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.06</td><td>Siemens Industry Presales Support</td></tr>
+<tr><td></td><td>15.11.2019</td><td>Code optimization, Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>22.03.2021</td><td>Insert documentation<br/>Change UDT member name from `outValue` to `outputValue`</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

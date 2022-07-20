@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl' href='ConversionLogFile.xsl'?>
+<LogFile projectName="SampleLibraryForInstructions_v1.0.4c2_V15" typeText="Typ" messageText="Meldung" timeText="Zeit">
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:13:29">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Hochrüsten gestartet" />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:13:29">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Projekt-/Bibliotheksinformation der Vorgänger-Version wird gelesen." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:13:29">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Daten werden in das neue Projekt/die neue Bibliothek importiert." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:13:39">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Neues Projekt/Neue Bibliothek wird aktualisiert." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:13:52">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Neues Projekt/Neue Bibliothek wird aktualisiert." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:15:09">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Neues Projekt/Neue Bibliothek wird aktualisiert." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:15:13">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Die Querverweisinformationen werden konvertiert." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:15:13">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Die Querverweisinformationen wurden erfolgreich erstellt" />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:15:13">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Das Konvertieren der Querverweisinformationen ist beendet." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:15:13">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Veraltete Metadaten werden bereinigt." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <Details ServiceId="80" MessageId="30" Timestamp="14.03.2018 17:15:21" Debug="false">
+    <Text>Package container 'Siemens.Simatic.Lang.S7PSW.V14.0.0.0.NonMandatory' was deleted</Text>
+  </Details>
+  <Details ServiceId="80" MessageId="30" Timestamp="14.03.2018 17:15:21" Debug="false">
+    <Text>Product version 'Siemens.Simatic.Portal:14.00.01.00' was deleted</Text>
+  </Details>
+  <Details ServiceId="80" MessageId="30" Timestamp="14.03.2018 17:15:21" Debug="false">
+    <Text>Product version 'Siemens.Simatic.STEP7.Professional:14.00.00.00' was deleted</Text>
+  </Details>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:15:21">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Hochgerüstetes Projekt/Hochgerüstete Bibliothek wird gespeichert." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="80" MessageId="30" MessageClass="Information" Timestamp="14.03.2018 17:15:22">
+    <Number ServiceNumber="80" MessageNumber="30" />
+    <Text FeedbackText="Hochgerüstetes Projekt/Hochgerüstete Bibliothek wird gespeichert." />
+    <Help HelpId="-1" />
+  </MessageCell>
+  <MessageCell ServiceId="Automation-ObjectFrame-Feedbacks" MessageId="ConversionInfoTabLibrarySucceeded" MessageClass="Success" Timestamp="14.03.2018 17:15:22">
+    <Number ServiceNumber="80" MessageNumber="32" />
+    <Text FeedbackText="Bibliothek 'C:\_Lib\SampleLibraryForInstructions_v1.0.4c2\System\PEData.plf' wurde erfolgreich hochgerüstet und als Bibliothek 'C:\_Lib\SampleLibraryForInstructions_v1.0.4c2_V15\System\PEData.plf' gespeichert." />
+    <Help HelpId="-1" HelpFile="" />
+  </MessageCell>
+</LogFile>

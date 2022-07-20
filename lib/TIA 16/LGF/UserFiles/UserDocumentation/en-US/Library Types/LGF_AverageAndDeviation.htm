@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_AverageAndDeviation (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_AverageAndDeviation (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>This function calculates the arithmetic mean and the standard deviation from a series of numbers.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_AverageAndDeviation (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>Array[*] of LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>variableArray</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Void</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>arithmeticAverage</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>standardDeviation</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>variableArray</td><td>Array[*] of LReal</td><td>Sequence of numbers to calculate with</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Void</td><td>Void - Function has no return value</td></tr>
+<tr><td>arithmeticAverage</td><td>LReal</td><td>Calculated arithmetic average value</td></tr>
+<tr><td>standardDeviation</td><td>LReal</td><td>Calculated standard deviation</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>An array of any size is connected via the <code>variableArray</code> input. After reading-out the array boundaries, the arithmetic mean value and the standard deviation will be calculated from the values and both will be output.</p>
+<hr class='predecessorDefList' />
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>An array with too many elements can cause the cycle monitoring time to be exceeded.</dd>
+</dl>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>19.08.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>16.11.2015</td><td>Bug fix at WRONG_TYPE:  #error := true</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA Portal V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.04</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>25.01.2019</td><td>Data type changed from Variant to Array[*] of LReal</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>31.10.2019</td><td>Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.04.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

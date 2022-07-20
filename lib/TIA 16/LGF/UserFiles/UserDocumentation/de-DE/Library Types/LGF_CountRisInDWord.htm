@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_CountRisInDWord (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_CountRisInDWord (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry Support</span>
+<h2>Kurzbeschreibung</h2>
+<p>Diese Funktion analysiert eine Variable von Typ DWORD und gibt aus, wie oft in
+der Variablen eine 0-1 Abfolge (steigende Flanke) vorkommt.</p>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd><mark>VERALTETE FUNKTION</mark></dd>
+<dd>Bitte updaten und nutzen sie zukünftig den FB mit dem Namen <code>LGF_CountRisInDWord</code>!<br />
+Diese Funktion wird nicht weiter gepflegt!</dd>
+</dl>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_CountRisInDWord (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>DWord</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>dWordActCycle</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Int</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>DWord</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>dWordPrevCycle</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>dWordActCycle</td><td>DWord</td><td>Eingangs Doppel Wort in dem die steigende Flanken gezählt werden</td></tr>
+<tr><td>dWordPrevCycle</td><td>DWord</td><td>Doppel Wort aus dem vorherigen Zyklus</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Int</td><td>Anzahl der steigenden Flanken im DWord</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<p>Der Baustein zählt in einer Variablen vom Datentyp DWORD die steigenden Flanken (0-1 Übergänge) von links nach rechts. Der Ausgang <code>countRisInDWord</code> gibt dabei die Anzahl der steigenden Flanken aus.</p>
+<p>Damit auch steigende Flanken an der Variablengrenze erkannt werden, wird der Eingang <code>value</code> am Ende der Auswertung auf die statische Variable <code>statDWordPrevCycle</code> kopiert und im nächsten Zyklus mit ausgewertet.</p>
+<p>####### Beispiel</p>
+<p>Das folgende Beispiel verdeutlicht die Funktionsweise des Bausteins. In diesem Fall geht man davon aus, dass ein Signal von unbekannter Länge kontinuierlich in Form von Doppelwörtern (DWORD) pro Zyklus abgetastet wird.</p>
+<p>Innerhalb dieses Signals sollen kontinuierlich die 0-1 Abfolgen (steigenden Flanken) gezählt und ausgegeben werden. Damit auch - wie in diesem Beispiel - die steigende Flanke an Variablengrenzen erkannt werden, muss der Eingang &quot;statDWordPrevCycle&quot; mit dem Doppelwort der vorherigen Abtastung verschaltet werden.</p>
+<p>Tabelle: Beispiel</p>
+<table class="pageWidth">
+<col style="width:50%" />
+<col style="width:50%" />
+<thead>
+<tr>
+<th style="text-align: center;">DWord vorheriger Zyklus
+<code>statDWordPrevCycle</code></th>
+<th style="text-align: center;">DWord aktueller Zyklus
+<code>value</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1001_0000_0001_1010_1001_0000_0001_1010</td>
+<td style="text-align: center;">1010_1010_0001_1111_0100_0011_1000_0101</td>
+</tr>
+</tbody>
+</table>
+<p>Anzahl der 0-1 Abfolgen (steigende Flanken): <code>Ret_Val</code> = 9</p>
+<hr class='pageBreak' />
+<p>####### Anwendungsbeispiel:</p>
+<p>Auszug aus dem Handbuch des Technologiemodul TM Timer DIDQ 16x24V:</p>
+<p>Mit der Funktion Oversampling erfasst das Technologiemodul den Zustand des jeweiligen Digitaleingangs pro Applikationszyklus (z. B. OB61) zu 32 Zeitpunkten mit gleichmäßigem zeitlichen Abstand. Die 32 Zustände werden in der Rückmeldeschnittstelle gemeinsam als 32-Bit-Wert zurückgeliefert.</p>
+<p>Abbildung: Beispiel für ein Oversampling von DI0 am TM Timer DIDQ 16x24V</p>
+<p><img src="../../../Code2Docu/images/LGF_CountFalRiseInDWord.PNG" alt="LGF_CountFalRiseInDWord - Beispiel für ein Oversampling von DI0 am TM Timer DIDQ 16x24V" title="LGF_CountFalRiseInDWord - Beispiel für ein Oversampling von DI0 am TM Timer DIDQ 16x24V" /></p>
+<p>Der Baustein LGF_CountRisInDWordFB wird in diesem Fall verwendet, um zu zählen, wie oft eine steigende Flanke vorkommt.</p>
+<p>SIMATIC ET 200MP/S7-1500 Technologiemodul TM Timer DIDQ 16x24V<br />
+(6ES7552-1AA00-0AB0)<br />
+<a href="https://support.industry.siemens.com/cs/ww/de/view/95153313">https://support.industry.siemens.com/cs/ww/de/view/95153313</a></p>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>19.08.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>12.11.2020</td><td>Insert documentation and LEGACY Hint<br/>Please use the FB with the same name `LGF_CountRisInDWord` in the future</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_NthRoot (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_NthRoot (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>This function extracts the n-th root of a given value.</p>
+<p>The root is defined as follows:</p>
+<span class="math display"> result = \sqrt[root]{value} = value^{\frac{1}{root}}
+</span>
+<p>STEP 7 (TIA Portal) results in the following formula:</p>
+<span class="math display"> result = value ** (1 / root)
+</span>
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_NthRoot (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>value</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>root</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>value</td><td>LReal</td><td>Value from which the root should be calculated.</td></tr>
+<tr><td>root</td><td>LReal</td><td>Exponent<br>of root</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>LReal</td><td>Returns the Nth root of a value</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR<br>Execution finished without errors</td></tr>
+<tr><td>16#8200</td><td>ERR_NEG_VAR<br>Error: Negative value for root exponend not permitted
+(Leads to complex numbers)</td></tr>
+</tbody></table>
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>19.08.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA Portal V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.04</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>17.01.2019</td><td>Calculation changed</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.09</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>13.11.2019</td><td>Renamed from "LGF_XRoot" to "LGF_NthRoot"<br/>Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>12.11.2020</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

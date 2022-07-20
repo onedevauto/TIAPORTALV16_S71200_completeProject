@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_CONSTANTS (TagTable / global constants)</title>
+</head><body>
+<h1>LGF_CONSTANTS (TagTable / global constants)</h1>
+<hr>
+<h3>Constant identifier, values and description </h3>
+<table class='GlobalConstants'><thead><tr><th>Identifier & Value</th><th>Description</th></tr></thead><tbody>
+<tr><td><b>LGF_BYTE_MAX</b><br/>16#FF</td><td>Byte - maximum value of byte - unsigned 8 bit</td></tr>
+<tr><td><b>LGF_BYTE_MIN</b><br/>16#00</td><td>Byte - minimum value of byte - unsigned 8 bit</td></tr>
+<tr><td><b>LGF_CHAR_BLANK</b><br/>' '</td><td>Char ' ' - used as empty fill character</td></tr>
+<tr><td><b>LGF_CHAR_FILL_ZERO</b><br/>'0'</td><td>Char '0' - used as default fill character</td></tr>
+<tr><td><b>LGF_DEBUG</b><br/>FALSE</td><td>Debug const - used for DEBUG Purpose to activate DEBUG code, normally debug Code is NOT included in productive code</td></tr>
+<tr><td><b>LGF_DINT_MAX</b><br/>DINT#+2147483647</td><td>DInt - maximum value of double integer - signed 32 bit</td></tr>
+<tr><td><b>LGF_DINT_MIN</b><br/>DINT#-2147483648</td><td>DInt - minimum value of double integer - signed 32 bit</td></tr>
+<tr><td><b>LGF_DWORD_MAX</b><br/>16#FFFFFFFF</td><td>DWord - maximum value of double word - unsigned 32 bit</td></tr>
+<tr><td><b>LGF_DWORD_MIN</b><br/>16#0000000</td><td>DWord - minimum value of double word - unsigned 32 bit</td></tr>
+<tr><td><b>LGF_INT_MAX</b><br/>INT#+32767</td><td>Int - maximum value of integer - signed 16 bit</td></tr>
+<tr><td><b>LGF_INT_MIN</b><br/>INT#-32768</td><td>Int - minimum value of integer - signed 16 bit</td></tr>
+<tr><td><b>LGF_LREAL_INFINITY_NEG</b><br/>16#FFF0000000000000</td><td>LReal / Double - negative Infinity</td></tr>
+<tr><td><b>LGF_LREAL_INFINITY_POS</b><br/>16#7FF0000000000000</td><td>LReal / Double - positive Infinity</td></tr>
+<tr><td><b>LGF_LREAL_MAX_NORM</b><br/>16#7FEFFFFFFFFFFFFF</td><td>LReal / Double - maximum value in normalized format</td></tr>
+<tr><td><b>LGF_LREAL_MAX_SUBNORM</b><br/>16#000FFFFFFFFFFFFF</td><td>LReal / Double - maximum value in denormalized format</td></tr>
+<tr><td><b>LGF_LREAL_MIN_NORM</b><br/>16#0010000000000000</td><td>LReal / Double - minimum value in normalized format</td></tr>
+<tr><td><b>LGF_LREAL_MIN_SUBNORM</b><br/>16#0000000000000001</td><td>LReal / Double - minimum value in denormalized format</td></tr>
+<tr><td><b>LGF_LREAL_NAN</b><br/>16#7FF8000000000000</td><td>LReal / Double - NAN - Not A Number</td></tr>
+<tr><td><b>LGF_REAL_INFINITY_NEG</b><br/>16#FF800000</td><td>Real / Float - negative Infinity</td></tr>
+<tr><td><b>LGF_REAL_INFINITY_POS</b><br/>16#7F800000</td><td>Real / Float - positive Infinity</td></tr>
+<tr><td><b>LGF_REAL_MAX_NORM</b><br/>16#7F7FFFFF</td><td>Real / Float - maximum value in normalized format</td></tr>
+<tr><td><b>LGF_REAL_MAX_SUBNORM</b><br/>16#007FFFFF</td><td>Real / Float - minimum value in denormalized format</td></tr>
+<tr><td><b>LGF_REAL_MIN_NORM</b><br/>16#00800000</td><td>Real / Float - minimum value in normalized format</td></tr>
+<tr><td><b>LGF_REAL_MIN_SUBNORM</b><br/>16#00000001</td><td>Real / Float - minimum value in denormalized format</td></tr>
+<tr><td><b>LGF_REAL_NAN</b><br/>16#7FC00000</td><td>Real / Float - NAN - Not A Number</td></tr>
+<tr><td><b>LGF_SINT_MAX</b><br/>SINT#+127</td><td>SInt - maximum value of short integer - signed 8 bit</td></tr>
+<tr><td><b>LGF_SINT_MIN</b><br/>SINT#-128</td><td>SInt - minimum value of short integer - signed 8 bit</td></tr>
+<tr><td><b>LGF_STRING_LENGTH_MAX</b><br/>254</td><td>String - maximum length of String</td></tr>
+<tr><td><b>LGF_UDINT_MAX</b><br/>UDINT#+4294967295</td><td>UDInt - maximum value of double integer - unsigned 32 bit</td></tr>
+<tr><td><b>LGF_UDINT_MIN</b><br/>UDINT#0</td><td>UDInt - minimum value of double integer - unsigned 32 bit</td></tr>
+<tr><td><b>LGF_UINT_MAX</b><br/>UINT#+65535</td><td>UInt - maximum value of integer - unsigned 16 bit</td></tr>
+<tr><td><b>LGF_UINT_MIN</b><br/>UINT#0</td><td>UInt - minimum value of integer - unsigned 16 bit</td></tr>
+<tr><td><b>LGF_USINT_MAX</b><br/>USINT#+255</td><td>USInt - maximum value of short integer - unsigned 8 bit</td></tr>
+<tr><td><b>LGF_USINT_MIN</b><br/>USINT#0</td><td>USInt - minimum value of short integer - unsigned 8 bit</td></tr>
+<tr><td><b>LGF_WORD_MAX</b><br/>16#FFFF</td><td>Word - maximum value of word - unsigned 16 bit</td></tr>
+<tr><td><b>LGF_WORD_MIN</b><br/>16#0000</td><td>Word - minimum value of word - unsigned 16 bit</td></tr>
+<tr><td><b>LGF_WSTRING_LENGTH_MAX</b><br/>16382</td><td>WString - maximum length of WString</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

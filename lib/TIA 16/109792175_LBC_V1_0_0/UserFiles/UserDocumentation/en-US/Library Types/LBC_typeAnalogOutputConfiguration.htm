@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_typeAnalogOutputConfiguration (UDT)</title>
+</head><body>
+<h1>LBC_typeAnalogOutputConfiguration (UDT)</h1>
+<hr>
+<h2>Description</h2>
+<p>Module related configuration parameters</p>
+
+<h2>Parameter description</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>referenceDesignator</td><td class='type'>String[20]</td><td class='default'>'AnalogOutput'</td><td>Device name or device ID</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>physicalUnit</td><td class='type'>String[10]</td><td class='default'>'unit'</td><td>Each value should have a physical unit (like [°C], [kWh], etc.)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>isUnipolarSignal</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Sensor is a unipolar type (just positive values),<br>FALSE: Sensor is a bipolar type (positive and negative values)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>default</td><td class='type'>Int</td><td class='default'>0</td><td>Default OUTPUT analog value to be returned if function block is not enabled or quality is bad</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>limitHigh2</td><td class='type'>LReal</td><td class='default'>90.0</td><td>Process value limit high 2</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>limitHigh1</td><td class='type'>LReal</td><td class='default'>80.0</td><td>Process value limit high 1</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>limitLow1</td><td class='type'>LReal</td><td class='default'>-80.0</td><td>Process value limit low 1</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>limitLow2</td><td class='type'>LReal</td><td class='default'>-90.0</td><td>Process value limit low 2</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>processValueMax</td><td class='type'>LReal</td><td class='default'>100.0</td><td>Maximum limit of the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>processValueMin</td><td class='type'>LReal</td><td class='default'>-100.0</td><td>Minimum limit of the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleProcessUppPoint</td><td class='type'>LReal</td><td class='default'>100.0</td><td>Upper point for the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleProcessLowPoint</td><td class='type'>LReal</td><td class='default'>-100.0</td><td>Lower point for the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleAnalogUppPoint</td><td class='type'>LReal</td><td class='default'>27648.0</td><td>Upper point for the analog output.<br>Maximum value from the hardware module - i.e. 27648 - scaled value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleAnalogLowPoint</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Lower point for the analog output.<br>Minimum value from the hardware module - i.e. 0 - scaled value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableAlarms</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the alarms of the block</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

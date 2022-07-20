@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_typeDriveControlProcessValues (UDT)</title>
+</head><body>
+<h1>LBC_typeDriveControlProcessValues (UDT)</h1>
+<hr>
+<h2>Description</h2>
+<p>Module related monitoring information</p>
+
+<h2>Parameter description</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>enable</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Enable functionality of FB</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>enableAxis</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Set axis enable; FALSE: Remove axis enable</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>brakeOpened</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Unconditionally open brake</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>error</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: An error occurred while processing the FB</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>axisEnabled</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The technology object is enabled. Motion commands can be executed</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>resetActive</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Reset/Restart of the axis is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>inVelocity</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The setpoint velocity/speed was reached and will be maintained</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>inLimitation</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The drive is operating at the force/torque limit</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>inClamping</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The drive is kept at the fixed stop (clamping), the axis position is within the positioning tolerance</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>startSync</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The axis is synchronizing to the leading axis</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>inSync</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The axis is synchronized to the leading axis</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>inSimulation</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Synchronous operation is being simulated</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>jogSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Jogging is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>moveVelocitySelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Moving with constant velocity/speed is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>stopSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Stopping is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>fastStopSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Stopping is active (with fastStop dynamics)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>torqueLimitingSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Force/Torque limiting is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>homingSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Homing is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>posRelativeSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Relative positioning is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>posAbsoluteSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Absolute positioning is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>posSuperimposedSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Superimposed positioning is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>gearInRelativeSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Relative gearing is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>gearInAbsoluteSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Absolute gearing is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>camInSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Camming is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>phasingSelected</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Phasing is active</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>commandBusy</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The selected basic motion command is being executed</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>commandDone</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The selected basic motion command has completed without error</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>homingCommandBusy</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Homing command is being executed</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>homingCommandDone</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Homing command has completed without error</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>superimposedBusy</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The selected superimposed motion command is being executed</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>superimposedDone</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: The selected superimposed motion command<br>has completed without error</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

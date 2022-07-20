@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_MotorStarter (FB / V1.0.0)</title>
+</head><body>
+<h1>LBC_MotorStarter (FB / V1.0.0)</h1>
+<hr>
+<span class='author'>Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>The module is used to control direct motor starters with two directions.<br />
+It contains the most commonly used functions like monitoring the feedbacks as well as resetting the starter within configurable timers.</p>
+
+<h2>Interface description</h2>
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LBC_MotorStarter (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>enable</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>valid</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>commandForward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>busy</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>commandBackward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>error</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackReady</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>status</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackRunningForward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enableStarter</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackRunningBackward</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>forward</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>feedbackError</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>backward</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>reset</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>resetStarter</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>acknowledge</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>LBC_typeDiagnostics</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>diagnostics</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>configuration</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeMotorStarterConfiguration</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>configuration</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>moduleInterface</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeMotorStarterInterface</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>moduleInterface</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data Type</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable functionality of FB</td></tr>
+<tr><td>commandForward</td><td>Bool</td><td>FALSE</td><td>Rising edge: Start the motor forward</td></tr>
+<tr><td>commandBackward</td><td>Bool</td><td>FALSE</td><td>Rising edge: Start the motor backward</td></tr>
+<tr><td>feedbackReady</td><td>Bool</td><td>FALSE</td><td>TRUE: Motor is ready for switching on</td></tr>
+<tr><td>feedbackRunningForward</td><td>Bool</td><td>FALSE</td><td>TRUE: Motor is running / soft starter bypass in forward direction</td></tr>
+<tr><td>feedbackRunningBackward</td><td>Bool</td><td>FALSE</td><td>TRUE: Motor is running / soft starter bypass in backward direction</td></tr>
+<tr><td>feedbackError</td><td>Bool</td><td>FALSE</td><td>TRUE: Motor starter is in error state (e.g. overheating)</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>TRUE: Reset the motor starter. Output `resetStarter` is TRUE at least for the time configured at parameter `resetTime`</td></tr>
+<tr><td>acknowledge</td><td>Bool</td><td>FALSE</td><td>Acknowledgement of the alarms</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>valid</td><td>Bool</td><td>TRUE: Valid set of output values available at the FB</td></tr>
+<tr><td>busy</td><td>Bool</td><td>TRUE: FB is not finished and new output values can be expected</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>enableStarter</td><td>Bool</td><td>TRUE: Start/enable the motor starter</td></tr>
+<tr><td>forward</td><td>Bool</td><td>TRUE: Starting the motor forward</td></tr>
+<tr><td>backward</td><td>Bool</td><td>TRUE: Starting the motor backward</td></tr>
+<tr><td>resetStarter</td><td>Bool</td><td>TRUE: Reset the starter in case of an active `error` and command `resetStarter`</td></tr>
+<tr><td>diagnostics</td><td>LBC_typeDiagnostics</td><td>Module related diagnostic information</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>configuration</td><td>LBC_typeMotorStarterConfiguration</td><td>Module related configuration parameters</td></tr>
+<tr><td>moduleInterface</td><td>LBC_typeMotorStarterInterface</td><td>Module interface for external systems</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR_OCCURRED<br>Status: No error occurred during execution</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: No job being currently processed</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: First call after incoming new job (rising edge 'enable')</td></tr>
+<tr><td>16#7002</td><td>STATUS_SUBSEQUENT_CALL<br>Status: Subsequent call during active processing without further details</td></tr>
+<tr><td>16#7003</td><td>STATUS_ENABLED_WAIT_FOR_FEEDBACK_READY<br>Status: Function block is waiting for feedback ready. Needed for starting to motor</td></tr>
+<tr><td>16#7004</td><td>STATUS_ENABLED_STOPPED<br>Status: Function block is enabled and starter is stopped</td></tr>
+<tr><td>16#7005</td><td>STATUS_STARTING_FORWARD<br>Status: Function block is starting the motor forward</td></tr>
+<tr><td>16#7006</td><td>STATUS_STARTING_BACKWARD<br>Status: Function block is starting the motor backward</td></tr>
+<tr><td>16#7007</td><td>STATUS_RUNNING_FORWARD<br>Status: Function block is running the motor forward</td></tr>
+<tr><td>16#7008</td><td>STATUS_RUNNING_BACKWARD<br>Status: Function block is running the motor backward</td></tr>
+<tr><td>16#7009</td><td>STATUS_STOPPING<br>Status: Function block is stopping the motor</td></tr>
+<tr><td>16#7099</td><td>STATUS_DISABLING_ACTIVE<br>Status: Function block is disabling and wait for feedback ready = FALSE</td></tr>
+<tr><td>16#7999</td><td>STATUS_RESETTING_ACTIVE<br>Status: Function block is resetting the starter</td></tr>
+<tr><td>16#8201</td><td>ERR_CONFIGURATION_START_CONTROL_TIME_NEGATIVE<br>Error: Configuration parameter start up control time is negative which is not accepted</td></tr>
+<tr><td>16#8202</td><td>ERR_CONFIGURATION_STOP_CONTROL_TIME_NEGATIVE<br>Error: Configuration parameter stopping control time is negative which is not accepted</td></tr>
+<tr><td>16#8203</td><td>ERR_CONFIGURATION_RESET_TIME_NEGATIVE<br>Error: Configuration parameter reset time is negative which is not accepted</td></tr>
+<tr><td>16#8401</td><td>ERR_FEEDBACK_ERROR<br>Error: Feedback Motor has an error / failure (e.g. overheated)</td></tr>
+<tr><td>16#8402</td><td>ERR_FEEDBACK_READY<br>Error: Feedback that the motor is ready for operation is missing</td></tr>
+<tr><td>16#8403</td><td>ERR_BOTH_COMMANDS_PRESENT_AT_SAME_TIME<br>Error: Both start commands present at the same time, Motor stopped</td></tr>
+<tr><td>16#8404</td><td>ERR_FEEDBACK_MOTOR_NOT_STOPPING<br>Error: Feedback motor running still present when motor is switched off - timeout for feedback</td></tr>
+<tr><td>16#8411</td><td>ERR_FEEDBACK_MOTOR_RUNNING_WHILE_STOPPED_FW<br>Error: Feedback motor running still present when motor is switched off / stopped - Forward</td></tr>
+<tr><td>16#8412</td><td>ERR_FEEDBACK_MOTOR_RUNNING_WHILE_STOPPED_BW<br>Error: Feedback motor running still present when motor is switched off / stopped- Backward</td></tr>
+<tr><td>16#8413</td><td>ERR_FEEDBACK_MOTOR_RUNNING_WHILE_STOPPED_FW_AND_BW<br>Error: Feedback motor running still present when motor is switched off / stopped - Forward and Backward</td></tr>
+<tr><td>16#8421</td><td>ERR_FEEDBACK_MISSING_DURING_STARTUP_FORWARD<br>Error: Feedback motor running is missing during startup - Forward</td></tr>
+<tr><td>16#8422</td><td>ERR_FEEDBACK_MISSING_DURING_STARTUP_BACKWARD<br>Error: Feedback motor running is missing during startup - Backward</td></tr>
+<tr><td>16#8431</td><td>ERR_WRONG_FEEDBACK_DURING_STARTUP_FORWARD<br>Error: Wrong feedback during startup. Starting forward and feedback backward combination - check feedback inputs</td></tr>
+<tr><td>16#8432</td><td>ERR_WRONG_FEEDBACK_DURING_STARTUP_BACKWARD<br>Error: Wrong feedback during startup. Starting backward and feedback forward combination - check feedback inputs</td></tr>
+<tr><td>16#8441</td><td>ERR_FEEDBACK_DISAPPEAR_WHILE_RUNNING_FORWARD<br>Error: Feedback motor running is missing while running forward</td></tr>
+<tr><td>16#8442</td><td>ERR_FEEDBACK_DISAPPEAR_WHILE_RUNNING_BACKWARD<br>Error: Feedback motor running is missing while running backward</td></tr>
+<tr><td>16#8451</td><td>ERR_WRONG_FEEDBACK_WHILE_RUNNING_FORWARD<br>Error: Wrong feedback while motor is running forward -
+check feedback inputs</td></tr>
+<tr><td>16#8452</td><td>ERR_WRONG_FEEDBACK_WHILE_RUNNING_BACKWARD<br>Error: Wrong feedback while motor is running backward -
+check feedback inputs</td></tr>
+<tr><td>16#8600</td><td>ERR_UNDEFINED_STATE<br>Error: due to an undefined state in state machine</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LBC_typeDiagnostics (UDT)</h3>
+<p>Module related diagnostic information</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>status</td><td class='type'>Word</td><td class='default'>16#0000</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>subfunctionStatus</td><td class='type'>Word</td><td class='default'>16#0000</td><td>Status or return value of called FB's, FCs, system blocks or other status information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>stateNumber</td><td class='type'>DInt</td><td class='default'>0</td><td>State in the state machine of the block where the error occurred</td></tr>
+</tbody></table>
+<h3>LBC_typeMotorStarterConfiguration (UDT)</h3>
+<p>Module related configuration parameters</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>referenceDesignator</td><td class='type'>String[20]</td><td class='default'>'MotorStarter'</td><td>Device name or device ID</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>startingControlTime</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Control time for receiving feedback motor is running or time to ramp up motor if feedback is disabled</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>stoppingControlTime</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Control time for feedback motor is stopped (fb running has disappeared) or time to ramp down motor if feedback is disabled</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>resetTime</td><td class='type'>Time</td><td class='default'>T#5s</td><td>Control time for reset - time to set reset output / the reset signal is present at the reset output (advanced motor starter)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableFeedbackRunning</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Disable feedback for started / running motor</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableFeedbackError</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Disable feedback for error monitoring (e.g.<br>over temperature)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableAlarms</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the alarms of the block</td></tr>
+</tbody></table>
+<h3>LBC_typeMotorStarterInterface (UDT)</h3>
+<p>Module interface for external systems</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>commands</td><td class='type'>LBC_typeInterfaceCommands</td><td class='default'>default</td><td>Module related commands from external systems</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>configuration</td><td class='type'>LBC_typeMotorStarterConfiguration</td><td class='default'>default</td><td>Module related configuration parameters</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoring</td><td class='type'>LBC_typeMotorStarterProcessValues</td><td class='default'>default</td><td>Module related monitoring information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>diagnostics</td><td class='type'>LBC_typeDiagnostics</td><td class='default'>default</td><td>Module related diagnostic information</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The module is in operating state as soon as the input <code>enable</code> is set to TRUE and as long as the input <code>enable</code> is remaining TRUE. Start operation is possible as soon as the <code>feedbackReady</code> input is TRUE, based on the directional command input (<code>commandForward</code> or <code>commandBackward</code>) the module sets its respective output – <code>forward</code> or <code>backward</code>.<br />
+Only one control command can be present at any time (<code>commandForward</code> or <code>commandBackward</code>).</p>
+<p>After a command is present, the module goes into the startup state which means, that the block will expect the <code>feedbackRunning</code> to become TRUE, so the block can verify that the motor has started.<br />
+During startup the input <code>feedbackRunning</code> is monitored and has to appear in between the configured <code>startingControlTime</code>. If this feedback is not present (TRUE) after the control time expires, the block will generate an error message, turn off the output (FALSE) and goes into error state.<br />
+If the <code>disableFeedbackRunning</code> is set to TRUE, the configured <code>startingControlTime</code> would be the ramp up time for the motor before the <code>status</code> returns the running feedback.</p>
+<p>When the control command (<code>commandForward</code> or <code>commandBackward</code>) is switched off (FALSE) the module goes into stopping mode, the motor output <code>forward</code> or <code>backward</code> is set to FALSE.<br />
+The stopping control time is started and the block goes to stopping state, if the control time expires and the feedback <code>feedbackRunning</code> is still present (TRUE) the block generates and error and goes to stop state.<br />
+If the <code>disableFeedbackRunning</code> is disabled, the block waits for the control time to expire and goes to stop state without generating an error.</p>
+<p>There is another feedback called <code>feedbackError</code>, this is used as general error signal input that is used for indicating if there is an error - for example: motor overheating, fuse is off or other feedback.</p>
+<p>Both control times for starting and stopping control can be configured in the module <code>configuration</code> structure.</p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>SIMATIC Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>First released version</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LBC_AnalogScale (FB / V1.0.0)</title>
+</head><body>
+<h1>LBC_AnalogScale (FB / V1.0.0)</h1>
+<hr>
+<span class='author'>Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>The function is used for processing (scaling) an analog process value to another process value of a different range.<br />
+Converts it from one to another meaningful unit, e.g. <span class="math inline">[rpm]</span> to <span class="math inline">[m/s]</span>, <span class="math inline">[°C]</span> to <span class="math inline">[°F]</span>.</p>
+
+<h2>Interface description</h2>
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LBC_AnalogScale (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>enable</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>error</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>inputValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Word</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>status</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>simulation</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>outputValue</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>simulatedInputValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>maxValueReached</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>minValueReached</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>configuration</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeAnalogScaleConfiguration</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>configuration</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>moduleInterface</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>LBC_typeAnalogScaleInterface</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>moduleInterface</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data Type</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable functionality of FB</td></tr>
+<tr><td>inputValue</td><td>LReal</td><td>0.0</td><td>Value to be converted</td></tr>
+<tr><td>simulation</td><td>Bool</td><td>FALSE</td><td>TRUE: Enable simulation (input value)</td></tr>
+<tr><td>simulatedInputValue</td><td>LReal</td><td>0.0</td><td>Simulated input value</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>outputValue</td><td>LReal</td><td>Processed and scaled value</td></tr>
+<tr><td>maxValueReached</td><td>Bool</td><td>Maximum configured process value reached.<br>Value is limited to the maximum configured value.</td></tr>
+<tr><td>minValueReached</td><td>Bool</td><td>Minimum configured process value reached.<br>Value is limited to the minimum configured value.</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data Type</th><th>Description</th></tr></thead><tbody>
+<tr><td>configuration</td><td>LBC_typeAnalogScaleConfiguration</td><td>Module related configuration parameters</td></tr>
+<tr><td>moduleInterface</td><td>LBC_typeAnalogScaleInterface</td><td>Module interface for external systems</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR_OCCURRED<br>Status: No error occurred during execution</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: Function block is not enabled</td></tr>
+<tr><td>16#7002</td><td>STATUS_ENABLED<br>Status: Function block is enabled</td></tr>
+<tr><td>16#8201</td><td>ERR_RANGE_PARAMETRIZATION<br>Error: Configuration range of parameters. min &gt;= max</td></tr>
+<tr><td>16#8202</td><td>ERR_SCALE_ANALOG_POINTS<br>Error: Configuration of analog input points. Process Lower &gt;= Upper</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LBC_typeAnalogScaleConfiguration (UDT)</h3>
+<p>Module related configuration parameters</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>referenceDesignator</td><td class='type'>String[20]</td><td class='default'>'AnalogScale'</td><td>Device name or device ID</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>physicalUnitInput</td><td class='type'>String[10]</td><td class='default'>'unit'</td><td>Physical unit (like [°C], [kWh], etc.) for the input value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>physicalUnitOutput</td><td class='type'>String[10]</td><td class='default'>'unit'</td><td>Physical unit (like [°C], [kWh], etc.) for the output value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>default</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Default OUTPUT value to be returned if function block is not enabled or quality is bad</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>inputValueMax</td><td class='type'>LReal</td><td class='default'>100.0</td><td>Maximum limit of the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>inputValueMin</td><td class='type'>LReal</td><td class='default'>-100.0</td><td>Minimum limit of the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleInputUppPoint</td><td class='type'>LReal</td><td class='default'>100.0</td><td>Upper point for the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleInputLowPoint</td><td class='type'>LReal</td><td class='default'>-100.0</td><td>Lower point for the process value</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleOutputUppPoint</td><td class='type'>LReal</td><td class='default'>200.0</td><td>Upper point for the analog process output</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>scaleOutputLowPoint</td><td class='type'>LReal</td><td class='default'>-200.0</td><td>Lower point for the analog process output</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>disableAlarms</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Disable the alarms of the block</td></tr>
+</tbody></table>
+<h3>LBC_typeAnalogScaleInterface (UDT)</h3>
+<p>Module interface for external systems</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>commands</td><td class='type'>LBC_typeInterfaceCommands</td><td class='default'>default</td><td>Module related commands from external systems</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>configuration</td><td class='type'>LBC_typeAnalogScaleConfiguration</td><td class='default'>default</td><td>Module related configuration parameters</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>monitoring</td><td class='type'>LBC_typeAnalogScaleValues</td><td class='default'>default</td><td>Module related monitoring information</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>diagnostics</td><td class='type'>LBC_typeDiagnostics</td><td class='default'>default</td><td>Module related diagnostic information</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The analog scale function block converts a process value to another process value of a different range, e.g. <span class="math inline">[rpm]</span> to <span class="math inline">[m/s]</span>, <span class="math inline">[°C]</span> to <span class="math inline">[°F]</span>.</p>
+<p>The processing of the function is started by assigning <code>TRUE</code> signal to the <code>enable</code> input.<br />
+If the block is enabled (logical <code>TRUE</code>) then the output value is scaled according to settings of the block.</p>
+<p>In order to ensure, that scaling works correctly, it is necessary to set the minimum and the maximum values for input and output.</p>
+<p>For further information see the explanation in the picture and math formulas below.</p>
+<h4 id="process-chart">Process chart</h4>
+<p><img src="../../../Code2Docu/images/LBC_AnalogScale.png" alt="LBC_AnalogScale" title="LBC_AnalogScale" /></p>
+<p><span class="math inline">dx = x2 - x1 = scaleInputUppPoint - scaleInputLowPoint</span><br />
+<span class="math inline">dy = y2 - y1 = scaleOutputUppPoint - scaleOutputLowPoint</span></p>
+<h5 id="math-equation">Math equation</h5>
+<p><span class="math inline">y = \frac{y_2 - y_1}{x_2 - x_1} \cdot (x - x_1) + y_1</span></p>
+<p><span class="math inline">x = inputValue</span><br />
+<span class="math inline">y = outputValue</span><br />
+<span class="math inline">x_1 = scaleInputLowPoint</span><br />
+<span class="math inline">x_2 = scaleInputUppPoint</span><br />
+<span class="math inline">y_1 = scaleOutputLowPoint</span><br />
+<span class="math inline">y_2 = scaleOutputUppPoint</span></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>SIMATIC Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>First released version</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

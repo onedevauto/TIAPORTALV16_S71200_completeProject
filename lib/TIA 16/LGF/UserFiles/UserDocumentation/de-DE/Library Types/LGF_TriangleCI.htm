@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_TriangleCI (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_TriangleCI (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Industry Support</span>
+<h2>Kurzbeschreibung</h2>
+<p>Diese Funktion generiert einen dreieckigen Signalverlauf. Er verwendet dazu den Zeittakt des aufrufenden Cyclic Interrupt OB.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_TriangleCI (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Real</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>amplitude</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>value</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Real</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Real</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>UDInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>periode</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Real</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>phaseShift</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>OB_CYCLIC</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>callOB</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>amplitude</td><td>Real</td><td>1.0</td><td>Amplitude des Signalverlaufs.</td></tr>
+<tr><td>offset</td><td>Real</td><td>0.0</td><td>Verschiebung des Signalverlaufs in Y-Richtung.</td></tr>
+<tr><td>periode</td><td>UDInt</td><td>1000</td><td>Periodendauer des Signalverlaufs in [ms]</td></tr>
+<tr><td>phaseShift</td><td>Real</td><td>0.0</td><td>Phasenverschiebung in [ms]</td></tr>
+<tr><td>callOB</td><td>OB_CYCLIC</td><td>---</td><td>Aufrufender Weckalarm-OB (Cyclic Interrupt OB)</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>Rücksetzen des Signalverlaufs.</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>value</td><td>Real</td><td>Aktueller Wert des Dreiecksignales.</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status oder Rückgabewert von aufgerufenen FB's / FC's und Systemfunktionen</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_FINISHED_NO_ERROR<br>Status: Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#8600</td><td>ERR_OB_UNAVAILABLE<br>Fehler: OB am Eingang `callOB` ist nicht projektiert / vorhanden.
+Verschalten Sie am Eingang `callOB` den Konstanten Namen eines projektierten Weckalarm-OB.</td></tr>
+<tr><td>16#8601</td><td>ERR_QRY_CINT<br>Fehler in Anweisung `QRY_CINT` - weitere Infos in `subFunctionStatus`</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>In <code>subFunctionStatus</code> wird der Status von aufgerufenen Anweisungen ausgegeben. Der Ausgangswert in <code>status</code> gibt in diesem Fall an, welche Anweisung den Fehler verursacht hat. Holen Sie sich in diesem Fall die Informationen aus der TIA Portal Online Hilfe zu den jeweiligen Anweisungen.</dd>
+</dl>
+<hr class='successorDefList' class='predecessorDefList' />
+<p>Der Baustein berechnet die Werte für einen dreieckigen Signalverlauf, die am Ausgangsparameter <code>value</code> ausgegeben werden.</p>
+<p>Die Amplitude <code>amplitude</code>, die Verschiebung in Y-Richtung <code>offset</code>, die Periodendauer <code>periode</code> und die Phasenverschiebung <code>phaseShift</code> können an den Eingangsparametern vorgegeben werden.</p>
+<p>Mit dem Eingangsparameter <code>reset</code> wird der Signalverlauf zurückgesetzt. Am Ausgangsparameter <code>value</code> wird der Wert <code>0</code> ausgegeben, solange <code>reset</code> auf <code>TRUE</code> gesetzt ist.</p>
+<p>Der Baustein muss in einem Weckalarm-OB (Cyclic Interrupt OB) aufgerufen werden. Der Zeittakt des aufrufenden Weckalarm-OB wird im FB mit der Anweisung <code>QRY_CINT</code> ermittelt. Dazu muss am Eingangsparameter <code>callOB</code> der Konstanten Name des aufrufenden Weckalarm-OB verschaltet werden.</p>
+<p><img src="../../../Code2Docu/images/LGF_InterruptObAsParameter.png" alt="Weckalarm-OB verschalten" title="Weckalarm-OB verschalten" /></p>
+<p>Die Anzahl der berechneten Werte des Signalverlaufs pro Periodendauer errechnet sich folgendermaßen:</p>
+<span class="math display">  Anzahl Werte = \frac{Periodendauer}{Zeittakt Weckalarm-OB}
+</span><hr class='predecessorDefList' class='predecessorDefList' />
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Um einen kontinuierlichen Signalverlauf der Kurve zu erhalten, sollte der Zeittakt des aufrufen Weckalarm-OB in Abhängigkeit von der Periodendauer nicht zu groß gewählt werden.</dd>
+</dl>
+<hr class='predecessorDefList' class='successorDefList' />
+<hr class='pageBreak' />
+<p>Die folgende Abbildung zeigt den Signalverlauf der berechneten Werte.</p>
+<p><img src="../../../Code2Docu/images/LGF_TriangleCI.png" alt="LGF_TriangleCI" title="LGF_TriangleCI" /></p>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>03.07.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>26.09.2019</td><td>Code refactoring, regions and more comments added<br/>phase shift availability added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>15.02.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LAxisCtrl_typeMoveVelocity (UDT)</title>
+</head><body>
+<h1>LAxisCtrl_typeMoveVelocity (UDT)</h1>
+<hr>
+<h2>Description</h2>
+<p>Support: tech.team.motioncontrol@siemens.com</p>
+
+<h2>Parameter description</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>velocity</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Velocity/Speed for motion process (Value = 0.0: Permitted)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>acceleration</td><td class='type'>LReal</td><td class='default'>-1.0</td><td>Acceleration setpoint for motion process (Value > 0.0: The specified value is used; Value = 0.0: Not permitted; Value < 0.0: Use of the default value configured in the technology object)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>deceleration</td><td class='type'>LReal</td><td class='default'>-1.0</td><td>Deceleration setpoint for motion process (Value > 0.0: The specified value is used; Value = 0.0: Not permitted; Value < 0.0: Use of the default value configured in the technology object)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>jerk</td><td class='type'>LReal</td><td class='default'>-1.0</td><td>Jerk for velocity specification (Value > 0.0: Smooth velocity profile, the specified value is used; (Value = 0.0: Trapezoid velocity profile; (Value < 0.0: Use of the default value configured in the technology object)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>direction</td><td class='type'>Int</td><td class='default'>0</td><td>Motion direction of the axis (0: The sign of the velocity parameter defines the direction; 1: Positive direction; 2: Negative direction)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>positionControlled</td><td class='type'>Bool</td><td class='default'>TRUE</td><td>TRUE: Position-controlled operation; FALSE: Non position-controlled operation</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>velocityChangeOnTheFly</td><td class='type'>Bool</td><td class='default'>FALSE</td><td>TRUE: Changing velocity on-the-fly; FALSE: Velocity change requires a new rising edge on moveVelocity input</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

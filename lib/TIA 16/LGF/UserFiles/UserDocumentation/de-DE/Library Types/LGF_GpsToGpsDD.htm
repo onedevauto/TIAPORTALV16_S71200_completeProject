@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_GpsToGpsDD (FC / V3.0.2)</title>
+</head><body>
+<h1>LGF_GpsToGpsDD (FC / V3.0.2)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry</span>
+<h2>Kurzbeschreibung</h2>
+<p>Die Funktion konvertiert einen GPS-Datentyp (Format Richtung, Grad, Minuten und Sekunden) in einen GPS-DD Datentyp (Dezimalgrad).</p>
+<p>GPS &quot;native&quot; nach GPS Dezimalgrad.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_GpsToGpsDD (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in return'><td rowspan='2'>LGF_typeGPS</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>gps</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LGF_typeGPS_DD</td></tr>
+<tr class='in return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFc'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>gps</td><td>LGF_typeGPS</td><td>Zu konvertierende GPS-Daten (Richtung, Grad, Minuten und Sekunden),<br>z. B. N52° 31′ 14.941″ E13° 24′ 34.020″</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>LGF_typeGPS_DD</td><td>Konvertierte GPS-Daten (Dezimalgrad),<br>z. B. 52.520817 13.40945</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_EXECUTION_FINISHED_NO_ERROR<br>Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#8200</td><td>ERR_LATITUDE_DIRECTION<br>Fehler: Breitengrad Richtung</td></tr>
+<tr><td>16#8201</td><td>ERR_LATITUDE_VALUE<br>Fehler: Breitengrad Wert</td></tr>
+<tr><td>16#8202</td><td>ERR_LONGITUDE_DIRECTION<br>Fehler: Längengrad Richtung</td></tr>
+<tr><td>16#8203</td><td>ERR_LONGITUDE_VALUE<br>Fehler: Längengrad Wert</td></tr>
+</tbody></table>
+<h2>Benutzer definierte Datentypen</h2>
+<h3>LGF_typeGPS (UDT)</h3>
+<p>Datentyp für GPS-Koordinaten Breitengrad (Latitude) und Längengrad (Longitude).<br />
+Subdatentypen im Format Grad, Minuten, Sekunden und Richtung.<br />
+Datentyp für einen gesamten GPS Datensatz.</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Bezeichner</th><th class='type'>Datentyp</th><th class='default'>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>latitude</td><td class='type'>LGF_typeGPS_DMS</td><td class='default'>---</td><td>Breitengrad Element (Latitude)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>longitude</td><td class='type'>LGF_typeGPS_DMS</td><td class='default'>---</td><td>Längengrad Element (Longitude)</td></tr>
+</tbody></table>
+<h3>LGF_typeGPS_DD (UDT)</h3>
+<p>Datentyp für GPS-Koordinaten im Format Dezimalgrad.<br />
+Für Breitengrad (Latitude) und Längengrad (Longitude).<br />
+Datentyp für einen gesamten GPS Datensatz.</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Bezeichner</th><th class='type'>Datentyp</th><th class='default'>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>latitude</td><td class='type'>Real</td><td class='default'>0.0</td><td>Breitengrad (Latitude) in Grad mit Nachkommastellen<br>(Einheit: Grad dezimal), Norden = positiv; Süden = negativ)<br>gültiger Wertebereich [-90.00000..90.00000]</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>longitude</td><td class='type'>Real</td><td class='default'>0.0</td><td>Längengrad (Longitude) in Grad mit Nachkommastellen<br>(Einheit: Grad dezimal), Osten = positiv; Westen = negativ)<br>gültiger Wertebereich [-180.0000..180.0000]</td></tr>
+</tbody></table>
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>SIMATIC Systems Support</td></tr>
+<tr><td></td><td>2019.09.11</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Siemens Industry Support</td></tr>
+<tr><td></td><td>2019.04.23</td><td>Set version to V3.0.0<br/>harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.02</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>20.01.2021</td><td>Fix `tempStatus` initialization<br/>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

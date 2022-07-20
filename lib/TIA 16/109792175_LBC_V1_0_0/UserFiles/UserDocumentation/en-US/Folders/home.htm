@@ -1,0 +1,647 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>Library of Basic Controls (LBC)</title>
+</head><body>
+<h1>Library of Basic Controls (LBC)</h1>
+<hr>
+<h1 id="introduction">Introduction</h1>
+<h2 id="overview">Overview</h2>
+<p><img src="../../../Code2Docu/images/LBC.png" alt="Library of Basic Controls (LBC)" title="Library of Basic Controls (LBC)" /></p>
+<p>The “Library of Basic Controls” (LBC) provides basic control modules that are programmed in a standardized concept according to the Siemens programming style guide and the PLCopen guideline.</p>
+<p>In addition to that the library provides alarm text lists for each block.</p>
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>All blocks in the LBC were created in accordance with the Programming Style Guide.<br />
+<a href="https://support.industry.siemens.com/cs/ww/en/view/81318674">https://support.industry.siemens.com/cs/ww/en/view/81318674</a></dd>
+</dl>
+<h2 id="general-information">General information</h2>
+<p>This library provides the starting point for the individual path of standardization.<br />
+The functions are provided in the form of a global library and can be used freely.<br />
+The library described here is versioned and it will be continuously extended and improved.</p>
+<p>For more information on libraries, visit:</p>
+<ul>
+<li><p>Libraries in the TIA Portal<br />
+<a href="https://support.industry.siemens.com/cs/ww/en/view/109738702">https://support.industry.siemens.com/cs/ww/en/view/109738702</a></p>
+</li>
+<li><p>How do you open libraries in STEP 7 (TIA Portal)?<br />
+<a href="https://support.industry.siemens.com/cs/ww/en/view/37364723">https://support.industry.siemens.com/cs/ww/en/view/37364723</a></p>
+</li>
+<li><p>Information on the general handling of libraries is provided in the Guideline for Library Handling<br />
+<a href="https://support.industry.siemens.com/cs/ww/en/view/109747503">https://support.industry.siemens.com/cs/ww/en/view/109747503</a></p>
+</li>
+<li><p>and in the Programming Guideline for S7-1200/1500 in the chapter &quot;Libraries&quot;<br />
+<a href="https://support.industry.siemens.com/cs/ww/en/view/81318674">https://support.industry.siemens.com/cs/ww/en/view/81318674</a></p>
+</li>
+</ul>
+<hr class='pageBreak' />
+<h2 id="hardware-and-software-requirements">Hardware and software requirements</h2>
+<h4 id="requirements-for-this-library">Requirements for this library</h4>
+<p>To be able to use the functionality of the library described here, the following hardware and software requirements must be met.</p>
+<h4 id="hardware">Hardware</h4>
+<p>Modules can be used with</p>
+<ul>
+<li>S7-1200 (without Motion control)</li>
+<li>S7-1500(TF) / Software Controller</li>
+<li>Simulation with S7-PLCSIM and PLCSIM Advanced</li>
+</ul>
+<h4 id="software">Software</h4>
+<ul>
+<li>TIA Portal V16</li>
+<li>STEP 7 Professional</li>
+<li>ProDiag (for S7-1500 only)</li>
+</ul>
+<hr />
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>In general, it is possible to open a library with STEP 7 Basic, although STEP 7 Professional elements (e.g. SIMATIC S7-1500 controller) are included. In this case you will be informed with a message when opening the library.</dd>
+<dd>All elements (types and copy templates) can be used if they are supported by the hardware installed in the TIA Portal.<br />
+If you try to copy elements with STEP 7 Basic from the library that are not supported (e.g. SIMATIC S7-1500 controller), an error message is displayed.</dd>
+</dl>
+<hr />
+<hr class='pageBreak' />
+<h2 id="user-defined-documentation">User-defined documentation</h2>
+<p>In order to explain the principle of operation and use of the blocks to users of the library, user-defined documentation has been created for each block.<br />
+The files are stored in the following directories of the library.</p>
+<ul>
+<li>English: <code>UserFiles\UserDocumentation\en-US\Library Types</code></li>
+</ul>
+<p>The user-defined documentation for a block can be called up in the Task Card &quot;Library&quot; and in the library view with the key combination <code>&lt;Shift+F1&gt;</code>.<br />
+The respective file is always opened with the standard program defined in Microsoft Windows.</p>
+<p>So that the user-defined documentation of the blocks can also be called up in the project navigation, you must copy the directories with the files into the project directory <code>UserFiles</code>.</p>
+<hr />
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>For user-defined documentation, you require SIMATIC STEP 7 Basic / Professional V15.1 Update 1.</dd>
+</dl>
+<h4 id="central-directory-for-user-defined-documentation">Central directory for user-defined documentation</h4>
+<p>Alternatively, you can store the user-defined documentation in a central directory for all projects. To define a central storage location for user help, proceed as follows:</p>
+<ol>
+<li>In the &quot;Options&quot; menu, select the &quot;Settings&quot; command.</li>
+<li>Open the area &quot;General &gt; General&quot;.</li>
+<li>Navigate to the &quot;User documentation&quot; section.</li>
+<li>Activate the checkbox &quot;Display call log for user-defined documentation&quot; to display a log of the call-up of the user-defined documentation in the Inspector window.</li>
+<li>Activate the &quot;Search for user-defined documentation in a central directory&quot; checkbox to store user-defined documentation in a central directory for projects.</li>
+<li>In the &quot;Central directory for user-defined documentation&quot; field, specify the path where you want to store cross-project documentation.</li>
+</ol>
+<p><img src="../../../Code2Docu/images/LIB_UserDokumentation.PNG" alt="Central directory for user defined documentation" /></p>
+<hr />
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>Do not change the names of the files, because the file name must precisely match the name of the object in the TIA Portal!</dd>
+</dl>
+<h1 id="library-concept">Library Concept</h1>
+<p>The &quot;Library of Basic Controls&quot; (LBC) is developed on the basis of PLCopen and the Siemens Programming Style Guide. The aim of this library is to show how standardization can be practiced and implemented in today's PLC software development.</p>
+<p>Key features of this library are:</p>
+<h2 id="modularization">Modularization</h2>
+<p>The modules of this library can be used as standalone and as well as a part of a more complex hierarchy due to their interface design.</p>
+<h2 id="independent-of-field-of-application">Independent of field of application</h2>
+<p>The name of the library already reveals it, &quot;basic&quot; stands for the fundamental technical functional units. The program blocks of this library can be universally used as blocks in various fields of technology.</p>
+<h2 id="storage-of-configuration-parameters">Storage of configuration parameters</h2>
+<p>The module configuration of each block are transferred via the I/O interface, so the user has to define the memory location when calling the module.</p>
+<p>If a module is used in a higher level component, like an equipment module, the module configuration can be embedded in the higher levels configuration UDT or directly specified by the calling environment.</p>
+<p>This allows the user to store all configuration data in a central storage location, such as a Global Data Block (DB), for a simple backup strategy.</p>
+<hr class='pageBreak' />
+<h2 id="diagnostic">Diagnostic</h2>
+<p>Each module delivers its diagnostic information via the output interface and the module interface.</p>
+<p>The <code>status</code> of datatype word delivers the information along to the style guide defined number structure (refer to style guide /3/: DA013 Rule: Report status/ errors via <code>status</code>/ <code>error</code>).<br />
+By using the provided text lists in combination with the status word of the block, diagnostic messages can be generated.</p>
+<p>While using a S7-1500, each module delivers pre-configured ProDiag supervisions. That means that no additional adjustments and engineering efforts for diagnostics are required.</p>
+<hr />
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>Using systems, different to ProDiag, there is the possibility to use the trigger together with the status word and the belonging text list to generate errors in different systems.</dd>
+</dl>
+<hr />
+<h4 id="status-codes">Status codes</h4>
+<table>
+<col style="width:68.09%" />
+<col style="width:31.91%" />
+<thead>
+<tr>
+<th>Information</th>
+<th>Value range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command finished, no warnings and no further details</td>
+<td>16#0000</td>
+</tr>
+<tr>
+<td>Command finished, further details</td>
+<td>16#0001 ... 16#0FFF</td>
+</tr>
+<tr>
+<td>No command in execution (initial value)</td>
+<td>16#7000</td>
+</tr>
+<tr>
+<td>First call after receiving a new command.
+(rising edge on execute)</td>
+<td>16#7001</td>
+</tr>
+<tr>
+<td>Follow up call during active execution of a command
+without further details</td>
+<td>16#7002</td>
+</tr>
+<tr>
+<td>Follow up call during active execution of a command with
+further details. Warnings without effect of further processing.</td>
+<td>16#7003 ... 16#7FFF</td>
+</tr>
+</tbody>
+</table>
+<h4 id="error-codes">Error codes</h4>
+<table>
+<col style="width:68.09%" />
+<col style="width:31.91%" />
+<thead>
+<tr>
+<th>Error</th>
+<th>Value range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wrong operation of the function block</td>
+<td>16#8001 ... 16#81FF</td>
+</tr>
+<tr>
+<td>Wrong configuration / parameterization</td>
+<td>16#8200 ... 16#83FF</td>
+</tr>
+<tr>
+<td>Errors during execution from outside (e.g. wrong I/O signals)</td>
+<td>16#8400 ... 16#85FF</td>
+</tr>
+<tr>
+<td>Internal error during execution (e.g. during a system call)</td>
+<td>16#8600 ...16#87FF</td>
+</tr>
+<tr>
+<td>Reserved</td>
+<td>16#8800 ... 16#8FFF</td>
+</tr>
+<tr>
+<td>User defined error classes</td>
+<td>16#9000 ... 16#FFFF</td>
+</tr>
+</tbody>
+</table>
+<hr class='pageBreak' />
+<h2 id="module-interface">Module interface</h2>
+<p>All the modules have an interface for data exchange with external systems, called <code>moduleInterface</code>.</p>
+<p>This interface is based on a module related data type (UDT - LBC_type<strong>MODULE</strong>Interface) and transferred via the I/O interface.</p>
+<p>This concept is designed to achieve the following goals:</p>
+<ul>
+<li>Visualization of the module’s actual process values</li>
+<li>Adjust configuration without using the engineering system (engineering-less commissioning)</li>
+<li>Deliver module specific diagnostic information for external systems</li>
+</ul>
+<h4 id="parameter-of-lbc_typemoduleinterface">Parameter of LBC_typeMODULEInterface</h4>
+<table>
+<col style="width:17.24%" />
+<col style="width:28.45%" />
+<col style="width:54.31%" />
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commands</td>
+<td>LBC_typeInterfaceCommands</td>
+<td>Datatype for commands from external systems</td>
+</tr>
+<tr>
+<td>parameters</td>
+<td>LBC_type<strong>MODULE</strong>Parameters</td>
+<td>Module related parameters</td>
+</tr>
+<tr>
+<td>monitoring</td>
+<td>LBC_type<strong>MODULE</strong>ProcessValues</td>
+<td>Module related monitoring information</td>
+</tr>
+<tr>
+<td>diagnostics</td>
+<td>LBC_typeDiagnostics</td>
+<td>Datatype for diagnostic keeps status, subfunctionStatus and the state number</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parameter-of-lbc_typeinterfacecommands">Parameter of LBC_typeInterfaceCommands</h4>
+<table>
+<col style="width:23.16%" />
+<col style="width:10.53%" />
+<col style="width:66.32%" />
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>refreshConfiguration</td>
+<td>Bool</td>
+<td>TRUE: Copy global configuration parameters into module interface for external systems</td>
+</tr>
+<tr>
+<td>editConfiguration</td>
+<td>Bool</td>
+<td>TRUE: Edit mode for configuration parameters in control system is active - copying into module interface is stopped</td>
+</tr>
+<tr>
+<td>saveConfiguration</td>
+<td>Bool</td>
+<td>TRUE: Save configuration parameters from module interface into to global configuration parameters after change</td>
+</tr>
+<tr>
+<td>alarmAck</td>
+<td>Bool</td>
+<td>TRUE: Module error acknowledge / reset of errors in function block</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parameter-of-module-configuration-udt-lbc_typenameconfiguration">Parameter of module configuration UDT (LBC_typeNAMEConfiguration)</h4>
+<p>The configuration UDT (module related) contains the configuration parameters needed for each functional module. The modules process is working on the configuration parameters of the I/O interface.</p>
+<p>All module related configuration parameters can be changed and adjusted via a external system. This is intended to provide the basis for an engineering-less commissioning. In case of dynamic assignment of parameters by the process, changes from external system will be overwritten.</p>
+<p>The configuration parameters of the module interface only updated on request:</p>
+<ul>
+<li>towards the surrounding system: <code>moduleInterface.commands.refreshConfiguration</code></li>
+<li>from surrounding into the module configuration: <code>moduleInterface.commands.saveConfiguration</code></li>
+</ul>
+<h4 id="the-module-monitoring-udt-lbc_typenameprocessvalues">The module monitoring UDT (LBC_typeNAMEProcessValues)</h4>
+<p>The monitoring UDT (module related) delivers all the process data related to the operation of the module.</p>
+<h4 id="parameter-of-lbc_typediagnostics">Parameter of LBC_typeDiagnostics</h4>
+<table>
+<col style="width:20.62%" />
+<col style="width:11.34%" />
+<col style="width:68.04%" />
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>Word</td>
+<td>Standardized status (based on style guide)</td>
+</tr>
+<tr>
+<td>subfunctionStatus</td>
+<td>Word</td>
+<td>Status or return value of called FB's, FCs and system blocks</td>
+</tr>
+<tr>
+<td>stateNumber</td>
+<td>DInt</td>
+<td>State in the state machine of the block where the error occurred</td>
+</tr>
+</tbody>
+</table>
+<p>The UDT for diagnostic keeps the block status, status of a called sub function and the state number where the error occurred.</p>
+
+<ul><li class="ProgramFolder">Program Blocks<ul>
+<li class="FB"><a href="../Library Types/LBC_AnalogInput.htm" title="LBC_AnalogInput (FB / V1.0.0)" target="_self">LBC_AnalogInput (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_AnalogOutput.htm" title="LBC_AnalogOutput (FB / V1.0.0)" target="_self">LBC_AnalogOutput (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_AnalogScale.htm" title="LBC_AnalogScale (FB / V1.0.0)" target="_self">LBC_AnalogScale (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_DigitalSignal.htm" title="LBC_DigitalSignal (FB / V1.0.0)" target="_self">LBC_DigitalSignal (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_DriveControl_StdPlc.htm" title="LBC_DriveControl_StdPlc (FB / V1.0.0)" target="_self">LBC_DriveControl_StdPlc (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_DriveControl_TecPlc.htm" title="LBC_DriveControl_TecPlc (FB / V1.0.0)" target="_self">LBC_DriveControl_TecPlc (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_MotorStarter.htm" title="LBC_MotorStarter (FB / V1.0.0)" target="_self">LBC_MotorStarter (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_StarDeltaStarter.htm" title="LBC_StarDeltaStarter (FB / V1.0.0)" target="_self">LBC_StarDeltaStarter (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_ThreeWayActuator.htm" title="LBC_ThreeWayActuator (FB / V1.0.0)" target="_self">LBC_ThreeWayActuator (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_TwoHandControl.htm" title="LBC_TwoHandControl (FB / V1.0.0)" target="_self">LBC_TwoHandControl (FB / V1.0.0)</a></li>
+<li class="FB"><a href="../Library Types/LBC_TwoWayActuator.htm" title="LBC_TwoWayActuator (FB / V1.0.0)" target="_self">LBC_TwoWayActuator (FB / V1.0.0)</a></li>
+</ul></li></ul><hr>
+<ul><li class="UDTs">PLC data types<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeDiagnostics.htm" title="LBC_typeDiagnostics (UDT)" target="_self">LBC_typeDiagnostics (UDT)</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeInterfaceCommands.htm" title="LBC_typeInterfaceCommands (UDT)" target="_self">LBC_typeInterfaceCommands (UDT)</a></li>
+<li class="folder">AnalogSignals<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeAnalogProcessValues.htm" title="LBC_typeAnalogProcessValues (UDT / )" target="_self">LBC_typeAnalogProcessValues (UDT / )</a></li>
+<li class="folder">Input<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeAnalogInputConfiguration.htm" title="LBC_typeAnalogInputConfiguration (UDT / )" target="_self">LBC_typeAnalogInputConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeAnalogInputInterface.htm" title="LBC_typeAnalogInputInterface (UDT / )" target="_self">LBC_typeAnalogInputInterface (UDT / )</a></li>
+</ul></li>
+<li class="folder">Output<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeAnalogOutputConfiguration.htm" title="LBC_typeAnalogOutputConfiguration (UDT / )" target="_self">LBC_typeAnalogOutputConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeAnalogOutputInterface.htm" title="LBC_typeAnalogOutputInterface (UDT / )" target="_self">LBC_typeAnalogOutputInterface (UDT / )</a></li>
+</ul></li>
+<li class="folder">Scale<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeAnalogScaleConfiguration.htm" title="LBC_typeAnalogScaleConfiguration (UDT / )" target="_self">LBC_typeAnalogScaleConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeAnalogScaleInterface.htm" title="LBC_typeAnalogScaleInterface (UDT / )" target="_self">LBC_typeAnalogScaleInterface (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeAnalogScaleValues.htm" title="LBC_typeAnalogScaleValues (UDT / )" target="_self">LBC_typeAnalogScaleValues (UDT / )</a></li>
+</ul></li>
+</ul></li>
+<li class="folder">DigitalSignal<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeDigitalSignalConfiguration.htm" title="LBC_typeDigitalSignalConfiguration (UDT / )" target="_self">LBC_typeDigitalSignalConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeDigitalSignalInterface.htm" title="LBC_typeDigitalSignalInterface (UDT / )" target="_self">LBC_typeDigitalSignalInterface (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeDigitalSignalProcessValues.htm" title="LBC_typeDigitalSignalProcessValues (UDT / )" target="_self">LBC_typeDigitalSignalProcessValues (UDT / )</a></li>
+</ul></li>
+<li class="folder">DriveControl<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeDriveControlConfiguration.htm" title="LBC_typeDriveControlConfiguration (UDT / )" target="_self">LBC_typeDriveControlConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeDriveControlInterface.htm" title="LBC_typeDriveControlInterface (UDT / )" target="_self">LBC_typeDriveControlInterface (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeDriveControlProcessValues.htm" title="LBC_typeDriveControlProcessValues (UDT / )" target="_self">LBC_typeDriveControlProcessValues (UDT / )</a></li>
+</ul></li>
+<li class="folder">MotorStarter<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeMotorStarterConfiguration.htm" title="LBC_typeMotorStarterConfiguration (UDT / )" target="_self">LBC_typeMotorStarterConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeMotorStarterInterface.htm" title="LBC_typeMotorStarterInterface (UDT / )" target="_self">LBC_typeMotorStarterInterface (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeMotorStarterProcessValues.htm" title="LBC_typeMotorStarterProcessValues (UDT / )" target="_self">LBC_typeMotorStarterProcessValues (UDT / )</a></li>
+</ul></li>
+<li class="folder">StarDeltaStarter<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeStarDeltaStarterConfiguration.htm" title="LBC_typeStarDeltaStarterConfiguration (UDT / )" target="_self">LBC_typeStarDeltaStarterConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeStarDeltaStarterInterface.htm" title="LBC_typeStarDeltaStarterInterface (UDT / )" target="_self">LBC_typeStarDeltaStarterInterface (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeStarDeltaStarterProcessValues.htm" title="LBC_typeStarDeltaStarterProcessValues (UDT / )" target="_self">LBC_typeStarDeltaStarterProcessValues (UDT / )</a></li>
+</ul></li>
+<li class="folder">ThreeWayActuator<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeThreeWayActuatorConfiguration.htm" title="LBC_typeThreeWayActuatorConfiguration (UDT / )" target="_self">LBC_typeThreeWayActuatorConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeThreeWayActuatorInterface.htm" title="LBC_typeThreeWayActuatorInterface (UDT / )" target="_self">LBC_typeThreeWayActuatorInterface (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeThreeWayActuatorProcessValues.htm" title="LBC_typeThreeWayActuatorProcessValues (UDT / )" target="_self">LBC_typeThreeWayActuatorProcessValues (UDT / )</a></li>
+</ul></li>
+<li class="folder">TwoHandControl<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeTwoHandControlConfiguration.htm" title="LBC_typeTwoHandControlConfiguration (UDT / )" target="_self">LBC_typeTwoHandControlConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeTwoHandControlInterface.htm" title="LBC_typeTwoHandControlInterface (UDT / )" target="_self">LBC_typeTwoHandControlInterface (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeTwoHandControlProcessValues.htm" title="LBC_typeTwoHandControlProcessValues (UDT / )" target="_self">LBC_typeTwoHandControlProcessValues (UDT / )</a></li>
+</ul></li>
+<li class="folder">TwoWayActuator<ul>
+<li class="UDT"><a href="../Library Types/LBC_typeTwoWayActuatorConfiguration.htm" title="LBC_typeTwoWayActuatorConfiguration (UDT / )" target="_self">LBC_typeTwoWayActuatorConfiguration (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeTwoWayActuatorInterface.htm" title="LBC_typeTwoWayActuatorInterface (UDT / )" target="_self">LBC_typeTwoWayActuatorInterface (UDT / )</a></li>
+<li class="UDT"><a href="../Library Types/LBC_typeTwoWayActuatorProcessValues.htm" title="LBC_typeTwoWayActuatorProcessValues (UDT / )" target="_self">LBC_typeTwoWayActuatorProcessValues (UDT / )</a></li>
+</ul></li>
+</ul></li></ul><hr>
+<h1 id="appendix">Appendix</h1>
+<h2 id="service-and-support">Service and support</h2>
+<h4 id="industry-online-support">Industry Online Support</h4>
+<p>Do you have any questions or need assistance?</p>
+<p>Siemens Industry Online Support offers round the clock access to our entire service and support know-how and portfolio.<br />
+The Industry Online Support is the central address for information about our products, solutions and services.<br />
+Product information, manuals, downloads, FAQs, application examples and videos, all information is accessible with just a few mouse clicks:<br />
+<a href="https://support.industry.siemens.com">https://support.industry.siemens.com</a></p>
+<h4 id="technical-support">Technical Support</h4>
+<p>The Technical Support of Siemens Industry provides you fast and competent support regarding all technical queries with numerous tailor-made offers - ranging from basic support to individual support contracts. Please send queries to Technical Support via Web form:<br />
+<a href="https://www.siemens.com/industry/supportrequest">https://www.siemens.com/industry/supportrequest</a></p>
+<h4 id="sitrain-training-for-industry">SITRAIN - Training for Industry</h4>
+<p>We support you with our globally available training courses for industry with practical experience, innovative learning methods and a concept that's tailored to the customer's specific needs.<br />
+For more information on our offered trainings and courses, as well as their locations and dates, refer to our web page:<br />
+<a href="https://www.siemens.com/sitrain">https://www.siemens.com/sitrain</a></p>
+<h4 id="service-offer">Service offer</h4>
+<p>Our range of services includes the following:</p>
+<ul>
+<li>Plant data services</li>
+<li>Spare parts services</li>
+<li>Repair services</li>
+<li>On-site and maintenance services</li>
+<li>Retrofitting and modernization services</li>
+<li>Service programs and contract's</li>
+</ul>
+<p>You can find detailed information on our range of services in the service catalog web page:<br />
+<a href="https://support.industry.siemens.com/cs/sc">https://support.industry.siemens.com/cs/sc</a></p>
+<h4 id="industry-online-support-app">Industry Online Support app</h4>
+<p>You will receive optimum support wherever you are with the &quot;Siemens Industry Online Support&quot; app. The app is available for Apple iOS and Android:<br />
+<a href="https://support.industry.siemens.com/cs/ww/en/sc/2067">https://support.industry.siemens.com/cs/ww/en/sc/2067</a></p>
+<hr class='pageBreak' />
+<h2 id="links-and-literature">Links and Literature</h2>
+<table>
+<col style="width:6.58%" />
+<col style="width:93.42%" />
+<thead>
+<tr>
+<th>No.</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="2">\1\     | Siemens Industry Online Support
+| <a href="https://support.industry.siemens.com">https://support.industry.siemens.com</a></td>
+</tr>
+<tr>
+<td colspan="2">\2\     | Link to the entry page of the application example
+| <a href="https://support.industry.siemens.com/cs/ww/en/view/109792175">https://support.industry.siemens.com/cs/ww/en/view/109792175</a></td>
+</tr>
+<tr>
+<td colspan="2">\3\     | Programming Guidelines and Programming Style guide for SIMATIC S7-1200 and S7-1500
+| <a href="https://support.industry.siemens.com/cs/ww/en/view/81318674">https://support.industry.siemens.com/cs/ww/en/view/81318674</a></td>
+</tr>
+<tr>
+<td colspan="2">\4\     | Guideline on Library Handling in Tia Portal
+| <a href="https://support.industry.siemens.com/cs/ww/en/view/109747503">https://support.industry.siemens.com/cs/ww/en/view/109747503</a></td>
+</tr>
+<tr>
+<td colspan="2">\5\     | Libraries in the TIA Portal
+| <a href="https://support.industry.siemens.com/cs/ww/en/view/109738702">https://support.industry.siemens.com/cs/ww/en/view/109738702</a></td>
+</tr>
+</tbody>
+</table>
+<hr class='pageBreak' />
+<h2 id="change-documentation">Change documentation</h2>
+<h4 id="versioning-of-the-library">Versioning of the library</h4>
+<p>The library and library elements are maintained in accordance with the table below:</p>
+<table>
+<col style="width:3.7%" />
+<col style="width:39.81%" />
+<col style="width:37.96%" />
+<col style="width:18.52%" />
+<thead>
+<tr>
+<th>P</th>
+<th>
+<ol>
+<li></li>
+</ol>
+</th>
+<th>
+<ol start="2">
+<li></li>
+</ol>
+</th>
+<th>
+<ol start="3">
+<li></li>
+</ol>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Non-compatible change</td>
+<td>Compatible change</td>
+<td>Error correction</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<ul>
+<li>Reduction of interfaces</li>
+<li>Changing the interfaces</li>
+<li>Incompatible extension of functionality</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Extension of the interfaces</li>
+<li>Compatible extension of functionality</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Bug fix</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<h4 id="versioning-example">Versioning example</h4>
+<p>Example for changing the version:</p>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>FB1</th>
+<th>FB2</th>
+<th>FC1</th>
+<th>FC2</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>1.0.0</td>
+<td>1.0.0</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Released</td>
+</tr>
+<tr>
+<td>1.0.1</td>
+<td>1.0.1</td>
+<td>1.0.0</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Troubleshooting of FB1</td>
+</tr>
+<tr>
+<td>1.0.2</td>
+<td>1.0.1</td>
+<td>1.0.1</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Optimization of FB2</td>
+</tr>
+<tr>
+<td>1.1.0</td>
+<td>1.1.0</td>
+<td>1.0.1</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Extension to FB1</td>
+</tr>
+<tr>
+<td>1.2.0</td>
+<td>1.2.0</td>
+<td>1.0.1</td>
+<td>1.0.0</td>
+<td>-</td>
+<td>Extension to FB1</td>
+</tr>
+<tr>
+<td>2.0.0</td>
+<td>2.0.0</td>
+<td>1.0.1</td>
+<td>2.0.0</td>
+<td>-</td>
+<td>New functionality on FB1 and FC1</td>
+</tr>
+<tr>
+<td>2.0.1</td>
+<td>2.0.0</td>
+<td>1.0.2</td>
+<td>2.0.0</td>
+<td>-</td>
+<td>Troubleshooting FB2</td>
+</tr>
+<tr>
+<td>3.0.0</td>
+<td>2.0.0</td>
+<td>1.0.2</td>
+<td>2.0.0</td>
+<td>1.0.0</td>
+<td>New function FC2</td>
+</tr>
+<tr>
+<td>3.0.1</td>
+<td>2.0.1</td>
+<td>1.0.3</td>
+<td>2.0.1</td>
+<td>1.0.1</td>
+<td>Upgrade to new TIA Portal version</td>
+</tr>
+<tr>
+<td>3.0.2</td>
+<td>2.0.2</td>
+<td>1.0.4</td>
+<td>2.0.2</td>
+<td>1.0.1</td>
+<td>New functions, bug fixes</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Change log</h2>
+<table class='GlobalChangeLog'><thead><tr><th>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr><td><b>V1.0.0</b><br/>02/2021</td><td>
+<p><b>NEW:</b></p>
+LBC_AnalogInput / V01.00.00<br/>
+LBC_AnalogOutput / V01.00.00<br/>
+LBC_AnalogScale / V01.00.00<br/>
+LBC_DigitalSignal / V01.00.00<br/>
+LBC_DriveControl_StdPlc / V01.00.00<br/>
+LBC_DriveControl_TecPlc / V01.00.00<br/>
+LBC_MotorStarter / V01.00.00<br/>
+LBC_StarDeltaStarter / V01.00.00<br/>
+LBC_ThreeWayActuator / V01.00.00<br/>
+LBC_TwoHandControl / V01.00.00<br/>
+LBC_TwoWayActuator / V01.00.00<br/>
+<br/>
+
+</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

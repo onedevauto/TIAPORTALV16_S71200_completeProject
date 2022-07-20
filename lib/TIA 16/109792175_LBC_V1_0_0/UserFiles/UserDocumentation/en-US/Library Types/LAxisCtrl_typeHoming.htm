@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<link rel='stylesheet' href='../../../Code2Docu/katex/katexStartUp.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LAxisCtrl_typeHoming (UDT)</title>
+</head><body>
+<h1>LAxisCtrl_typeHoming (UDT)</h1>
+<hr>
+<h2>Description</h2>
+<p>Support: tech.team.motioncontrol@siemens.com</p>
+
+<h2>Parameter description</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data Type</th><th class='default'>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>position</td><td class='type'>LReal</td><td class='default'>0.0</td><td>The specified value is used according to the selected "Mode"</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>mode</td><td class='type'>Int</td><td class='default'>0</td><td>Operation mode; 0: Direct homing (absolute); 1: Direct homing (relative); 2: Passive homing (without reset); 3: Active homing; 5: Active homing (Position parameter has no effect); 6: Absolute encoder adjustment (relative); 7: Absolute encoder adjustment (absolute); 8:Passive homing ; 9: Abort passive homing; 10: Passive homing (Position parameter has no effect); 11: Set setpoint position (absolute); 12: Shift the setpoint position (relative)</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>extendedMode</td><td class='type'>DInt</td><td class='default'>-1</td><td>-1: No extended homing mode (parameter "mode" is effective); 0: Homing on fixed stop; 1: Homing on fixed stop with moving out of clamping</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>extendedModeTorqueLimit</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Value of the torque/force for extended homing mode</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109792175' target='_blank'>Library of Basic Controls (LBC)</a><br>
+<span>Entry-ID: 109792175</span>
+<span>Date: 02/2021</span>
+<span>Version: V1.0.0</span>
+</p>
+</body></html>

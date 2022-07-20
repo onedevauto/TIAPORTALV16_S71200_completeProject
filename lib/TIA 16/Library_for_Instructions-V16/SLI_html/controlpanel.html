@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!---->
+<!-- AWP_In_Variable Name='"SLI_gDB_www".start' -->
+<!-- AWP_In_Variable Name='"SLI_gDB_www".stop' -->
+<!-- AWP_In_Variable Name='"SLI_gDB_www".reset' -->
+
+<!-- AWP_In_Variable Name='"SLI_gDB_www".flowrate' -->
+
+<!-- AWP_In_Variable Name='"SLI_gDB_www".openValve' -->
+<!-- AWP_In_Variable Name='"SLI_gDB_www".closeValve' -->
+<!-- AWP_In_Variable Name='"SLI_gDB_www".executeSetOB' -->
+
+<!-- AWP_Enum_Def Name="OpValvValue" Values='0:"Closed", 1:"Opened"' -->
+<!-- AWP_Enum_Def Name="EngineValue" Values='0:"Stopped", 1:"Started"' -->
+<!-- AWP_Enum_Def Name="ResetValue" Values='0:"Off", 1:"On"' -->
+<!-- AWP_Enum_Def Name="SetOBValue" Values='0:"Not set", 1:"Set"' -->
+
+<html>
+    <head>
+        <title>controls</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="style.css" type="text/css"/>	
+    </head>
+    <body>
+		<!---->
+		<div class="table">
+			<div class="tr line">
+				<div class="td">1) Set  the TimeOfDay OB once to unlock the flowrate: <!-- AWP_Enum_Ref Name='"SLI_gDB_www".setDone' Enum="SetOBValue" --> <span class="hilitetxt">:="SLI_gDB_www".setDone:</span>
+				</div>
+				<div class="td2">
+					<form method="post" action="">
+						<input class="button1" type="submit" value="Activate OB"/> 
+						<input type="hidden" name='"SLI_gDB_www".executeSetOB' size="34px" value="1"/>
+					</form>
+				</div>
+			</div>
+			<br/>
+			<div class="tr line">
+				<div class="td">2) Flowrate: 
+				<span class="hilitetxt">:="SLI_gDB_www".flowrate:</span>
+				</div>
+				<div class="td2">
+					<form method="post" action="" onsubmit="return check();">
+						<input type="text" name='"SLI_gDB_www".flowrate' size="10px"/>
+						<input class="button1" type="submit" value="Set flowrate"/>
+					</form>
+				</div>
+			</div>
+			<br/>
+			<div class="tr line">
+				<div class="td">3) Valve control: </div>
+				<div class="td2">
+					<!-- AWP_Enum_Ref Name='"SLI_gDB_www".valveOutput' Enum="OpValvValue" --> 
+					<span class="hilitetxt">:="SLI_gDB_www".valveOutput:</span>
+				</div>
+			</div>
+			<div class="tr">
+				<div class="td">
+					<form method="post" action="">
+						<input class="button1" type="submit" value="Open valve"/> 
+						<input type="hidden" name='"SLI_gDB_www".openValve' size="34px" value="1"/>
+						<input type="hidden" name='"SLI_gDB_www".closeValve' size="34px" value="0"/>
+					</form>
+				</div>
+				<div class="td2">
+					<form method="post" action="">
+						<input class="button1" type="submit" value="Close valve"/> 
+						<input type="hidden" name='"SLI_gDB_www".closeValve' size="34px" value="1"/>
+						<input type="hidden" name='"SLI_gDB_www".openValve' size="34px" value="0"/>
+					</form>
+				</div>
+			</div>
+			<br/>
+			<div class="tr line">
+				<div class="td">4) Engine control: </div>
+				<div class="td2">
+					<!-- AWP_Enum_Ref Name='"SLI_gDB_www".engineStarted' Enum="EngineValue" --> 
+					<span class="hilitetxt">:="SLI_gDB_www".engineStarted:</span>
+				</div>
+			</div>
+			<div class="tr">
+				<div class="td">
+					<form method="post" action="">
+						<input class="button1" type="submit" value="Start"/> 
+						<input type="hidden" name='"SLI_gDB_www".start' size="34px" value="1"/>
+						<input type="hidden" name='"SLI_gDB_www".stop' size="34px" value="0"/>
+					</form>
+				</div>
+				<div class="td2">
+					<form method="post" action="">
+						<input class="button1" type="submit" value="Stop"/> 
+						<input type="hidden" name='"SLI_gDB_www".stop' size="34px" value="1"/>
+						<input type="hidden" name='"SLI_gDB_www".start' size="34px" value="0"/>
+					</form>
+				</div>
+			</div>
+			<br/>
+			<div class="tr line">
+				<div class="td">5) Reset all: 
+				<!-- AWP_Enum_Ref Name='"SLI_gDB_www".tempReset' Enum="ResetValue" --><span class="hilitetxt">:="SLI_gDB_www".tempReset:</span>
+				</div>
+				<div class="td2">
+					<form method="post" action="">
+						<input class="button1" type="submit" value="Reset"/> 
+						<input type="hidden" name='"SLI_gDB_www".reset' size="34px" value="1"/>
+					</form>
+				</div>
+			</div>
+		</div>
+						
+    </body>
+</html>

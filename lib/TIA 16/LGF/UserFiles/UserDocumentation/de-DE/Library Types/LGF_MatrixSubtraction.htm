@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_MatrixSubtraction (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_MatrixSubtraction (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industries</span>
+<h2>Kurzbeschreibung</h2>
+<p>Diese Funktion subtrahiert eine Matrix vom Datentyp <code>ARRAY[*,*] of LREAL</code> von einer anderen.</p>
+<p>Die einzelnen Felder der zwei Matrizen werden gelesen, subtrahiert und anschließend in der Matrix <code>matrixResult&quot;</code> ausgegeben.</p>
+<span class="math display"> result = 
+ 
+\begin{bmatrix}
+   a_{11} &amp; \cdots &amp; a_{1n} \\
+   \vdots &amp; \ddots &amp; \vdots \\
+   a_{m1} &amp; \cdots &amp; a_{mn}
+\end{bmatrix}
+
+-
+
+\begin{bmatrix}
+   b_{11} &amp; \cdots &amp; b_{1n} \\
+   \vdots &amp; \ddots &amp; \vdots \\
+   b_{m1} &amp; \cdots &amp; b_{mn}
+\end{bmatrix}
+
+=
+
+\begin{bmatrix}
+   a_{11}-b_{11} &amp; \cdots &amp; a_{1n}-b_{1n} \\
+   \vdots &amp; \ddots &amp; \vdots \\
+   a_{m1}-b_{m1} &amp; \cdots &amp; a_{mn}-b_{mn}
+\end{bmatrix}
+</span>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Beachten Sie, dass alle Ein- und Ausgangsmatrizen die gleiche Anzahl an Spalten und Zeilen haben müssen.</dd>
+</dl>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_MatrixSubtraction (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='return'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Void</td></tr>
+<tr class='return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*, *] of LReal</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>matrix1</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*, *] of LReal</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*, *] of LReal</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>matrix2</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*, *] of LReal</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*, *] of LReal</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>matrixResult</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*, *] of LReal</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Void</td><td>Void - Funktion hat keinen Rückgabewert</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>matrix1</td><td>Array[*, *] of LReal</td><td>Erste Matrix - Minuend</td></tr>
+<tr><td>matrix2</td><td>Array[*, *] of LReal</td><td>Zweite Matrix - Subtrahend</td></tr>
+<tr><td>matrixResult</td><td>Array[*, *] of LReal</td><td>Summen Matrix</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR<br>Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#8200</td><td>ERR_MATR1_LOWBOUND_ROWS_MATR2_LOWBOUND_ROWS<br>Error: Untere Grenzen rows(Dim1) der Arrays von Matrix1 und Matrix2 sind unterschiedlich.</td></tr>
+<tr><td>16#8201</td><td>ERR_MATR1_LOWBOUND_ROWS_RESMATR_LOWBOUND_ROWS<br>Error: Untere Grenzen rows(Dim1) der Arrays von Matrix1 und Result Matrix sind unterschiedlich.</td></tr>
+<tr><td>16#8202</td><td>ERR_MATR1_LOWBOUND_COLUMNS_MATR2_LOWBOUND_COLUMNS<br>Error: Untere Grenzen columns(Dim2) der Arrays von Matrix1 und Matrix2 sind unterschiedlich.</td></tr>
+<tr><td>16#8203</td><td>ERR_MATR1_LOWBOUND_COLUMNS_RESMATR_LOWBOUND_COLUMNS<br>Error: Untere Grenzen columns(Dim2) der Arrays von Matrix1 und Result Matrix sind unterschiedlich.</td></tr>
+<tr><td>16#8204</td><td>ERR_MATR1_UPPBOUND_ROWS_MATR2_UPPBOUND_ROWS<br>Error: Obere Grenzen rows(Dim1) der Arrays von Matrix1 und Matrix2 sind unterschiedlich.</td></tr>
+<tr><td>16#8205</td><td>ERR_MATR1_UPPBOUND_ROWS_RESMATR_UPPBOUND_ROWS<br>Error: Obere Grenzen rows(Dim1) der Arrays von Matrix1 und Result Matrix sind unterschiedlich.</td></tr>
+<tr><td>16#8206</td><td>ERR_MATR1_UPPBOUND_COLUMNS_MATR2_UPPBOUND_COLUMNS<br>Error: Obere Grenzen columns(Dim2) der Arrays von Matrix1 und Matrix2 sind unterschiedlich.</td></tr>
+<tr><td>16#8207</td><td>ERR_MATR1_UPPBOUND_COLUMNS_RESMATR_UPPBOUND_COLUMNS<br>Error: Obere Grenzen columns(Dim2) der Arrays von Matrix1 und Result Matrix sind unterschiedlich.</td></tr>
+</tbody></table>
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>19.08.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA Portal V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>06.02.2017</td><td>Functionality using Array[*,*]</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>02.00.06</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>07.10.2019</td><td>Regions, comments and constants are added<br/>Moved matrices to IO field.</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>02.02.2020</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

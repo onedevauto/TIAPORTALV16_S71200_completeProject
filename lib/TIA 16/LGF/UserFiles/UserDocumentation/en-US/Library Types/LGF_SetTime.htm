@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_SetTime (FB / V3.0.2)</title>
+</head><body>
+<h1>LGF_SetTime (FB / V3.0.2)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>This block combines the functions of system time, local time, and set time zone.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_SetTime (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>execute</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>done</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>DTL</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>systemTime</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>busy</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>isLocalTime</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Int</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>timeZone</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>lastSetTimeZone</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>String</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>isDaylightSavingTime</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>execute</td><td>Bool</td><td>FALSE</td><td>Rising edge starts action once</td></tr>
+<tr><td>systemTime</td><td>DTL</td><td>---</td><td>System time to be set in PLC</td></tr>
+<tr><td>isLocalTime</td><td>Bool</td><td>FALSE</td><td>TRUE: `systemTime` is local time, FALSE: `systemTime` is UTC time</td></tr>
+<tr><td>timeZone</td><td>Int</td><td>0</td><td>Timezones HHMM [-1200.. -330.. 0.. 930.. 1200.. 1300]</td></tr>
+<tr><td>isDaylightSavingTime</td><td>Bool</td><td>FALSE</td><td>Daylight saving time changeover, TRUE: activated, FALSE: deactivated (more infos at "Adjusting parameters in the `statTimeZone` variable")</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>done</td><td>Bool</td><td>TRUE: Commanded functionality has been completed successfully</td></tr>
+<tr><td>busy</td><td>Bool</td><td>TRUE: FB is active and new output values can be expected</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error / TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>lastSetTimeZone</td><td>String</td><td>Time zone that was set last by this block</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB / 16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_EXECUTION_FINISHED_NO_ERROR<br>Execution finished without errors</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>No job being currently processed</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>First call after incoming new job (rising edge 'execute')</td></tr>
+<tr><td>16#7002</td><td>STATUS_SUBSEQUENT_CALL<br>Subsequent call during active processing without further details</td></tr>
+<tr><td>16#8201</td><td>ERR_SET_TIME_LOCAL<br>Error instruction WR_LOC_T: Write local time, check `subFunctionStatus` code</td></tr>
+<tr><td>16#8202</td><td>ERR_SET_TIME_UTC<br>Error instruction WR_SYS_T: Set time-of-day, check `subFunctionStatus` code</td></tr>
+<tr><td>16#8203</td><td>ERR_SET_TIMEZONE<br>Error instruction SET_TIMEZONE, check subFunctionStatus code</td></tr>
+<tr><td>16#8600</td><td>ERR_UNDEFINED_STATE<br>Error due to an undefined state in state machine</td></tr>
+<tr><td>16#8601</td><td>ERR_WRONG_TIMEZONE<br>Error due to an undefined time zone</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>The status of called commands is output in <code>subFunctionStatus</code>. In this case, the output value in <code>status</code> indicates which command caused the error. In this case, refer to the TIA Portal Online Help section for information on the respective commands.</dd>
+</dl>
+<p>This block combines the functions of system time, local time, and set time zone.</p>
+<hr class='pageBreak' />
+<p>The following time zones are possible on the <code>timeZone</code> input:</p>
+<table>
+<col style="width:18.46%" />
+<col style="width:81.54%" />
+<thead>
+<tr>
+<th style="text-align: center;">Input
+<code>timeZone</code></th>
+<th style="text-align: left;">Time zone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">-1200</td>
+<td style="text-align: left;">(UTC -12:00) Eniwetok, Kwajalein</td>
+</tr>
+<tr>
+<td style="text-align: center;">-1100</td>
+<td style="text-align: left;">(UTC -11:00) Midway Island</td>
+</tr>
+<tr>
+<td style="text-align: center;">-1000</td>
+<td style="text-align: left;">(UTC -10:00) Hawaii</td>
+</tr>
+<tr>
+<td style="text-align: center;">-930</td>
+<td style="text-align: left;">(UTC -09:30) (French) Polynesia</td>
+</tr>
+<tr>
+<td style="text-align: center;">-900</td>
+<td style="text-align: left;">(UTC -09:00) Alaska</td>
+</tr>
+<tr>
+<td style="text-align: center;">-800</td>
+<td style="text-align: left;">(UTC -08:00) Tijuana, Los Angeles, Seattle, Vancouver</td>
+</tr>
+<tr>
+<td style="text-align: center;">-700</td>
+<td style="text-align: left;">(UTC -07:00) Arizona, Denver, Salt Lake City, Calgary</td>
+</tr>
+<tr>
+<td style="text-align: center;">-600</td>
+<td style="text-align: left;">(UTC -06:00) Chicago, Dallas, Kansas City, Winnipeg</td>
+</tr>
+<tr>
+<td style="text-align: center;">-500</td>
+<td style="text-align: left;">(UTC -05:00) Eastern Time (USA &amp; Canada)</td>
+</tr>
+<tr>
+<td style="text-align: center;">-400</td>
+<td style="text-align: left;">(UTC -04:00) La Paz, Georgetown</td>
+</tr>
+<tr>
+<td style="text-align: center;">-330</td>
+<td style="text-align: left;">(UTC -03:30) Newfoundland</td>
+</tr>
+<tr>
+<td style="text-align: center;">-300</td>
+<td style="text-align: left;">(UTC -03:00) Brasilia, Buenos Aires</td>
+</tr>
+<tr>
+<td style="text-align: center;">-200</td>
+<td style="text-align: left;">(UTC -02:00) Mid-Atlantic</td>
+</tr>
+<tr>
+<td style="text-align: center;">-100</td>
+<td style="text-align: left;">(UTC -01:00) Azores, Cape Verde Is.</td>
+</tr>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: left;">(UTC) Dublin, Edinburgh, Lisbon, London</td>
+</tr>
+<tr>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">(UTC +01:00) Berlin, Bern, Brussels, Rome, Stockholm, Vienna</td>
+</tr>
+<tr>
+<td style="text-align: center;">200</td>
+<td style="text-align: left;">(UTC +02:00) Athens, Istanbul, Minsk, Bucharest</td>
+</tr>
+<tr>
+<td style="text-align: center;">300</td>
+<td style="text-align: left;">(UTC +03:00) Moscow, St. Petersburg, Baghdad, Kuwait, Riyadh</td>
+</tr>
+<tr>
+<td style="text-align: center;">330</td>
+<td style="text-align: left;">(UTC +03:30) Iran: Tehran</td>
+</tr>
+<tr>
+<td style="text-align: center;">400</td>
+<td style="text-align: left;">(UTC +04:00) Abu Dhabi, Muscat</td>
+</tr>
+<tr>
+<td style="text-align: center;">430</td>
+<td style="text-align: left;">(UTC +04:30) Afghanistan: Kabul</td>
+</tr>
+<tr>
+<td style="text-align: center;">500</td>
+<td style="text-align: left;">(UTC +05:00) Islamabad, Karachi, Tashkent</td>
+</tr>
+<tr>
+<td style="text-align: center;">530</td>
+<td style="text-align: left;">(UTC +05:30) India, Sri Lanka</td>
+</tr>
+<tr>
+<td style="text-align: center;">545</td>
+<td style="text-align: left;">(UTC +05:45) Nepal</td>
+</tr>
+<tr>
+<td style="text-align: center;">600</td>
+<td style="text-align: left;">(UTC +06:00) Astana, Almaty, Dhaka, Colombo</td>
+</tr>
+<tr>
+<td style="text-align: center;">630</td>
+<td style="text-align: left;">(UTC +06:30) Coco Island, Myanmar</td>
+</tr>
+<tr>
+<td style="text-align: center;">700</td>
+<td style="text-align: left;">(UTC +07:00) Bangkok, Hanoi, Jakarta</td>
+</tr>
+<tr>
+<td style="text-align: center;">800</td>
+<td style="text-align: left;">(UTC +08:00) Beijing, Chongqing, Hong Kong, Urumqi</td>
+</tr>
+<tr>
+<td style="text-align: center;">830</td>
+<td style="text-align: left;">(UTC +08:30) North Korea old</td>
+</tr>
+<tr>
+<td style="text-align: center;">845</td>
+<td style="text-align: left;">(UTC +08:45) Western Australia: Eucla</td>
+</tr>
+<tr>
+<td style="text-align: center;">900</td>
+<td style="text-align: left;">(UTC +09:00) Yakutsk, Osaka, Sapporo, Tokyo, Seoul</td>
+</tr>
+<tr>
+<td style="text-align: center;">930</td>
+<td style="text-align: left;">(UTC +09:30) Australia: Northern Territory, South Australia</td>
+</tr>
+<tr>
+<td style="text-align: center;">1000</td>
+<td style="text-align: left;">(UTC +10:00) Brisbane, Canberra, Melbourne, Sydney</td>
+</tr>
+<tr>
+<td style="text-align: center;">1030</td>
+<td style="text-align: left;">(UTC +10:30) Australia: Lord Howe Island</td>
+</tr>
+<tr>
+<td style="text-align: center;">1100</td>
+<td style="text-align: left;">(UTC +11:00) Vladivostok, Magadan, Solomon Is., New Caledonia</td>
+</tr>
+<tr>
+<td style="text-align: center;">1200</td>
+<td style="text-align: left;">(UTC +12:00) Auckland, Wellington</td>
+</tr>
+<tr>
+<td style="text-align: center;">1245</td>
+<td style="text-align: left;">(UTC +12:45) Chatham Islands</td>
+</tr>
+<tr>
+<td style="text-align: center;">1300</td>
+<td style="text-align: left;">(UTC +13:00) Tonga, Samoa</td>
+</tr>
+<tr>
+<td style="text-align: center;">1400</td>
+<td style="text-align: left;">(UTC +14:00) Kiribati</td>
+</tr>
+</tbody>
+</table>
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>Daylight saving time/standard time</dd>
+<dd>The parameters (time difference, start summer time, start winter time) must be
+adapted to the desired time zone in the static variable <code>statTimeZone</code>.</dd>
+</dl>
+<p>####### Adjusting parameters in the <code>statTimeZone</code> variable</p>
+<p>The static variable <code>statTimeZone</code> in the block interface is of the system data type TimeTransformationRule. In this system data type, the parameters for the local time zone and the summer/winter time changeover are stored.</p>
+<p>The default values of the static variable <code>statTimeZone</code> are set to Central European Summer Time in the block interface:</p>
+<ul>
+<li>Time difference: 60 min</li>
+<li>Start summer time: last Sunday in March, 02:00 a.m.</li>
+<li>Start winter time: last Sunday in October, 03:00 a.m.</li>
+</ul>
+<p>The following Figure shows the settings for the summer/winter time changeover of
+Central European Summer Time.</p>
+<p>The parameter <code>Bias</code> is determined by the input parameter <code>timeZone</code>. The parameter <code>DaylightBias</code> depends on the input parameter <code>daylightSavingTime</code> and is either <code>0</code> or <code>60</code>.</p>
+<p>For other time zones, the parameters for summer/winter time changeover must be
+adjusted (marked below).</p>
+<p><img src="../../../Code2Docu/images/LGF_SetTime.PNG" alt="LGF_SetTime - Adjusting parameters in the 'statTimeZone' variable" title="LGF_SetTime - Adjusting parameters in the 'statTimeZone' variable" /></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>08.06.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.03.2017</td><td>Bugfix: FB number: automatic</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.04</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.05</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>20.02.2019</td><td>Bugfix: Rising edge at input REQ of SET_TIMEOUT</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.06</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.08.2019</td><td>Reworked interface to PLC Open "execute" behavior<br/>Magic numbers removed, tag naming added, code reworked</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.02</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>13.01.2020</td><td>Bug fix - bias correction for time offsets (200 / 330)<br/>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

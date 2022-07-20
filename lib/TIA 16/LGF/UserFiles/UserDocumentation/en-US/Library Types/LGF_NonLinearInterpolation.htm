@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_NonLinearInterpolation (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_NonLinearInterpolation (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industries</span>
+<h2>Short description</h2>
+<p>This function implements a characteristic curve. The characteristic curve is defined via an interpolation point table with linear interpolation between the interpolation points. A prescribed input value generates an output value in each cycle based on the characteristic curve from the interpolation point table.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_NonLinearInterpolation (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>value</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outputValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>defaultOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enDefaultOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>track</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of LGF_typeNonLinSetpoints</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>setpoints</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of LGF_typeNonLinSetpoints</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>value</td><td>LReal</td><td>0.0</td><td>Input value for calculating the output value over the defined characteristic curve.</td></tr>
+<tr><td>defaultOutValue</td><td>LReal</td><td>0.0</td><td>Value for pre-assignment of the output variable<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>enDefaultOutValue</td><td>Bool</td><td>FALSE</td><td>Assign default output value<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>track</td><td>Bool</td><td>FALSE</td><td>The value of the output `outputValue` follows the value of the input `value` without using the characteristic curve as long as this input is set. (`outputValue` = `value`)</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>If the interpolation point table is changed in running operation, the input `reset` must be activated afterwards. Otherwise, the block cannot guarantee correct execution.<br>(`outputValue` = 0.0)</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>outputValue</td><td>LReal</td><td>The output value that has been calculated from the input value over the defined characteristic curve.</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>setpoints</td><td>Array[*] of LGF_typeNonLinSetpoints</td><td>Setpoint point table for defining the characteristic curve (polynomial)</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LGF_typeNonLinSetpoints (UDT)</h3>
+<p>Data type to setup a setpoint table for the function <code>LGF_NonLinearInterpolation</code></p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data type</th><th class='default'>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>inputValue</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Input value to be interpolated</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>outputValue</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Corresponding interpolated value</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>The value of the output <code>outputValue</code> based on the following priority:</p>
+<ol>
+<li>As long as the input <code>enDefaultOutValue</code> is set, the value defined via the parameter <code>defaultOutValue</code> will be output as output value.</li>
+<li>As long as the input <code>reset</code> is set, the block is reset and the output value is <code>0.0</code>.</li>
+<li>If the input <code>track</code> is set, the output value will be output directly as input value, without consideration of the characteristic curve.</li>
+<li>Based on the input value, a characteristic curve value is calculated via the linearly interpolated, interpolation point table and output as an output value.</li>
+</ol>
+<ul>
+<li>If the input value is between two interpolation points within the interpolation point table, the output value is calculated as the intersection with the connecting line between the preceding and following interpolation points (see Figure below).</li>
+<li>If the input value is before the first interpolation point (lowest value defined in the interpolation point table), the output value will be calculated as the intersection of the line formed by the first two interpolation points of the interpolation point table.</li>
+<li>If the input value is after the last interpolation point (highest value defined in the interpolation point table), the output value will be calculated as the intersection of the line formed by the last two interpolation points of the interpolation point table.</li>
+</ul>
+<h6 id="interpolation-point-table">Interpolation point table</h6>
+<p>The interpolation point table is implemented through a variable of the data type Array. The type of the array corresponds to the PLC data type <code>LGF_typeNonLinSetpoints</code>.</p>
+<p>You can create the interpolation point table in any global data block. The size of the array depends on the number of interpolation points.</p>
+<hr class='pageBreak' />
+<p>Figure: Sample path of the output signal</p>
+<p><img src="../../../Code2Docu/images/LGF_NonLinearInterpolation.png" alt="LGF_NonLinearInterpolation Setpoint table" title="LGF_NonLinearInterpolation Setpoint table" /></p>
+<hr class='predecessorDefList' />
+<dl class='NOTICE'
+>
+<dt>NOTICE</dt>
+<dd>To keep the computing time of the block as short as possible, there is no check of the parameterization or the data of the interpolation point table.</dd>
+<dd>
+<p>When entering the interpolation points in the interpolation point table, the following particularities must be considered. If these particularities are not taken into account, it can lead to a malfunction of the block.</p>
+<ul>
+<li>At least two interpolation points must be entered in the interpolation point table.</li>
+<li>The interpolation points in the interpolation point table must be entered in the Table in ascending order of the input values.</li>
+</ul>
+</dd>
+</dl>
+<h6 id="example">Example</h6>
+<p>Figure: Sample data block</p>
+<p><img src="../../../Code2Docu/images/LGF_NonLinearInterpolation_Table.png" alt="LGF_NonLinearInterpolation_Table Setpoint table" title="LGF_NonLinearInterpolation_Table Setpoint table" /></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>04.01.2017</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.06</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>15.11.2019</td><td>Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>22.03.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

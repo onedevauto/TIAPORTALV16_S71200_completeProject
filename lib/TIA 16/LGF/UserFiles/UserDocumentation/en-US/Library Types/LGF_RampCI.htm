@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_RampCI (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_RampCI (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industries</span>
+<h2>Short description</h2>
+<p>The function generates a speed curve based on an interpolation point table. Linear interpolation occurs between the points within the prescribed time.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_RampCI (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>defaultOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outputValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Int</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>contStepNbr</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>actTimeTable</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Time</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>contStepTime</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>stepNumber</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Int</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enDefaulftOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>remainTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Time</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>start</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>totalTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Time</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>hold</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>remainTotalTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Time</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>continue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>cyclicOP</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>updateTime</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subfunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>OB_CYCLIC</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>callOB</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of LGF_typeRampTimeTable</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>setpoints</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of LGF_typeRampTimeTable</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>defaultOutValue</td><td>LReal</td><td>0.0</td><td>Value for pre-assignment of the output variable<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>contStepNbr</td><td>Int</td><td>0</td><td>Number of the next interpolation point for continuing</td></tr>
+<tr><td>contStepTime</td><td>Time</td><td>T#0MS</td><td>Remaining time to continue to the interpolation point `contStepNbr`</td></tr>
+<tr><td>enDefaulftOutValue</td><td>Bool</td><td>FALSE</td><td>Assign default output value<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>start</td><td>Bool</td><td>FALSE</td><td>Run down the interpolation point table</td></tr>
+<tr><td>hold</td><td>Bool</td><td>FALSE</td><td>Freeze/ hold output at actual value</td></tr>
+<tr><td>continue</td><td>Bool</td><td>FALSE</td><td>Continuing</td></tr>
+<tr><td>cyclicOP</td><td>Bool</td><td>FALSE</td><td>Repeat interpolation point table cyclically</td></tr>
+<tr><td>updateTime</td><td>Bool</td><td>FALSE</td><td>Update time values</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>Complete reset of function</td></tr>
+<tr><td>callOB</td><td>OB_CYCLIC</td><td>---</td><td>Calling wake-alarm interrupt OB (cyclic interrupt OB)</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>outputValue</td><td>LReal</td><td>Output value</td></tr>
+<tr><td>actTimeTable</td><td>Bool</td><td>The interpolation point table will be edited.</td></tr>
+<tr><td>stepNumber</td><td>Int</td><td>current interpolation point number<br>(interpolation point that is approached)</td></tr>
+<tr><td>remainTime</td><td>Time</td><td>Remaining time until reaching the next interpolation point</td></tr>
+<tr><td>totalTime</td><td>Time</td><td>Total time for setpoint table</td></tr>
+<tr><td>remainTotalTime</td><td>Time</td><td>Total remaining time</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subfunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>setpoints</td><td>Array[*] of LGF_typeRampTimeTable</td><td>Interpolation point table.<br>You can find information on the data type `LGF_typeRampTimeTable` under the item “Global data” .</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_FINISHED_NO_ERROR<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: Block is not being processed</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: First call,
+Rising edge `start`.</td></tr>
+<tr><td>16#7002</td><td>STATUS_FURTHER_CALLS<br>Status: Further calls, cyclic operation,
+Input `cyclicOP` set.</td></tr>
+<tr><td>16#8200</td><td>ERR_OB_UNAVAILABLE<br>Error: OB on input `callOB` is not configured / present.
+Interconnect the constant name of a configured cyclic interrupt OB at the input `callOB`.</td></tr>
+<tr><td>16#8201</td><td>ERR_ARRAY_LOWER_BOUND<br>Error: Array does not start with 0 / Low array limit &lt;&gt; 0.
+The array with the interpolation points must start with the index 0.</td></tr>
+<tr><td>16#8400</td><td>ERR_QRY_CINT<br>Error in `QRY_CINT` command - check `subFunctionStatus` code</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LGF_typeRampTimeTable (UDT)</h3>
+<p>Data type to setup a speed curve based on a setpoint table for the function <code>LGF_RampCI</code></p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data type</th><th class='default'>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>outputValue</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Setpoint Value to reach by the interpolation curve</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>time</td><td class='type'>Time</td><td class='default'>T#0s</td><td>Time until the interpolation point is reached</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>The status of called commands is output in <code>subFunctionStatus</code>. In this case, the output value in <code>status</code> indicates which command caused the error. In this case, refer to the TIA Portal Online Help section for information on the respective commands.</dd>
+</dl>
+<hr class='successorDefList' />
+<h6 id="global-data">Global data</h6>
+<p>Together with the block, you automatically receive the PLC data type <code>LGF_typeRampTimeTable</code>, which is composed of the parameters <code>outVal</code> for the value of a base point and <code>time</code> for the time, until the next base point is reached. The declaration takes place in a one-dimensional array of the data type <code>LGF_typeRampTimeTable</code> beginning with the index <code>0</code>. The array is created in a global data block and then passed to the module <code>LGF_RampCI</code>.</p>
+<p>Figure: Example of the declaration of the interpolation points</p>
+<p><img src="../../../Code2Docu/images/LGF_RampCI_table.png" alt="LGF_RampCI Setpoint table" title="LGF_RampCI Setpoint table" /></p>
+<p>The parameter <code>time</code> of the last interpolation point must be parameterized with <code>0s</code>, since there is no longer any successor interpolation point.</p>
+<h6 id="principle-of-operation">Principle of operation</h6>
+<p>With this block, speed curves can be executed based on parameterized interpolation points; in each call cycle values are output according to a schedule, and interpolation takes place between the interpolation points.</p>
+<p>In each cycle the currently approached interpolation point number <code>stepNumber</code>, the actual remaining time <code>remainTime</code> until reaching the interpolation point, the total time <code>totalTime,</code> and the total remaining time until reaching the end of the speed curve <code>remainTotalTime</code>, are output. In addition, the output <code>actTimeTable</code> is set if the projected speed curve is currently being output.</p>
+<p>The time interval of the calling cyclic interrupt OB is determined by interconnecting the calling cyclic interrupt OB at the input parameter <code>callOB</code>.</p>
+<p>Figure: Interconnecting the cyclic interrupt OB</p>
+<p><img src="../../../Code2Docu/images/LGF_InterruptObAsParameter.png" alt="Interconnecting the cyclic interrupt OB" title="Interconnecting the cyclic interrupt OB" /></p>
+<p>The following operating modes can be selected via control inputs:</p>
+<ul>
+<li>Restart</li>
+<li>Pre-assigning an output</li>
+<li>Output a speed curve</li>
+<li>Stop processing</li>
+<li>Specify processing step and processing time</li>
+<li>Switch-on cyclic operation+F1</li>
+<li>Update total time and remaining time</li>
+</ul>
+<h6 id="overview-of-the-operating-modes">Overview of the operating modes</h6>
+<p>Table: Overview of the operating modes</p>
+<p><img src="../../../Code2Docu/images/LGF_RampCI_OperationTable_EN.png" alt="LGF_RampCI Table: Overview of the operating modes" title="LGF_RampCI Table: Overview of the operating modes" /></p>
+<hr class='pageBreak' />
+<h6 id="restart">Restart</h6>
+<p>The output <code>outValue</code> is reset to <code>0.0</code> with a rising edge at the input <code>reset</code>. With <code>enDefaultOutValue = TRUE</code>, <code>defaultOutValue</code> is output at <code>outputValue</code>. The total time and total remaining time are updated and output.</p>
+<h6 id="pre-assigning-an-output">Pre-assigning an output</h6>
+<p>If the speed curve should begin with a certain output value, then <code>enDefaultOutValue</code> must be <code>TRUE</code>. In this case the value <code>defaultOutValue</code> is present on the output of the timer. The internal processing of the speed curve continues during this time. If <code>enDefaultOutValue</code> changes to <code>FALSE</code> again, interpolation is performed to the currently active calibration point.</p>
+<h6 id="output-a-speed-curve">Output a speed curve</h6>
+<p>With a rising edge at the input <code>start</code>, the speed curve is output - as long as <code>start</code> is <code>TRUE</code> or until the speed curve is terminated by reaching the last interpolation point. Through a subsequent rising edge, the speed curve is output again. In addition, the total time is updated at each switch-on.</p>
+<h6 id="switch-on-cyclic-operation">Switch-on cyclic operation</h6>
+<p>If, in addition to the input <code>start</code>, the input <code>cyclicOP</code> is also set to <code>TRUE</code>, the speed curve automatically returns to the start point after outputting the last interpolation point value and starts a new cycle.</p>
+<p>There is no interpolation between the last interpolation point value and the starting point. The following must apply for a smooth transition: last interpolation point value = start point.</p>
+<h6 id="stop-speed-curve">Stop speed curve</h6>
+<p>With <code>hold = TRUE</code> the value of the output variable (including time processing) is frozen. When resetting <code>hold = FALSE</code>, the program continues at the point of interruption or at a parameterized point (see &quot;Defining the processing step and processing time&quot;). The processing time of the speed curve is extended by the holding time <code>T1*</code>. (see Figure below).</p>
+<h6 id="specify-processing-step-and-processing-time">Specify processing step and processing time</h6>
+<p>If the input parameter <code>continue</code> is set to <code>TRUE</code> for continuation while the speed curve is stopped (<code>hold = TRUE</code>), then after the input <code>hold</code> has been reset the interpolation point number <code>contStepNbr</code> (target interpolation point) will be approached within the time <code>contStepTime</code> (interpolation). The total remaining time will be recalculated.</p>
+<h6 id="updating-total-time-and-total-remaining-time">Updating total time and total remaining time</h6>
+<p>If values of the interpolation points are changed, the total time and the total remaining time of the speed curve can change. Since calculation of <code>totalTime</code> and <code>remainTotalTime</code> can significantly increase the processing time of the function block at many interpolation points, the calculation is only executed once with a rising edge on the <code>updateTime</code> input.</p>
+<hr class='pageBreak' />
+<h6 id="functional-processes">Functional processes</h6>
+<p>Figure: Functional processes</p>
+<p><img src="../../../Code2Docu/images/LGF_RampCI.png" alt="LGF_RampCI Functional processes" title="LGF_RampCI Functional processes" /></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>03.02.2017</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>16.05.2017</td><td>Comment correction (REGION)</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.06</td><td>Siemens Industry Presales Support</td></tr>
+<tr><td></td><td>15.11.2019</td><td>Code optimization, Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>22.03.2021</td><td>Insert documentation<br/>Change UDT member name from `outValue` to `outputValue`</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

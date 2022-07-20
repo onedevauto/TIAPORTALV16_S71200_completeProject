@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_typeGPS_DMS (UDT)</title>
+</head><body>
+<h1>LGF_typeGPS_DMS (UDT)</h1>
+<hr>
+<h2>Beschreibung</h2>
+<p>Datentyp für GPS-Koordinaten im Format Grad, Minuten, Sekunden und Richtung.<br />
+Er wird sowohl für den Längengrad (Latitude) wie auch für den Britengrad (Longitude) genutzt.<br />
+Der Datentyp wird z.B. in <code>LGF_typeGPS</code> genutzt.</p>
+
+<h2>Parameterbeschreibung</h2>
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Bezeichner</th><th class='type'>Datentyp</th><th class='default'>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>dir</td><td class='type'>Char</td><td class='default'>''</td><td>Richtung [N, S, E, W, n, s, e, w]</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>deg</td><td class='type'>UInt</td><td class='default'>0</td><td>Grad; Breitengrad (Latitude) [-89..+ 89]; Längengrad (Longitude) [-179..+179]</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>min</td><td class='type'>UInt</td><td class='default'>0</td><td>Minuten [0..+59]</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>sec</td><td class='type'>UInt</td><td class='default'>0</td><td>Sekunden [0..+59]</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

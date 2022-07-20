@@ -1,0 +1,146 @@
+/*
+highlight.js style for SCL Codeing language
+*/
+pre {
+	background-color: #D9D9D9 /*lightgray*/;
+	border: 1px solid #000000;
+	border-radius: 5px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+pre code {
+	tab-size: 2;
+}
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em 0.5em;
+  background: #D9D9D9 /*lightgray; */;
+}
+
+/* Base color: saturation 0; */
+.hljs,
+.hljs-subst {
+  color: #444;
+}
+
+.hljs-comment {
+  color: #008000;
+}
+
+/* based on NP++ naming of UDL to make it easy copy them inbetween*/
+.hljs-code1 {
+  font-weight: bold;
+  color: #C91FFE;
+}
+.hljs-code2Open,
+.hljs-code2Middle,
+.hljs-code2Close,
+.hljs-keywords1 {
+  font-weight: bold;
+  color: #0000FF;
+}
+.hljs-keywords2 {
+  font-weight: bold;
+  color: #800040;
+}
+.hljs-operators,
+.hljs-keywords3 {
+  font-weight: bold;
+  color: #414141;
+}
+.hljs-keywords4 {
+  font-weight: bold;
+  color: #800080;
+}
+.hljs-keywords5 {
+  color: #800040;
+}
+.hljs-keywords6 {
+  color: #FF0080;
+}
+.hljs-keywords7 {
+  color: #0000FF;
+}
+
+.hljs-keywords8 {
+  color: #FF8000;
+}
+
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta-keyword,
+.hljs-doctag,
+.hljs-name {
+  font-weight: bold;
+}
+
+
+/* User color: hue: 0 */
+
+.hljs-type,
+.hljs-string,
+.hljs-number,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #FF8000;
+}
+
+.hljs-string {
+  color: #02284E;
+}
+.hljs-section {
+  color: #880000;
+  font-weight: bold;
+}
+
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #BC6060;
+}
+
+
+/* Language color: hue: 90; */
+
+.hljs-literal {
+  color:#FF8000/*#78A960*/;
+}
+
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #397300;
+}
+
+
+/* Meta color: hue: 200 */
+
+.hljs-meta {
+  color: #1f7199;
+}
+
+.hljs-meta-string {
+  color: #4d99bf;
+}
+
+
+/* Misc effects */
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}

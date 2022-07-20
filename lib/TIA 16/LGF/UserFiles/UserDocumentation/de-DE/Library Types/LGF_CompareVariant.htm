@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_CompareVariant (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_CompareVariant (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry</span>
+<h2>Kurzbeschreibung</h2>
+<p>Die Funktion vergleicht zwei strukturierte Aktualparameter (Array, PLC-Datentyp) und gibt aus, ob sie dem gleichen Typ entsprechen und gleiche Werte haben.</p>
+<p>Vergleich von Arrays oder PLC Datentypen mit einer Länge von maximal 200 Bytes. Sobald eines der verglichenen Bytes unterschiedlich ist, ist das Funktionsergebniss FALSE.</p>
+<p>Einschränkungen:
+Die verschlatenen Strukturen dürfen keine <code>Strings</code> enthalten
+Die verschaltenen Strukturen dürfen eine größe von 200 Bytes nicht überschreiden wegen der Internen Nuffergröße</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_CompareVariant (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='return'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>variableA</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Variant</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>variableB</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Variant</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Bool</td><td>FALSE: Werte der Vergleichsvariablen oder PLC-Datentypen sind unterschiedlich.TRUE: Werte der Vergleichsvariablen sind gleich und PLC-Datentypen sind identisch.</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler / TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB / 16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status oder Rückgabewert von aufgerufenen FB's / FC's und Systemfunktionen</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>variableA</td><td>Variant</td><td>Erste Vergleichsvariable mit beliebigen Datentyp</td></tr>
+<tr><td>variableB</td><td>Variant</td><td>Zweite Vergleichsvariable mit beliebigen Datentyp</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR<br>Abarbeitung ohne Fehler beendet</td></tr>
+<tr><td>16#8201</td><td>ERR_INPUT_TYPES_MUST_MATCH<br>Fehler, die Eingabetypen müssen übereinstimmen, z.B. Struct</td></tr>
+<tr><td>16#8202</td><td>ERR_INPUT_TYPES_LENGTH_NOT_EQUAL<br>Fehler, die Eingabetypen haben nach der Serialisierung unterschiedliche Längen.`subFunctionStatus` liefert einen Indikator für die unterschiedliche Länge.</td></tr>
+<tr><td>16#8601</td><td>ERR_SERIALIZE_VARIABLE_A<br>Fehler während der Serialisierung von `variableA`
+- weitere infos in `subFunctionStatus`</td></tr>
+<tr><td>16#8602</td><td>ERR_SERIALIZE_VARIABLE_B<br>Fehler während der Serialisierung von `variableB`
+- weitere infos in `subFunctionStatus`</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>In <code>subFunctionStatus</code> wird der Status von aufgerufenen Anweisungen ausge-geben. Der Ausgangswert in <code>status</code> gibt in diesem Fall an, welche Anweisung den Fehler verursacht hat. Holen Sie sich in diesem Fall die Informationen aus der TIA Portal Online Hilfe zu den jeweiligen Anweisungen.</dd>
+</dl>
+<hr class='successorDefList' />
+<p>Dieser Baustein vergleicht zwei (strukturierte) Aktualparameter und gibt aus, ob sie dem gleichen Wert entsprechen.</p>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>
+<p>Folgende Unterschiede können mit der Vergleichsmethode (Bytelevel) nicht erkannt werden:</p>
+<ul>
+<li>Variablen vom Datentyp <code>Struct</code> können nicht verglichen werden.</li>
+<li>Bei Strings können im Bereich zwischen tatsächlicher Länge und Maximallänge Unterschiede vorhanden sein.</li>
+<li>Bei <code>REAL</code> Zahlen in der Struktur kann auch bei &quot;gleichen&quot; Variablen eine Ungleichheit angezeigt werden.</li>
+<li>Variablen vom Typ <code>ARRAY of BOOL</code> können mit der Funktion nicht auf Gleichheit geprüft werden, da die verwendete Anweisung <code>CountOfElements</code> auch die Füllelemente mitzählt (z.B. bei einem <code>ARRAY[0..1] of BOOL</code> wird 8 zurückgegeben).</li>
+</ul>
+</dd>
+</dl>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>03.09.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>11.02.2015</td><td>Bug fix</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>02.01.2017</td><td>Upgrade: TIA V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.04</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.05</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>03.06.2019</td><td>Refactoring and performance improvment<br/>Change error handling to status and subFctStatus<br/>update serialize instruction<br/>add eno handling</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>19.01.2020</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

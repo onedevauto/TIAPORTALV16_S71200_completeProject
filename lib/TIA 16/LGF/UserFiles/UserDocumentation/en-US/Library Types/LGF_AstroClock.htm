@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_AstroClock (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_AstroClock (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>This function calculates the times of sunrise and sunset based on the local time for a specific place on Earth. The exact position is transferred in the form of geographical GPS coordinates (longitude and latitude).</p>
+<p><img src="../../../Code2Docu/images/LGF_AstroClock_WorldMap.PNG" alt="LGF_AstroClock - Earth with longitude and latitude" title="LGF_AstroClcok - Earth with longitude and latitude" /></p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_AstroClock (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enable</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>valid</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LGF_typeGPS_DD</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>positionGps</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>busy</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Time</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offsetSunrise</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Time</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>offsetSunset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>actualLocalTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DTL</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>sunriseTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DTL</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>sunsetTime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DTL</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>isDaytime</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>TRUE: Activates the functionality of the FB</td></tr>
+<tr><td>positionGps</td><td>LGF_typeGPS_DD</td><td>---</td><td>GPS position to calculate the time of sunrise and sunset</td></tr>
+<tr><td>offsetSunrise</td><td>Time</td><td>T#0s</td><td>Offset to sunrise (added to sunrise time, considered at `isDaytime`, negative time allowed)</td></tr>
+<tr><td>offsetSunset</td><td>Time</td><td>T#0s</td><td>Offset to sunset (added to sunset time, considered at `isDaytime`, negative time allowed)</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>valid</td><td>Bool</td><td>TRUE: Valid set of output values available at the FB</td></tr>
+<tr><td>busy</td><td>Bool</td><td>TRUE: FB is active and new output values can be expected</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error / TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB / 16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+<tr><td>actualLocalTime</td><td>DTL</td><td>Current time (local time)</td></tr>
+<tr><td>sunriseTime</td><td>DTL</td><td>Sunrise time (localtime)</td></tr>
+<tr><td>sunsetTime</td><td>DTL</td><td>Sunset time (localtime)</td></tr>
+<tr><td>isDaytime</td><td>Bool</td><td>TRUE: If the local time of the controller is between “sunrise” and “sunset”.</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_EXECUTION_FINISHED_NO_ERROR<br>Execution finished without errors</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>No job being currently processed - not `enable`</td></tr>
+<tr><td>16#7001</td><td>STATUS_IN_OPERATION<br>Block is in Operation - Enabled</td></tr>
+<tr><td>16#8204</td><td>ERR_LATITUDE_VALUE<br>Error: Wrong
+Latitude DD value</td></tr>
+<tr><td>16#8205</td><td>ERR_LONGITUDE_VALUE<br>Error: Wrong Longitude DD value</td></tr>
+<tr><td>16#8601</td><td>ERR_RD_SYS_T<br>Error instruction RD_SYS_T, check `subFunctionStatus` code</td></tr>
+<tr><td>16#8602</td><td>ERR_RD_LOC_T<br>Error instruction RD_LOC_T, check `subFunctionStatus` code</td></tr>
+</tbody></table>
+<h2>User defined datatype(s)</h2>
+<h3>LGF_typeGPS_DD (UDT)</h3>
+<p>Datatype for GPS Coordinates in decimal degrees.<br />
+For latitude and longitude.<br />
+Datatype for a whole GPS Data set.</p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Identifier</th><th class='type'>Data type</th><th class='default'>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>latitude</td><td class='type'>Real</td><td class='default'>0.0</td><td>Degrees latitude with decimal places<br>(Unit: degree decimal), North = positive; South = negative)<br>valid value range [-90.00000..90.00000]</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>longitude</td><td class='type'>Real</td><td class='default'>0.0</td><td>Degrees longitude in degrees with decimal places<br>(Unit: degree decimal), East = positive; West = negative)<br>valid range [-180.0000..180.0000]</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<dl class='NOTE'
+>
+<dt>NOTE</dt>
+<dd>The status of called commands is output in <code>subFunctionStatus</code>. In this case, the output value in <code>status</code> indicates which command caused the error. In this case, refer to the TIA Portal Online Help section for information on the respective commands.</dd>
+</dl>
+<hr class='successorDefList' />
+<p>If processes must run automatically depending on the change between day and night, the function of an astronomical clock is required. Examples of this would be switching outdoor lighting on and off or opening and closing roller shutters.</p>
+<p>If these processes are to be executed with a time delay i.e. a defined time before or after sunrise or sunset an offset is required in each case.</p>
+<hr class='predecessorDefList' />
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>For precise execution of the function, it must be ensured that system time and local time of the SIMATIC controller are set correctly.</dd>
+</dl>
+<hr class='successorDefList' />
+<p>Based on the system time/local time of the SIMATIC controller and the set coordinates, the block calculates the times for sunrise and sunset. The offset times are added to the sunrise and sunset and output on the <code>sunrise</code> and <code>sunset</code> outputs. If the systems local time of the SIMATIC controller is between these values, the output <code>isDaytime</code> is set to the value <code>TRUE</code>.</p>
+<hr class='predecessorDefList' />
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>
+<p>Since the times for sunrise and sunset change daily, it is possible that the <code>isDaytime</code> output remains permanently on <code>TRUE</code> or <code>FALSE</code> over a longer period of time:</p>
+<ul>
+<li>with correspondingly large offset values</li>
+<li>for a place on the other side of the Arctic Circle</li>
+</ul>
+</dd>
+</dl>
+<hr class='successorDefList' />
+<p>The input of the GPS coordinate values is checked for valid values. If there are invalid values, an appropriate error code is output to <code>status</code>.</p>
+<p>If there is an invalid coordinate value for a formal parameter, the outputs <code>sunrise</code> and <code>sunset</code> are set to the value <code>DTL#1970-01-01-00:00:00</code>.</p>
+<hr class='pageBreak' />
+<p>####### Example</p>
+<p>The following example illustrates the block’s functionality.</p>
+<p>Geographical coordinates for Nuremberg-Moorenbrunn, date, and system time:</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Longitude:</td>
+<td>+ 11.07675°</td>
+</tr>
+<tr>
+<td>Latitude:</td>
+<td>+ 49.45203°</td>
+</tr>
+<tr>
+<td>Date:</td>
+<td>02/28/2020</td>
+</tr>
+<tr>
+<td>Local time:</td>
+<td>11:22:37</td>
+</tr>
+<tr>
+<td>Sunrise:</td>
+<td>07:01:23</td>
+</tr>
+<tr>
+<td>Sunset:</td>
+<td>17:56:14</td>
+</tr>
+</tbody>
+</table>
+<p>Figure: FB LGF_AstroClock, Observation of the block online with the parameters and
+the actual parameters via the Observation Table</p>
+<p><img src="../../../Code2Docu/images/LGF_AstroClock_ScreenshotBlock.PNG" alt="LGF_AstroClock - Observation of the block online" title="LGF_AstroClock - Observation of the block online" /></p>
+
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>19.08.2015</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>01.10.2015</td><td>T_ADD instruction is replaced with "+"</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>16.11.2015</td><td>"offsetSunrise", "offsetSunset" is calculated in<br/>"daytime"<br/>Bug fix at "Adjust back TO UTC"</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>07.06.2015</td><td>Add output actSystemTime and actLocalTime</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>15.06.2015</td><td>Add comments</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>04.01.2017</td><td>Bug fix at calculation sunrise and sunset</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.03</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>20.01.2017</td><td>Upgrade: TIA V14 Update 1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.04</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>22.02.2017</td><td>Code optimization</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.05</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>09.07.2018</td><td>Initialize #tempIntSunrise, #tempIntSunset,#tempDate1Jan</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.06</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.01.07</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.08</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>30.08.2019</td><td>Rename from Astro to AstroClock<br/>Update Type name to positionGps - "LGF_typeGPS_DD" - GPS position as decimal degree<br/>Refactoring of interface<br/>- one input type for GPS data<br/>- refactored for better usability<br/>- refactoring of whole block to "ENABLE" behavior</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>12.11.2020</td><td>Bug fix - not enabled - block still running<br/>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

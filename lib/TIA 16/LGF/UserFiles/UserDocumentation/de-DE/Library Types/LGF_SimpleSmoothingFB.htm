@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_SimpleSmoothingFB (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_SimpleSmoothingFB (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industry</span>
+<h2>Kurzbeschreibung</h2>
+<p>Die Funktion berechnet den linearen Mittelwert zyklisch.Die einfachste Form der Glättung einer Messwertfolge ist die Berechnung des linearen Mittelwerts durch drei Punkte.Der Funktionsbaustein liest mit jeder positiven Flanke am Eingang <code>insert</code> einen Wert ein. Sobald drei Werte eingelesen wurden, berechnet der Baustein einen geglätteten Wert und gibt diesen aus.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_SimpleSmoothingFB (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enable</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>smoothedValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>insert</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>value</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>Aktiviert den Baustein. Solange enable `TRUE` ist, kann der Baustein Werte am Parameter `value` übernehmen.</td></tr>
+<tr><td>insert</td><td>Bool</td><td>FALSE</td><td>Übernimmt bei einer positiven Flanke den Wert am Eingang `value` und gibt einen `smoothedValue` aus, wenn drei Werte eingelesen wurden.</td></tr>
+<tr><td>value</td><td>LReal</td><td>0.0</td><td>Wert, der in die Glättung eingehen sollen.</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>smoothedValue</td><td>LReal</td><td>Die geglätteten Werte.</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: Kein Fehler<br>TRUE: Während der Ausführung des FB ist ein Fehler aufgetreten</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status des FB<br>16#8000-16#FFFF: Fehleridentifikation (siehe folgende Tabelle)</td></tr>
+</tbody></table>
+<h3>Status & Error Meldungen</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Wert</th><th>Bezeichner / Beschreibung</th></tr></thead><tbody>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: Kein Aufruf.
+Der Baustein wartet auf die Aktivierung durch den Parameter `enable`.</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: Erstaufruf des FB nach einschalten</td></tr>
+<tr><td>16#7002</td><td>STATUS_SUBSEQUENT_CALL<br>Status: Die Bearbeitung ist aktiv.
+Nachfolgender Aufruf des FB.</td></tr>
+<tr><td>16#7010</td><td>STATUS_NOT_ENOUGH_VALUES<br>Status: Nicht genug Werte.
+Der Baustein benötigt drei (3) Werte, um einen geglätteten Wert zu berechnen. Übergeben Sie weitere Werte mit einer positiven Flanke am Eingang `insert`.</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<p>Die Funktion berechnet die geglätteten Werte mit der folgenden Formel:</p>
+<span class="math display">  \overline{y(n)} = \frac{y(n-1) + y(n) + y(n+1)}{3}
+</span>
+<p>Der berechnete Wert wird bzw. die berechneten Werte werden am Ausgang <code>smoothedValue</code> ausgegeben.</p>
+<p>Aufgrund dieser Formel kann die Funktion keine Werte für die Elemente 0 und N berechnen.</p>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.03</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>05.11.2019</td><td>Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.04.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

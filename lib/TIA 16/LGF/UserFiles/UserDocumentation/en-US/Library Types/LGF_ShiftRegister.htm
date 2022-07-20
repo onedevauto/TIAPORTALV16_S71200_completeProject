@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_ShiftRegister (FB / V1.0.3)</title>
+</head><body>
+<h1>LGF_ShiftRegister (FB / V1.0.3)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry Support</span>
+<h2>Short description</h2>
+<p>The Function represents a shift register for any kind of Datatype (using <code>variant</code>).<br />
+It is possible to shift the elements in the array at <code>bufferRegister</code> to the left (index <code>array[n]:=array[n+1]</code>) or right (index <code>array[n]:=array[n-1]</code>).<br />
+It could be used for material tracking trough a machine or a process, e.g. for a rotary indexing table.</p>
+<hr class='predecessorDefList' />
+<dl class='Note'
+>
+<dt>Note</dt>
+<dd>As this is a real shift operation, it may cause some runtime effects while using big array sizes to move at the input <code>bufferRegister</code>.</dd>
+<dd>Please consider that a FIFO  or LIFO storage, based on indexes, could be used as well for most applications.</dd>
+</dl>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_ShiftRegister (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>shiftLeft</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>shiftRight</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>UInt</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>shiftRange</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>subFunctionStatus</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>clear</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>fill</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>initialItem</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Variant</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>bufferRegister</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Variant</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>shiftLeft</td><td>Bool</td><td>FALSE</td><td>Rising edge: Elements in the array `bufferRegister` shifted left.<br>Elements moved from index `N` to `N - 1`.<br>The element at index `N = 0`is overwritten</td></tr>
+<tr><td>shiftRight</td><td>Bool</td><td>FALSE</td><td>Rising edge: Elements in the array `bufferRegister` shifted right.<br>Elements moved from index `N` to `N + 1`.<br>The element at index `N = lastIndex` is overwritten</td></tr>
+<tr><td>shiftRange</td><td>UInt</td><td>1</td><td>Number of places to be shifted in the `bufferRegister` input array</td></tr>
+<tr><td>clear</td><td>Bool</td><td>FALSE</td><td>Clear buffer elements in `bufferRegister` with `initalItem`</td></tr>
+<tr><td>fill</td><td>Bool</td><td>FALSE</td><td>Overwrite buffer elements after shift operation.<br>* `shiftLeft` - the most right element/s<br>* `shiftRight` - the most left element/s<br>overwritten by `initalItem`.</td></tr>
+<tr><td>initialItem</td><td>Variant</td><td>---</td><td>Value with which the array at input `bufferRegister` is initialized (usually the default value)</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+<tr><td>subFunctionStatus</td><td>Word</td><td>Status or return value of called FB's, FC's and system blocks</td></tr>
+</tbody></table>
+<h3>In/Out parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>bufferRegister</td><td>Variant</td><td>Buffer / Register memory as ARRAY, which keeps the data.<br>The data in the register is shifted left or right depending on the command.</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#0000</td><td>STATUS_NO_ERROR<br>Status: Execution finished without errors</td></tr>
+<tr><td>16#7000</td><td>STATUS_NO_CURRENT_JOBS<br>Status: No current jobs, initial state</td></tr>
+<tr><td>16#8200</td><td>ERR_NO_ARRAY<br>Error: No array is present at the input `bufferRegister`</td></tr>
+<tr><td>16#8201</td><td>ERR_CLEARING_WITHOUT_INITIAL_ITEM<br>Error: Claering `bufferRegister` without an `initialItem` is not possible.</td></tr>
+<tr><td>16#8202</td><td>ERR_FILL_WITHOUT_INITIAL_ITEM<br>Error: Option `fill` the buffer after shift operation without an `initialItem` is not possible.</td></tr>
+<tr><td>16#8203</td><td>ERR_WRONG_TYPE_INITIAL_ITEM<br>Error: The data type of the input `initialItem` does not correspond to the data type of the array at the InOut parameter `bufferRegister`.</td></tr>
+<tr><td>16#8401</td><td>ERR_MORE_THAN_ONE_COMMAND<br>Error: More than one command present at the same time.
+Only one of the inputs `shiftLeft`, `shiftRight` or `clear` is allowed.</td></tr>
+<tr><td>16#8402</td><td>ERR_IN_SHIFT_RANGE<br>Error: The value at `shiftRange` must not exceed the maximum size of the Array at `bufferRegister`.</td></tr>
+<tr><td>16#8610</td><td>ERR_CLEAR_BUFFER<br>Error: While clearing buffer in block `MOVE_BLK_VARIANT``.
+Check `subFunctionStatus` code.</td></tr>
+<tr><td>16#8611</td><td>ERR_SHIFT_BUFFER_LEFT<br>Error: While shift buffer left in block `MOVE_BLK_VARIANT` - check `subFunctionStatus` code</td></tr>
+<tr><td>16#8612</td><td>ERR_SHIFT_BUFFER_LEFT_FILL<br>Error: While fill buffer after shift left in block `MOVE_BLK_VARIANT` - check `subFunctionStatus` code</td></tr>
+<tr><td>16#8622</td><td>ERR_SHIFT_BUFFER_RIGHT<br>Error: While shift buffer right in block `MOVE_BLK_VARIANT` - check `subFunctionStatus` code</td></tr>
+<tr><td>16#8622</td><td>ERR_SHIFT_BUFFER_RIGHT_FILL<br>Error: While fill buffer after shift right in block `MOVE_BLK_VARIANT` - check `subFunctionStatus` code</td></tr>
+</tbody></table>
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>03.07.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>09.04.2021</td><td>Refactoring and alignment to Datatype Variant<br/>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html><html lang='en-US'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_DifferenceQuotientFB (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_DifferenceQuotientFB (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Author: Siemens Digital Industry</span>
+<h2>Short description</h2>
+<p>This function numerically differentiates a signal sampled equidistantly in time. For example, the velocity can be calculated from a measured locus curve, or the acceleration can be calculated from the measured velocity. In order to minimize the effects of a scattering measurement signal, this algorithm uses a compensating polynomial.</p>
+<p>The function block calculates the differentiated values cyclically.</p>
+<p>The function block reads-in a value with each positive edge on the <code>insert</code> been read in, the block calculates a differentiated value and outputs it.</p>
+
+<h3>Block Interface</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_DifferenceQuotientFB (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enable</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>derivatedValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>insert</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>error</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Bool</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>value</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>status</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Word</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>deltaT</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Identifier</th><th>Data type</th><th>Default value</th><th>Description</th></tr></thead><tbody>
+<tr><td>enable</td><td>Bool</td><td>FALSE</td><td>Activates the block. As long as enable is `TRUE`, the block can accept values on the parameter `value`.</td></tr>
+<tr><td>insert</td><td>Bool</td><td>FALSE</td><td>Accepts the value at the input `value` at positive edge and outputs a `derivatedValue` if five values have been read in.</td></tr>
+<tr><td>value</td><td>LReal</td><td>0.0</td><td>Value that must be included in the differentiation.</td></tr>
+<tr><td>deltaT</td><td>LReal</td><td>0.0</td><td>Equidistant distance between two measured values. (e.g. 1s)</td></tr>
+</tbody></table>
+<h3>Output parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Identifier</th><th>Data type</th><th>Description</th></tr></thead><tbody>
+<tr><td>derivatedValue</td><td>LReal</td><td>The differentiated value.</td></tr>
+<tr><td>error</td><td>Bool</td><td>FALSE: No error<br>TRUE: An error occurred during the execution of the FB</td></tr>
+<tr><td>status</td><td>Word</td><td>16#0000-16#7FFF: Status of the FB<br>16#8000-16#FFFF: Error identification (see following Table)</td></tr>
+</tbody></table>
+<h3>Status & Error codes</h3>
+<table class='StatusAndErrorConstants'><thead><tr><th>Code / Value</th><th>Identifier / Description</th></tr></thead><tbody>
+<tr><td>16#7000</td><td>STATUS_NO_CALL<br>Status: No call of FB.
+The block waits for activation through the parameter `enable`.</td></tr>
+<tr><td>16#7001</td><td>STATUS_FIRST_CALL<br>Status: First call of FB after enabling</td></tr>
+<tr><td>16#7002</td><td>STATUS_SUBSEQUENT_CALL<br>Status: Processing is active.
+Subsequent call of FB.</td></tr>
+<tr><td>16#7010</td><td>STATUS_NOT_ENOUGH_VALUES<br>Status: Not enough values. The block requires five (5) values to calculate a differentiated value. Transfer additional values with a positive edge on the `insert` input.</td></tr>
+<tr><td>16#8200</td><td>ERR_DELTA_T<br>Error: Delta time `deltaT` must not be zero.</td></tr>
+</tbody></table>
+<h2>Functional description</h2>
+<p>To calculate the difference quotient of a scattering signal, a third-degree compensation polynomial is first placed through the measured values. This polynomial is then differentiated. With this method, even a distorted input signal can be sensibly differentiated.</p>
+<p>The difference quotient is calculated with the following formula:</p>
+<span class="math display">   y^{\prime}(n) = \frac{y(n-2) - 8y(n-1) + 8y(n+1) - y(n+2)}{12 \cdot deltaT}
+</span>
+<p><span class="math inline">deltaT</span>: equidistant distance between two measured values (e.g. 1s).</p>
+<p>The function (FC) can calculate <span class="math inline">N-4</span> differentiated and smoothed measured values from N measured values. The output array would be assigned with 0 in the index (0,1,N-1,N). However, the following formalisms can be used to calculate substitute values:</p>
+<span class="math display">   y^{\prime}(n-2) = \frac{-125(y(n-2) + 136y(n-1) + 48y(n) - 88y(n+1) + 29y(n+2)}{84 \cdot deltaT}
+</span>
+<span class="math display">   y^{\prime}(n-1) = \frac{-38(y(n-2) - 2y(n-1) + 24y(n) + 26y(n+1) - 10y(n+2)}{84 \cdot deltaT}
+</span>
+<span class="math display">   y^{\prime}(n+1) = \frac{10(y(n-2) - 26y(n-1) - 24y(n) + 2y(n+1) + 38y(n+2)}{84 \cdot deltaT}
+</span>
+<span class="math display">   y^{\prime}(n+2) = \frac{-29(y(n-2) + 88y(n-1) - 48y(n) - 136y(n+1) + 125y(n+2)}{84 \cdot deltaT}
+</span>
+<h2>Change log</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Date</th><th>Change description</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>04.11.2019</td><td>Code reworked.<br/>Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>06.04.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/en/view/109479728' target='_blank'>Library of General Functions (LGF) for SIMATIC S7-1200 / S7-1500</a><br>
+<span>Entry-ID: 109479728</span>
+<span>Date: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

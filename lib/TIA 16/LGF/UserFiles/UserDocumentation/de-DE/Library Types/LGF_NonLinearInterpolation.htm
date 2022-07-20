@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_NonLinearInterpolation (FB / V3.0.1)</title>
+</head><body>
+<h1>LGF_NonLinearInterpolation (FB / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industries</span>
+<h2>Kurzbeschreibung</h2>
+<p>Diese Funktion realisiert eine Kennlinie. Die Kennlinie wird über eine Stützpunkttabelle mit linearer Interpolation zwischen den Stützpunkten vorgegeben. Ein vorgegebener Eingangswert generiert in jedem Zyklus anhand der Kennlinie aus der Stützpunkttabelle einen Ausgangswert.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_NonLinearInterpolation (FB)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='in out'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>value</td><td rowspan='2'>&nbsp;</td><td rowspan='2'>outputValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='in out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>LReal</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>defaultOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>enDefaultOutValue</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>track</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='in'><td rowspan='2'>Bool</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>reset</td><td rowspan='2'>&nbsp;</td><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td></tr>
+<tr class='in interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of LGF_typeNonLinSetpoints</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>setpoints</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of LGF_typeNonLinSetpoints</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Input Parameter</h3>
+<table class='BlockInterfaceInFb'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>value</td><td>LReal</td><td>0.0</td><td>Eingangswert zur Berechnung des Ausgangswerts über die definierte Kennlinie.</td></tr>
+<tr><td>defaultOutValue</td><td>LReal</td><td>0.0</td><td>Wert für die Default Vorbelegung der Ausgangsgröße<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>enDefaultOutValue</td><td>Bool</td><td>FALSE</td><td>Zuweisen des Default Ausgangswert<br>(`outputValue` = `defaultOutValue`)</td></tr>
+<tr><td>track</td><td>Bool</td><td>FALSE</td><td>Der Wert des Ausgangs `outputValue` wird dem Wert des Eingangs `value` ohne Nutzung der Kennlinie nachgeführt, solange dieser Eingang gesetzt ist. (`outputValue` = `value`)</td></tr>
+<tr><td>reset</td><td>Bool</td><td>FALSE</td><td>Falls im laufenden Betrieb die Stützpunkttabelle verändert wird, muss anschließend den Eingang `reset` betätigt werden. Sonst kann der Baustein die korrekte Ausführung nicht gewährleisten.<br>(`outputValue` = 0.0)</td></tr>
+</tbody></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>outputValue</td><td>LReal</td><td>Der Ausgangswert, der anhand des Eingangswerts über die definierte Kennlinie berechnet wurde.</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>setpoints</td><td>Array[*] of LGF_typeNonLinSetpoints</td><td>Stützpunkttabelle zur Definition der Kennlinie (Polynom)</td></tr>
+</tbody></table>
+<h2>Benutzer definierte Datentypen</h2>
+<h3>LGF_typeNonLinSetpoints (UDT)</h3>
+<p>Datentype zur Erstellung einer Stützpunkttabelle für die Funktion <code>LGF_NonLinearInterpolation</code></p>
+
+<table class='UDT'><thead><tr><th colspan='1' class='name'>Bezeichner</th><th class='type'>Datentyp</th><th class='default'>Default Wert</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td colspan ='1' style='width: 125px;'>inputValue</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Eingangswert für die Interpolation</td></tr>
+<tr><td colspan ='1' style='width: 125px;'>outputValue</td><td class='type'>LReal</td><td class='default'>0.0</td><td>Korrespondierender Ausgabewert</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<p>Der Wert des Ausgangs <code>outputValue</code> wird anhand folgender Priorität ausgegeben:</p>
+<ol>
+<li>Solange der Eingang <code>enDefaultOutValue</code> gesetzt ist, wird der über den Parameter <code>defaultOutValue</code> definierte Wert als Ausgangswert ausgegeben.</li>
+<li>Solange der Eingang <code>reset</code> gesetzt ist, wird der Baustein zurückgesetzt und als Ausgangswert wird der Wert <code>0.0</code> ausgegeben.</li>
+<li>Wenn der Eingang <code>track</code> gesetzt ist, wird als Ausgangswert direkt der Eingangswert ohne Berücksichtigung der Kennlinie ausgegeben.</li>
+<li>Anhand des Eingangswerts wird über die linear interpolierte Stützpunkttabelle ein Kennlinienwert berechnet und als Ausgangswert ausgegeben.</li>
+</ol>
+<ul>
+<li>Befindet sich der Eingangswert zwischen zwei Stützpunkten innerhalb der Stützpunkttabelle, wird der Ausgangswert als Schnittpunkt mit der Verbindungsgeraden zwischen dem vorhergehenden und nachfolgenden Stützpunkt berechnet (siehe Abbildung unten).</li>
+<li>Befindet sich der Eingangswert vor dem ersten Stützpunkt (geringster Wert der in der Stützpunkttabelle definiert wurde), wird der Ausgangswert als Schnittpunkt der Geraden berechnet, die aus den ersten beiden Stützpunkten der Stützpunkttabelle gebildet wird.</li>
+<li>Befindet sich der Eingangswert hinter dem letzten Stützpunkt (höchster Wert der in der Stützpunkttabelle definiert wurde), wird der Ausgangswert als Schnittpunkt der Geraden berechnet, die aus den letzten beiden Stützpunkten der Stützpunkttabelle gebildet wird.</li>
+</ul>
+<h6 id="stutzpunkttabelle">Stützpunkttabelle</h6>
+<p>Die Stützpunkttabelle wird durch eine Variable vom Datentyp Array realisiert. Der Typ des Arrays entspricht dem PLC-Datentyp <code>LGF_typeNonLinSetpoints</code>.</p>
+<p>Die Stützpunkttabelle können Sie in einem beliebigen globalen Datenbaustein anlegen. Die Größe des Arrays ist von der Anzahl der Stützpunkte abhängig.</p>
+<hr class='pageBreak' />
+<p>Abbildung: Beispielhafter Verlauf des Ausgangssignals</p>
+<p><img src="../../../Code2Docu/images/LGF_NonLinearInterpolation.png" alt="LGF_NonLinearInterpolation Stützpunkt Tabelle" title="LGF_NonLinearInterpolation Stützpunkt Tabelle" /></p>
+<hr class='predecessorDefList' />
+<dl class='ACHTUNG'
+>
+<dt>ACHTUNG</dt>
+<dd>Um die Rechenzeit des Bausteins möglichst gering zu halten, wird keine Überprüfung der Parametrierung oder der Daten der Stützpunkttabelle vorgenommen.</dd>
+<dd>
+<p>Beim Eintragen der Stützpunkte in die Stützpunkttabelle muss auf folgende Besonderheiten geachtet werden. Andernfalls kann es zu einem Fehlverhalten des Bausteins führen.</p>
+<ul>
+<li>In der Stützpunkttabelle müssen mindestens zwei Stützpunkte eingetragen sein.</li>
+<li>Die Stützpunkte in der Stützpunkttabelle müssen in aufsteigender Reihenfolge der Eingangswerte in der Tabelle eingetragen sein.</li>
+</ul>
+</dd>
+</dl>
+<h6 id="beispiel">Beispiel</h6>
+<p>Abbildung: Exemplarischer Datenbaustein</p>
+<p><img src="../../../Code2Docu/images/LGF_NonLinearInterpolation_Table.png" alt="LGF_NonLinearInterpolation_Table Stützpunkt Tabelle" title="LGF_NonLinearInterpolation_Table Stützpunkt Tabelle" /></p>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>04.01.2017</td><td>First released version</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.01</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>17.08.2018</td><td>Upgrade: TIA V15 Update 2</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.02</td><td>Siemens Industry Online Support</td></tr>
+<tr><td></td><td>23.11.2018</td><td>Upgrade: TIA V15.1</td></tr>
+<tr class='LogEntryStart'><td></td><td>01.00.06</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>15.11.2019</td><td>Regions, comments and constants are added</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>22.03.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>

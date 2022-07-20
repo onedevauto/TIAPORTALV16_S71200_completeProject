@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html><html lang='de-DE'>
+<head>
+<script src='../../../Code2Docu/katex/katex.min.js'></script>
+<script src='../../../Code2Docu/katex/katexStartUp.js'></script>
+<link rel='stylesheet' href='../../../Code2Docu/katex/katex.min.css' />
+<!--[if lt IE 9]><script src='../../../Code2Docu/katex/html5shiv-printshiv-3.7.3.min.js'></script><![endif]-->
+<link rel='stylesheet' href='../../../Code2Docu/highlightJS/scl.css'>
+<script src='../../../Code2Docu/highlightJS/highlight.pack.js'></script>
+<script src='../../../Code2Docu/highlightJS/scl.js'></script>
+<script type='text/javascript'>
+hljs.registerLanguage('scl', window.hljsDefineSCL);
+hljs.initHighlightingOnLoad();
+</script>
+<link rel='stylesheet' href='../../../Code2Docu/style.css'>
+<link rel='stylesheet' href='../../../Code2Docu/styleCustomized.css'>
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8'>
+<title>LGF_SearchMinMax_LReal (FC / V3.0.1)</title>
+</head><body>
+<h1>LGF_SearchMinMax_LReal (FC / V3.0.1)</h1>
+<hr>
+<span class='author'>Autor: Siemens Digital Industries</span>
+<h2>Kurzbeschreibung</h2>
+<p>Die Funktion sucht in einem Array vom Datentyp LReal den Maximal und Minimalwert sowie den jeweiligen Index im Array.</p>
+
+<h3>Baustein Schnittstelle</h3>
+<table class='block'><thead><tr><th colspan='2'> </th><th colspan='5'>LGF_SearchMinMax_LReal (FC)</th><th colspan='2'> </th></tr></thead><tbody>
+<tr class='return'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>Ret_Val</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Void</td></tr>
+<tr class='return interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>minValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>minValueIndex</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DInt</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>maxValue</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>LReal</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class=' out'><td rowspan='2'></td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'></td><td rowspan='2'>&nbsp;</td><td rowspan='2'>maxValueIndex</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>DInt</td></tr>
+<tr class='out interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class='inOut'><td rowspan='2'>Array[*] of LReal</td><td>&nbsp;</td><td>&nbsp;</td><td colspan='3'>values</td><td>&nbsp;</td><td>&nbsp;</td><td rowspan='2'>Array[*] of LReal</td></tr>
+<tr class='inOut interface'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</tbody><tfoot><tr><td colspan='2'>&nbsp;</td><td colspan='5'>&nbsp;</td><td colspan='2'>&nbsp;</td></tr></tfoot></table>
+<h3>Output Parameter</h3>
+<table class='BlockInterfaceOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr class='return'><td>Ret_Val</td><td>Void</td><td>Void - Funktion hat keinen Rückgabewert</td></tr>
+<tr><td>minValue</td><td>LReal</td><td>Gefundener Minimal Wert im Array</td></tr>
+<tr><td>minValueIndex</td><td>DInt</td><td>Index des gefundenen Minimalwerts im Array.<br>Der Startindex des Arrays plus `minValueIndex` ergibt den Arrayindex des kleinsten Wertes. Der Index beginnt mit 0.</td></tr>
+<tr><td>maxValue</td><td>LReal</td><td>Gefundener Maximal Wert im Array</td></tr>
+<tr><td>maxValueIndex</td><td>DInt</td><td>Index des gefundenen Maximalwerts im Array.<br>Der Startindex des Arrays plus `maxValueIndex` ergibt den Arrayindex des kleinsten Wertes. Der Index beginnt mit 0.</td></tr>
+</tbody></table>
+<h3>In/Out Parameter</h3>
+<table class='BlockInterfaceInOut'><thead><tr><th>Bezeichner</th><th>Datentyp</th><th>Beschreibung</th></tr></thead><tbody>
+<tr><td>values</td><td>Array[*] of LReal</td><td>Array in dessen Feldern das Maximum und Minimum gesucht wird</td></tr>
+</tbody></table>
+<h2>Funktionsbeschreibung</h2>
+<p>Über den Eingang <code>values</code> wird ein Array beliebiger Größe angeschlossen. Danach werden die Elemente der Reihe nach verglichen. Ausgegeben werden der kleinste und größte Wert sowie deren zugehöriger Index im Array.</p>
+<dl class='Hinweis'
+>
+<dt>Hinweis</dt>
+<dd>Bei mehreren gleichen Min- bzw. Max-Werten wird der Index des ersten Min- bzw. Max-Wertes ausgegeben.</dd>
+</dl>
+
+<h2>Änderungshistorie</h2>
+<table class='ChangeLog'><thead><tr><th colspan='2'>Version & Datum</th><th>Änderungsbeschreibung</th></tr></thead><tbody>
+<tr class='LogEntryStart'><td></td><td>01.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>11.11.2019</td><td>First release<br/>copied from "LGF_SearchMinMax" and reworked to array[*]</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.00</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>23.04.2020</td><td>Set version to V3.0.0, harmonize the version of the whole library</td></tr>
+<tr class='LogEntryStart'><td></td><td>03.00.01</td><td>Simatic Systems Support</td></tr>
+<tr><td></td><td>09.02.2021</td><td>Insert documentation</td></tr>
+</tbody></table>
+<hr>
+<p class='footer'>
+<a href='https://support.industry.siemens.com/cs/ww/de/view/109479728' target='_blank'>Library of General Functions (LGF) für SIMATIC S7-1200 / S7-1500</a><br>
+<span>Beitrags Nummer: 109479728</span>
+<span>Datum: 11/2021</span>
+<span>Version: V5.1.0</span>
+</p>
+</body></html>
